@@ -1,9 +1,17 @@
 import React from 'react';
 import styled from 'styled-components';
 
-function CartItem({ book, handleDelete }) {
+function CartItem({ book, handleDelete, handleMinus, handlePlus }) {
   const onDelete = () => {
     handleDelete(book.id);
+  };
+
+  const onMinus = () => {
+    handleMinus(book.id);
+  };
+
+  const onPlus = () => {
+    handlePlus(book.id);
   };
 
   return (
@@ -20,11 +28,11 @@ function CartItem({ book, handleDelete }) {
       <CartInfo>
         <Quantity>
           <MinusBtn>
-            <MinusImg src="images/minusBtn.png" alt="" />
+            <MinusImg src="images/minusBtn.png" alt="감소 버튼" onClick={onMinus} />
           </MinusBtn>
-          <NumberInput type="number" value="1" />
+          <NumberInput type="number" value={book.quantity} />
           <PlusBtn>
-            <PlusImg src="images/plusBtn.png" alt="" />
+            <PlusImg src="images/plusBtn.png" alt="증가 버튼" onClick={onPlus} />
           </PlusBtn>
         </Quantity>
         <Price>{book.price}</Price>

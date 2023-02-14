@@ -42,7 +42,7 @@ localStorage.setItem('test-1', JSON.stringify(data));
 function ShoppingCart() {
   const [books, setBooks] = useState([]);
 
-  // 장바구니 클릭할 시 로컬 스토리지에 있는 데이터들을 한번 state에 저장
+  // 장바구니 클릭할 시 최초 한번 로컬 스토리지에 있는 데이터들을 한번 state에 저장
   useEffect(() => {
     const booksData = JSON.parse(localStorage.getItem('test-1'));
     setBooks(booksData);
@@ -53,6 +53,20 @@ function ShoppingCart() {
     localStorage.clear();
     localStorage.setItem('test-1', JSON.stringify(filterBook));
     setBooks(filterBook);
+  };
+
+  const handleMinus = (id) => {
+    const findBookIndex = books.findIndex((book) => book.id === id);
+    const newBooks = JSON.parse(JSON.stringify(books));
+    newBooks[findBookIndex].quantity -= 1;
+    setBooks(newBooks);
+  };
+
+  const handlePlus = (id) => {
+    const findBookIndex = books.findIndex((book) => book.id === id);
+    const newBooks = JSON.parse(JSON.stringify(books));
+    newBooks[findBookIndex].quantity += 1;
+    setBooks(newBooks);
   };
 
   if (!localStorage.getItem('test-1')) {
@@ -73,7 +87,7 @@ function ShoppingCart() {
           </CartHeader>
           <CartList>
             {books.map((book) => (
-              <CartItem key={book.id} book={book} handleDelete={handleDelete} />
+              <CartItem key={book.id} book={book} handleDelete={handleDelete} handleMinus={handleMinus} handlePlus={handlePlus} />
             ))}
           </CartList>
         </CartContent>
