@@ -7,6 +7,9 @@ function CartItem({ book, handleDelete, handleMinus, handlePlus }) {
   };
 
   const onMinus = () => {
+    if (book.quantity === 0) {
+      return;
+    }
     handleMinus(book.id);
   };
 

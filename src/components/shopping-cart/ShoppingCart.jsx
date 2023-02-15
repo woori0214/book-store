@@ -59,6 +59,10 @@ function ShoppingCart() {
     const findBookIndex = books.findIndex((book) => book.id === id);
     const newBooks = JSON.parse(JSON.stringify(books));
     newBooks[findBookIndex].quantity -= 1;
+
+    localStorage.clear();
+    localStorage.setItem('test-1', JSON.stringify(newBooks));
+
     setBooks(newBooks);
   };
 
@@ -66,6 +70,10 @@ function ShoppingCart() {
     const findBookIndex = books.findIndex((book) => book.id === id);
     const newBooks = JSON.parse(JSON.stringify(books));
     newBooks[findBookIndex].quantity += 1;
+
+    localStorage.clear();
+    localStorage.setItem('test-1', JSON.stringify(newBooks));
+
     setBooks(newBooks);
   };
 
