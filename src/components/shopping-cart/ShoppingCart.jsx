@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import CartItem from './CartItem';
+import CartAcount from './CartAcount';
 
 // localstorage 저장
 const data = [
@@ -41,20 +42,34 @@ localStorage.setItem('test-1', JSON.stringify(data));
 
 function ShoppingCart() {
   const [books, setBooks] = useState([]);
+  const [amount, setAmount] = useState(0);
+
+  // 각 책의 quantity와 price를 모두 더하는 함수
+  const calculateAmount = (inputAry) => {
+    const result = inputAry.reduce((sum, curr) => sum + curr.quantity * curr.price, 0);
+    return result;
+  };
 
   // 장바구니 클릭할 시 최초 한번 로컬 스토리지에 있는 데이터들을 한번 state에 저장
   useEffect(() => {
     const booksData = JSON.parse(localStorage.getItem('test-1'));
+    setAmount(calculateAmount(booksData));
     setBooks(booksData);
   }, []);
 
+  // 삭제 버튼 클릭시 로직
   const handleDelete = (id) => {
-    const filterBook = books.filter((book) => book.id !== id);
+    const newBooks = JSON.parse(JSON.stringify(books));
+    const filterBook = newBooks.filter((book) => book.id !== id);
+
     localStorage.clear();
     localStorage.setItem('test-1', JSON.stringify(filterBook));
+
+    setAmount(calculateAmount(filterBook));
     setBooks(filterBook);
   };
 
+  // 마이너스 버튼 클릭시 로직
   const handleMinus = (id) => {
     const findBookIndex = books.findIndex((book) => book.id === id);
     const newBooks = JSON.parse(JSON.stringify(books));
@@ -63,9 +78,11 @@ function ShoppingCart() {
     localStorage.clear();
     localStorage.setItem('test-1', JSON.stringify(newBooks));
 
+    setAmount(calculateAmount(newBooks));
     setBooks(newBooks);
   };
 
+  // 플러스 버튼 클릭시 로직
   const handlePlus = (id) => {
     const findBookIndex = books.findIndex((book) => book.id === id);
     const newBooks = JSON.parse(JSON.stringify(books));
@@ -74,6 +91,7 @@ function ShoppingCart() {
     localStorage.clear();
     localStorage.setItem('test-1', JSON.stringify(newBooks));
 
+    setAmount(calculateAmount(newBooks));
     setBooks(newBooks);
   };
 
@@ -99,24 +117,7 @@ function ShoppingCart() {
             ))}
           </CartList>
         </CartContent>
-        <PaymentArea>
-          <PaymentResult>
-            <Amount>
-              <AmountItem>
-                <Span>총 상품금액</Span>
-                <SpanPrice>9000원</SpanPrice>
-              </AmountItem>
-              <AmountDelivery>
-                <Span>배송비</Span>
-                <SpanPrice>3000원</SpanPrice>
-              </AmountDelivery>
-            </Amount>
-            <Total>
-              <PurpleSpan>결제예상금액</PurpleSpan>
-              <PurpleSpan>12000원</PurpleSpan>
-            </Total>
-          </PaymentResult>
-        </PaymentArea>
+        <CartAcount amount={amount} />
       </CartWrapper>
     </>
   );
@@ -159,58 +160,3 @@ const CartList = styled.div`
 `;
 
 const CheckBox = styled.div``;
-
-const PaymentArea = styled.div`
-  flex-basis: 30%;
-  padding-top: 44.4px;
-`;
-
-const PaymentResult = styled.div``;
-
-const Amount = styled.div`
-  padding: 25px;
-  border-top: 1px solid #bdbdbd;
-  border-bottom: 1px solid #bdbdbd;
-`;
-
-const Span = styled.span`
-  display: block;
-  font-family: 'Inter';
-  font-style: normal;
-  font-weight: 400;
-  font-size: 16px;
-  line-height: 24px;
-
-  color: #bdbdbd;
-`;
-
-const SpanPrice = styled(Span)`
-  color: #000000;
-`;
-
-const PurpleSpan = styled(Span)`
-  font-family: 'Inter';
-  font-style: normal;
-  font-weight: 700;
-  font-size: 16px;
-  line-height: 24px;
-
-  color: #6e54e2;
-`;
-
-const AmountItem = styled.div`
-  display: flex;
-  justify-content: space-between;
-  margin-bottom: 20px;
-`;
-
-const AmountDelivery = styled.div`
-  display: flex;
-  justify-content: space-between;
-`;
-
-const Total = styled.div`
-  display: flex;
-  justify-content: space-between;
-  padding: 25px;
-`;

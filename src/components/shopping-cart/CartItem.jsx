@@ -38,7 +38,7 @@ function CartItem({ book, handleDelete, handleMinus, handlePlus }) {
             <PlusImg src="images/plusBtn.png" alt="증가 버튼" onClick={onPlus} />
           </PlusBtn>
         </Quantity>
-        <Price>{book.price}</Price>
+        <Price>{`${book.price}원`}</Price>
       </CartInfo>
 
       <button type="button" onClick={onDelete}>
