@@ -19,9 +19,6 @@ function CartItem({ book, handleDelete, handleMinus, handlePlus }) {
 
   return (
     <BookItem>
-      <CheckBox>
-        <InputCheckBox type="checkbox" />
-      </CheckBox>
       <ListBox>
         <BookImage src={book.bookImage} alt="책 이미지입니다." />
         <BookInfo>
@@ -53,18 +50,13 @@ export default CartItem;
 const BookItem = styled.li`
   width: 100%;
   display: flex;
-  justify-content: space-between;
   align-items: center;
   padding: 30px 30px 30px 0;
 `;
 
-const CheckBox = styled.div`
-  line-height: 100%;
-`;
-
 const ListBox = styled.div`
   display: flex;
-  margin-right: 160px;
+  flex-basis: 60%;
 `;
 
 const BookImage = styled.img`
@@ -82,10 +74,12 @@ const Span = styled.span``;
 
 const CartInfo = styled.div`
   display: flex;
+  flex-basis: 30%;
 `;
 
 const Quantity = styled.div`
   display: flex;
+  flex-basis: 30%;
   align-items: center;
 `;
 
@@ -139,12 +133,8 @@ const Price = styled.div`
   margin-left: 50px;
 `;
 
-const InputCheckBox = styled.input`
-  width: 20px;
-  height: 20px;
-`;
-
 const Button = styled.button`
+  flex-basis: 10%;
   border: none;
 
   font-family: 'Noto Sans KR';

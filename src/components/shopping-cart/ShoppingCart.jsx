@@ -3,43 +3,6 @@ import styled from 'styled-components';
 import CartItem from './CartItem';
 import CartAcount from './CartAcount';
 
-// localstorage 저장
-const data = [
-  {
-    id: 1,
-    bookImage: 'images/book.jpg',
-    title: '부의 추월차선',
-    quantity: 1,
-    inventory: 100,
-    price: 5500
-  },
-  {
-    id: 2,
-    bookImage: 'images/book.jpg',
-    title: '부의 추월차선',
-    quantity: 1,
-    inventory: 100,
-    price: 5500
-  },
-  {
-    id: 3,
-    bookImage: 'images/book.jpg',
-    title: '부의 추월차선',
-    quantity: 1,
-    inventory: 100,
-    price: 5500
-  },
-  {
-    id: 4,
-    bookImage: 'images/book.jpg',
-    title: '부의 추월차선',
-    quantity: 1,
-    inventory: 100,
-    price: 5500
-  }
-];
-localStorage.setItem('test-1', JSON.stringify(data));
-
 function ShoppingCart() {
   // 장바구니에 추가한 책들의 데이터
   const [books, setBooks] = useState([]);
@@ -66,10 +29,20 @@ function ShoppingCart() {
     const filterBook = newBooks.filter((book) => book.id !== id);
 
     localStorage.clear();
-    localStorage.setItem('test-1', JSON.stringify(filterBook));
+
+    if (filterBook.length !== 0) {
+      localStorage.setItem('test-1', JSON.stringify(filterBook));
+    }
 
     setAmount(calculateAmount(filterBook));
     setBooks(filterBook);
+  };
+
+  // 전체 삭제 버튼 클릭시 로직
+  const handleDeleteAll = () => {
+    setAmount(0);
+    setBooks([]);
+    localStorage.clear();
   };
 
   // 마이너스 버튼 클릭시 로직
@@ -80,6 +53,10 @@ function ShoppingCart() {
 
     localStorage.clear();
     localStorage.setItem('test-1', JSON.stringify(newBooks));
+
+    if (JSON.parse(localStorage.getItem('test-1')).length === 0) {
+      localStorage.clear();
+    }
 
     setAmount(calculateAmount(newBooks));
     setBooks(newBooks);
@@ -99,7 +76,7 @@ function ShoppingCart() {
   };
 
   // 장바구니에 아무것도 포함하지 않았을 경우 랜더링 화면
-  if (JSON.parse(localStorage.getItem('test-1')).length === 0) {
+  if (!localStorage.getItem('test-1') || JSON.parse(localStorage.getItem('test-1')).length === 0) {
     return (
       <>
         <CartTitle>장바구니</CartTitle>
@@ -114,11 +91,9 @@ function ShoppingCart() {
       <CartWrapper>
         <CartContent>
           <CartHeader>
-            <CheckBox>
-              <InputCheckBox type="checkbox" id="checkAll" />
-              <label htmlFor="checkAll">전체선택</label>
-            </CheckBox>
-            <Button type="button">선택삭제</Button>
+            <Button type="button" onClick={handleDeleteAll}>
+              전체삭제
+            </Button>
           </CartHeader>
           <CartList>
             {books.map((book) => (
@@ -149,7 +124,7 @@ const CartTitle = styled.h2`
 
 const CartWrapper = styled.div`
   display: flex;
-  width: 80%;
+  width: 60%;
   margin: auto;
 `;
 
@@ -166,18 +141,6 @@ const CartHeader = styled.div`
 const CartList = styled.div`
   border-top: 1px solid #bdbdbd;
   border-right: 1px solid #bdbdbd;
-`;
-
-const CheckBox = styled.div`
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  width: 90px;
-`;
-
-const InputCheckBox = styled.input`
-  width: 20px;
-  height: 20px;
 `;
 
 const EmptyCart = styled.div`
