@@ -2,12 +2,16 @@
 import React from 'react';
 import styled from 'styled-components';
 
-function AddCartBtn() {
-  return <AddItemButton type="button">장바구니 추가</AddItemButton>;
+function DetailButton() {
+  return (
+    <ButtonWrapper>
+      <AddCartButton type="button">장바구니 추가</AddCartButton>
+      <OrderButton type="button">바로 주문하기</OrderButton>
+    </ButtonWrapper>
+  );
 }
-export default AddCartBtn;
 
-const AddItemButton = styled.button`
+const AddCartButton = styled.button`
   box-sizing: border-box;
   width: 163px;
   height: 64px;
@@ -21,3 +25,14 @@ const AddItemButton = styled.button`
   margin: 14px 0 0 1184px;
   cursor: pointer;
 `;
+
+const OrderButton = styled(AddCartButton)`
+  border: 2px solid #6e54e2;
+  margin: 14px 0 0 40px;
+`;
+
+const ButtonWrapper = styled.div`
+  display: flex;
+`;
+
+export default DetailButton;

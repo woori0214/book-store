@@ -1,6 +1,6 @@
 import './App.css';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import DetailPage from './components/DetailPage/DetailPage';
+import DetailPage from './components/detailPage/DetailPage';
 import Header from './components/TemporaryHeader';
 
 function App() {

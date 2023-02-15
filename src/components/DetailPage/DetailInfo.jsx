@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import axios from 'axios';
 import { useParams } from 'react-router-dom';
 import styled from 'styled-components';
-import AddCartBtn from './AddCartBtn';
+import DetailButton from './DetailButton';
 
 function DetailInfo() {
   const [foundBook, setFoundBook] = useState([]);
@@ -14,37 +14,34 @@ function DetailInfo() {
     });
   }, []);
 
-  console.log('data', foundBook[0]);
-
-  // if (foundBook === undefined || foundBook === null) {
-  //   return <>Loading..</>;
-  // }
+  const bookInfo = {
+    rating: '상태',
+    stock: '재고',
+    price: '판매가'
+  };
 
   return (
     <>
-      <Wrapper>
-        <FoundBookImg src={`/images/${foundBook[0]?.imageURL}`} alt="이미지" />
-
-        <DescriptionTable>
-          <DescriptionTr>
-            <DescriptionTd bold>{foundBook[0]?.title}</DescriptionTd>
-            <DescriptionTd>{`${foundBook[0]?.author} | ${foundBook[0]?.publisher}  |  ${foundBook[0]?.publicationDate}`}</DescriptionTd>
-          </DescriptionTr>
-          <DescriptionTr>
-            <DescriptionTd>상태</DescriptionTd>
-            <DescriptionTd>{foundBook[0]?.rating}</DescriptionTd>
-          </DescriptionTr>
-          <DescriptionTr>
-            <DescriptionTd>재고</DescriptionTd>
-            <DescriptionTd>{foundBook[0]?.stock}</DescriptionTd>
-          </DescriptionTr>
-          <DescriptionTr>
-            <DescriptionTd>판매가</DescriptionTd>
-            <DescriptionTd>{foundBook[0]?.price}</DescriptionTd>
-          </DescriptionTr>
-        </DescriptionTable>
-      </Wrapper>
-      <AddCartBtn />
+      {foundBook.length === 0 ? (
+        <div>...Loading</div>
+      ) : (
+        <Wrapper>
+          <FoundBookImg src={`/images/${foundBook[0].imageURL}`} alt="이미지" />
+          <DescriptionTable>
+            <DescriptionTr>
+              <DescriptionTd bold>{foundBook[0].title}</DescriptionTd>
+              <DescriptionTd>{`${foundBook[0].author} | ${foundBook[0].publisher}  |  ${foundBook[0].publicationDate}`}</DescriptionTd>
+            </DescriptionTr>
+            {Object.entries(bookInfo).map(([key, value]) => (
+              <DescriptionTr>
+                <DescriptionTd>{value}</DescriptionTd>
+                <DescriptionTd>{foundBook[0][key]}</DescriptionTd>
+              </DescriptionTr>
+            ))}
+          </DescriptionTable>
+        </Wrapper>
+      )}
+      <DetailButton />
     </>
   );
 }
