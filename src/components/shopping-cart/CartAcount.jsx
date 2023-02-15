@@ -18,7 +18,7 @@ function CartAcount({ amount }) {
           </AmountItem>
           <AmountDelivery>
             <Span>배송비</Span>
-            <SpanPrice>{`${deliveryFee}원`}</SpanPrice>
+            <SpanPrice>{`+${deliveryFee}원`}</SpanPrice>
           </AmountDelivery>
         </Amount>
         <Total>

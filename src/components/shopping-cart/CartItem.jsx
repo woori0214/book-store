@@ -20,7 +20,7 @@ function CartItem({ book, handleDelete, handleMinus, handlePlus }) {
   return (
     <BookItem>
       <CheckBox>
-        <input type="checkbox" />
+        <InputCheckBox type="checkbox" />
       </CheckBox>
       <ListBox>
         <BookImage src={book.bookImage} alt="책 이미지입니다." />
@@ -41,9 +41,9 @@ function CartItem({ book, handleDelete, handleMinus, handlePlus }) {
         <Price>{`${book.price}원`}</Price>
       </CartInfo>
 
-      <button type="button" onClick={onDelete}>
+      <Button type="button" onClick={onDelete}>
         삭제
-      </button>
+      </Button>
     </BookItem>
   );
 }
@@ -55,7 +55,7 @@ const BookItem = styled.li`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 30px 10px 30px 0;
+  padding: 30px 30px 30px 0;
 `;
 
 const CheckBox = styled.div`
@@ -137,4 +137,25 @@ const Price = styled.div`
 
   color: #000000;
   margin-left: 50px;
+`;
+
+const InputCheckBox = styled.input`
+  width: 20px;
+  height: 20px;
+`;
+
+const Button = styled.button`
+  border: none;
+
+  font-family: 'Noto Sans KR';
+  font-style: normal;
+  font-weight: 700;
+  font-size: 16px;
+  text-align: center;
+
+  background-color: white;
+
+  &: hover {
+    color: #bdbdbd;
+  }
 `;

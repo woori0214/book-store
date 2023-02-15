@@ -41,7 +41,10 @@ const data = [
 localStorage.setItem('test-1', JSON.stringify(data));
 
 function ShoppingCart() {
+  // 장바구니에 추가한 책들의 데이터
   const [books, setBooks] = useState([]);
+
+  // 장바구니에 추가한 책들의 총 가격 데이터
   const [amount, setAmount] = useState(0);
 
   // 각 책의 quantity와 price를 모두 더하는 함수
@@ -95,8 +98,14 @@ function ShoppingCart() {
     setBooks(newBooks);
   };
 
-  if (!localStorage.getItem('test-1')) {
-    return <div>아무 데이터도 없습니다.</div>;
+  // 장바구니에 아무것도 포함하지 않았을 경우 랜더링 화면
+  if (JSON.parse(localStorage.getItem('test-1')).length === 0) {
+    return (
+      <>
+        <CartTitle>장바구니</CartTitle>
+        <EmptyCart>장바구니에 물건을 추가해주세요.</EmptyCart>
+      </>
+    );
   }
 
   return (
@@ -106,10 +115,10 @@ function ShoppingCart() {
         <CartContent>
           <CartHeader>
             <CheckBox>
-              <input type="checkbox" id="checkAll" />
+              <InputCheckBox type="checkbox" id="checkAll" />
               <label htmlFor="checkAll">전체선택</label>
             </CheckBox>
-            <button type="button">선택삭제</button>
+            <Button type="button">선택삭제</Button>
           </CartHeader>
           <CartList>
             {books.map((book) => (
@@ -151,7 +160,7 @@ const CartContent = styled.div`
 const CartHeader = styled.div`
   display: flex;
   justify-content: space-between;
-  padding-bottom: 20px;
+  padding-bottom: 24px;
 `;
 
 const CartList = styled.div`
@@ -159,4 +168,42 @@ const CartList = styled.div`
   border-right: 1px solid #bdbdbd;
 `;
 
-const CheckBox = styled.div``;
+const CheckBox = styled.div`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 90px;
+`;
+
+const InputCheckBox = styled.input`
+  width: 20px;
+  height: 20px;
+`;
+
+const EmptyCart = styled.div`
+  height: 300px;
+  font-family: 'Noto Sans KR';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 38px;
+  line-height: 200px;
+  text-align: center;
+
+  text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+`;
+
+const Button = styled.button`
+  border: none;
+
+  font-family: 'Noto Sans KR';
+  font-style: normal;
+  font-weight: 700;
+  font-size: 16px;
+  text-align: center;
+
+  background-color: white;
+
+  &: hover {
+    color: #bdbdbd;
+  }
+`;
