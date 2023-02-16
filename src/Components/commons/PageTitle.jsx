@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 
-function PageH1({ title }) {
+function PageTitle({ title }) {
   return <H1>{title}</H1>;
 }
 
@@ -16,4 +16,4 @@ const H1 = styled.h1`
   line-height: 64px;
 `;
 
-export default PageH1;
+export default PageTitle;
