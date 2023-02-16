@@ -3,9 +3,7 @@ import React from 'react';
 import styled from 'styled-components';
 
 function OrderButton() {
-  return (
-      <Button type="button">바로 주문하기</Button>
-  );
+  return <Button type="button">바로 주문하기</Button>;
 }
 
 const Button = styled.button`
@@ -20,7 +18,7 @@ const Button = styled.button`
   font-size: 20px;
   line-height: 29px;
   cursor: pointer;
+  margin: ${(props) => props.margin || 0};
 `;
-
 
 export default OrderButton;

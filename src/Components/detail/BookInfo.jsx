@@ -41,11 +41,11 @@ function BookInfo() {
           </DescriptionTable>
         </Wrapper>
       )}
-      
+
       <ButtonWrapper>
-      <AddCartButton type="button">장바구니 추가</AddCartButton>
-      <OrderButton/>
-    </ButtonWrapper>
+        <AddCartButton type="button">장바구니 추가</AddCartButton>
+        <OrderButton margin="14px 0 0 40px" />
+      </ButtonWrapper>
     </>
   );
 }
@@ -108,10 +108,5 @@ const AddCartButton = styled.button`
   margin: 14px 0 0 1184px;
   cursor: pointer;
 `;
-
-const OrderButton = styled.button`
-  margin: 14px 0 0 40px;
-`;
-
 
 export default BookInfo;

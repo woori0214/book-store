@@ -5,7 +5,7 @@ function PageTitle({ title }) {
   return <H1>{title}</H1>;
 }
 
-PageH1.defaultProps = {
+PageTitle.defaultProps = {
   title: '페이지 제목'
 };
 
