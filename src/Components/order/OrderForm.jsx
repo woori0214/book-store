@@ -35,11 +35,15 @@ function OrderForm() {
 }
 
 const Wrapper = styled.div`
+  position:relative;
+  width: 1254px;
   margin-top: 34px;
+  margin-left: auto;
+  margin-right: auto;
 `;
 
 const FormWrapper = styled.form`
-  margin: 31px 0 0 117px;
+  margin: 31px 0 0 34px;
   box-sizing: border-box;
   width: 1220px;
   height: 370px;
