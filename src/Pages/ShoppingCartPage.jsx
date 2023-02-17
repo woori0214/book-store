@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
-import CartItem from './CartItem';
-import CartAcount from './CartAcount';
+import CartItem from '../components/shoppingCart/CartItem';
+import CartAcount from '../components/shoppingCart/CartAcount';
 
 function ShoppingCart() {
   // 장바구니에 추가한 책들의 데이터
@@ -11,8 +11,8 @@ function ShoppingCart() {
   const [amount, setAmount] = useState(0);
 
   // 각 책의 quantity와 price를 모두 더하는 함수
-  const calculateAmount = (inputAry) => {
-    const result = inputAry.reduce((sum, curr) => sum + curr.quantity * curr.price, 0);
+  const calculateAmount = (books) => {
+    const result = books.reduce((sum, curr) => sum + curr.quantity * curr.price, 0);
     return result;
   };
 
@@ -97,7 +97,7 @@ function ShoppingCart() {
           </CartHeader>
           <CartList>
             {books.map((book) => (
-              <CartItem key={book.id} book={book} handleDelete={handleDelete} handleMinus={handleMinus} handlePlus={handlePlus} />
+              <CartItem key={book.id} book={book} onDelete={handleDelete} onMinus={handleMinus} onPlus={handlePlus} />
             ))}
           </CartList>
         </CartContent>
