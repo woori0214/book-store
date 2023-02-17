@@ -43,7 +43,7 @@ function BookInfo() {
       )}
 
       <ButtonWrapper>
-        <CommonButton buttonTitle="장바구니 추가" borderColor="#9E8CEC" margin="14px 0 0 1184px" />
+        <CommonButton buttonTitle="장바구니 추가" borderColor="#9E8CEC" margin="14px 0 0 945px" />
         <CommonButton buttonTitle="바로 결제하기" margin="14px 0 0 40px" />
       </ButtonWrapper>
     </>
@@ -57,7 +57,7 @@ const Wrapper = styled.div`
 const FoundBookImg = styled.img`
   width: 326px;
   height: 462px;
-  margin: 85px 0 0 369px;
+  margin: 85px 0 0 130px;
 `;
 
 const DescriptionTable = styled.table`
