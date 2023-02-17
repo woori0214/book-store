@@ -7,7 +7,7 @@ import ShoppingCartPage from './Pages/ShoppingCartPage';
 // import SignUpPage from './pages/SignUpPage';
 import OrderPage from './Pages/order/OrderPage';
 // import CategoryPage from './pages/CategoryPage';
-// import OrderCompletePage from './pages/order/OrderCompletePage';
+import OrderCompletePage from './Pages/order/OrderCompletePage';
 // import OrderLookUpPage from './pages/order/OrderLookUpPage';
 // import OrderModifyPage from './pages/order/OrderModifyPage';
 // import OrderModifyCompletePage from './pages/order/OrderModifyCompletePage';
@@ -24,9 +24,9 @@ function Router() {
         <Route path="/myPage" element={<MyPage />} />
         <Route path="/signUp" element={<SignUpPage />} /> */}
         <Route path="/order" element={<OrderPage />} />
-        {/* <Route path="/:category" element={<CategoryPage />} />
+        {/* <Route path="/:category" element={<CategoryPage />} /> */}
         <Route path="/orderComplete" element={<OrderCompletePage />} />
-        <Route path="/orderLookUp" element={<OrderLookUpPage />} />
+        {/* <Route path="/orderLookUp" element={<OrderLookUpPage />} />
         <Route path="/orderModify" element={<OrderModifyPage />} />
         <Route path="/orderModifyComplete" element={<OrderModifyCompletePage />} />
         <Route path="/admin" element={<AdminPage />} /> */}
