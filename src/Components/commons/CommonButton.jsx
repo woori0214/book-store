@@ -2,9 +2,9 @@
 import React from 'react';
 import styled from 'styled-components';
 
-function CommonButton({ buttonTitle, width, height, borderColor, borderRadius, margin }) {
+function CommonButton({ buttonTitle, width, height, borderColor, borderRadius, margin, onClick }) {
   return (
-    <Button type="button" width={width} height={height} borderColor={borderColor} borderRadius={borderRadius} margin={margin}>
+    <Button type="button" width={width} height={height} borderColor={borderColor} borderRadius={borderRadius} margin={margin} onClick={onClick}>
       {buttonTitle}
     </Button>
   );
