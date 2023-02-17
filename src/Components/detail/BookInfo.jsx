@@ -30,11 +30,11 @@ function BookInfo() {
   };
 
   return (
-    <>
+    <Wrapper>
       {foundBook.length === 0 ? (
         <div>...Loading</div>
       ) : (
-        <Wrapper>
+        <BookInfoWrapper>
           <FoundBookImg src={`/images/${foundBook[0].imageURL}`} alt="이미지" />
           <DescriptionTable>
             <DescriptionTr>
@@ -48,25 +48,33 @@ function BookInfo() {
               </DescriptionTr>
             ))}
           </DescriptionTable>
-        </Wrapper>
+        </BookInfoWrapper>
       )}
-
       <ButtonWrapper>
-        <CommonButton buttonTitle="장바구니 추가" borderColor="#9E8CEC" margin="14px 0 0 945px" onClick={handleAddCart} />
-        <CommonButton buttonTitle="바로 결제하기" margin="14px 0 0 40px" onClick={handleOrder} />
+        <CommonButton buttonTitle="장바구니 추가" borderColor="#9E8CEC" margin="561px 0 0 816px" onClick={handleAddCart} />
+        <CommonButton buttonTitle="바로 결제하기" margin="561px 0 0 40px" onClick={handleOrder} />
       </ButtonWrapper>
-    </>
+    </Wrapper>
   );
 }
 
 const Wrapper = styled.div`
+  position: relative;
   display: flex;
+  width: 1181px;
+  margin-top: 0;
+  margin: 0 auto;
+`;
+
+const BookInfoWrapper = styled.div`
+  display: flex;
+  position: relative;
 `;
 
 const FoundBookImg = styled.img`
   width: 326px;
   height: 462px;
-  margin: 85px 0 0 130px;
+  margin-top: 85px;
 `;
 
 const DescriptionTable = styled.table`
@@ -101,6 +109,7 @@ const DescriptionTd = styled.td`
 
 const ButtonWrapper = styled.div`
   display: flex;
+  position: absolute;
 `;
 
 export default BookInfo;

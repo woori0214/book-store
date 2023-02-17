@@ -55,22 +55,25 @@ function BookQualityGuide() {
 }
 
 const Wrapper = styled.div`
+  position:relative;
   width: 1315px;
-  height: 550px;
-  margin-top: 93px;
+  height: 600px;
+  margin-top: 171px;
+  margin-left:auto;
+  margin-right:auto;
 `;
 
 const GuideTitle = styled.h2`
   font-family: 'NotoSansKR-Medium';
   font-size: 30px;
   line-height: 43px;
-  margin-left: 115px;
+  margin-left: 49px;
 `;
 
 const GuideTable = styled.table`
   width: 1315px;
   height: 480px;
-  margin: 27px 0 0 63px;
+  margin-top: 27px;
   border-collapse: collapse;
   box-sizing:border-box;
   border: 1px solid #D0C5FE;
