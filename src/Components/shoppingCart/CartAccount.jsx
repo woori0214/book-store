@@ -1,5 +1,7 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import styled from 'styled-components';
+import CommonButton from '../commons/CommonButton';
 
 function CartAcount({ amount }) {
   let deliveryFee = 3000;
@@ -26,6 +28,14 @@ function CartAcount({ amount }) {
           <PurpleSpan>{`${amount + deliveryFee}원`}</PurpleSpan>
         </Total>
       </PaymentResult>
+      <Link to="/order">
+        <CommonButton
+          buttonTitle="주문하기"
+          width="150px"
+          height="50px"
+          margin="40px auto"
+        />
+      </Link>
     </PaymentArea>
   );
 }
@@ -33,6 +43,8 @@ function CartAcount({ amount }) {
 export default CartAcount;
 
 const PaymentArea = styled.div`
+  display: flex;
+  flex-direction: column;
   flex-basis: 30%;
   padding-top: 44.4px;
 `;
