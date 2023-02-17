@@ -1,18 +1,27 @@
 import { useState, useEffect } from 'react';
 import axios from 'axios';
-import { useParams } from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 import CommonButton from '../commons/CommonButton';
 
 function BookInfo() {
   const [foundBook, setFoundBook] = useState([]);
   const { id } = useParams();
+  const navigate = useNavigate();
 
   useEffect(() => {
     axios.get('http://localhost:9999/books').then((result) => {
       setFoundBook(result.data.filter((book) => Number(id) === Number(book.id)));
     });
   }, []);
+
+  const handleAddCart = () => {
+    navigate('/shoppingCart');
+  };
+
+  const handleOrder = () => {
+    navigate('/order');
+  };
 
   const bookInfo = {
     rating: '상태',
@@ -43,8 +52,8 @@ function BookInfo() {
       )}
 
       <ButtonWrapper>
-        <CommonButton buttonTitle="장바구니 추가" borderColor="#9E8CEC" margin="14px 0 0 945px" />
-        <CommonButton buttonTitle="바로 결제하기" margin="14px 0 0 40px" />
+        <CommonButton buttonTitle="장바구니 추가" borderColor="#9E8CEC" margin="14px 0 0 945px" onClick={handleAddCart} />
+        <CommonButton buttonTitle="바로 결제하기" margin="14px 0 0 40px" onClick={handleOrder} />
       </ButtonWrapper>
     </>
   );
