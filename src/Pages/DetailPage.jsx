@@ -1,6 +1,6 @@
 import React from 'react';
-import PageTitle from '../components/commons/PageTitle';
-import BookInfo from '../components/detail/BookInfo';
+import PageTitle from '../Components/commons/PageTitle';
+import BookInfo from '../Components/detail/BookInfo';
 
 function DetailPage() {
   return (

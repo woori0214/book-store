@@ -1,7 +1,7 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 // import MainPage from './pages/MainPage';
-import DetailPage from './pages/DetailPage';
-// import ShoppingCartPage from './pages/ShoppingCartPage';
+import DetailPage from './Pages/DetailPage';
+import ShoppingCartPage from './Pages/ShoppingCartPage';
 // import LoginPage from './pages/LoginPage';
 // import MyPage from './pages/MyPage';
 // import SignUpPage from './pages/SignUpPage';
@@ -17,8 +17,8 @@ function Router() {
   return (
     <BrowserRouter>
       <Routes>
-        {/* <Route path="/" element={<MainPage />} />
-        <Route path="/shoppingCart" element={<ShoppingCartPage />} /> */}
+        {/* <Route path="/" element={<MainPage />} /> */}
+        <Route path="/shoppingCart" element={<ShoppingCartPage />} />
         <Route path="/detail/:id" element={<DetailPage />} />
         {/* <Route path="/login" element={<LoginPage />} />
         <Route path="/myPage" element={<MyPage />} />
