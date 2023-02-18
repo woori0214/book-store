@@ -1,14 +1,19 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
-import CommonButton from '../commons/CommonButton';
+import Button from '../commons/button/Button';
 
 function CartAcount({ amount }) {
+  const navigate = useNavigate();
   let deliveryFee = 3000;
 
   if (!amount) {
     deliveryFee = 0;
   }
+
+  const handleOrderButton = () => {
+    navigate('/order');
+  };
 
   return (
     <PaymentArea>
@@ -28,14 +33,13 @@ function CartAcount({ amount }) {
           <PurpleSpan>{`${amount + deliveryFee}원`}</PurpleSpan>
         </Total>
       </PaymentResult>
-      <Link to="/order">
-        <CommonButton
-          buttonTitle="주문하기"
-          width="150px"
-          height="50px"
-          margin="40px auto"
-        />
-      </Link>
+      <Button
+        buttonTitle="주문하기"
+        width="150px"
+        height="50px"
+        margin="40px auto"
+        onClick={handleOrderButton}
+      />
     </PaymentArea>
   );
 }

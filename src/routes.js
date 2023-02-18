@@ -1,8 +1,8 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 // import MainPage from './pages/MainPage';
 // import DetailPage from './pages/DetailPage';
-import ShoppingCartPage from './Pages/ShoppingCartPage';
-// import LoginPage from './pages/LoginPage';
+import ShoppingCartPage from './pages/ShoppingCartPage';
+import LoginPage from './pages/LoginPage';
 // import MyPage from './pages/MyPage';
 // import SignUpPage from './pages/SignUpPage';
 // import OrderPage from './pages/order/OrderPage';
@@ -20,16 +20,19 @@ function Router() {
         {/* <Route path="/" element={<MainPage />} /> */}
         <Route path="/shoppingCartPage" element={<ShoppingCartPage />} />
         {/* <Route path="/detail/:id" element={<DetailPage />} /> */}
-        {/* <Route path="/login" element={<LoginPage />} />
-        <Route path="/myPage" element={<MyPage />} />
-        <Route path="/signUp" element={<SignUpPage />} />
-        <Route path="/order" element={<OrderPage />} />
-        <Route path="/:category" element={<CategoryPage />} />
-        <Route path="/orderComplete" element={<OrderCompletePage />} />
-        <Route path="/orderLookUp" element={<OrderLookUpPage />} />
-        <Route path="/orderModify" element={<OrderModifyPage />} />
-        <Route path="/orderModifyComplete" element={<OrderModifyCompletePage />} />
-        <Route path="/admin" element={<AdminPage />} /> */}
+        <Route path="/login" element={<LoginPage />} />
+        {/* <Route path="/myPage" element={<MyPage />} /> */}
+        {/* <Route path="/signUp" element={<SignUpPage />} /> */}
+        {/* <Route path="/order" element={<OrderPage />} /> */}
+        {/* <Route path="/:category" element={<CategoryPage />} /> */}
+        {/* <Route path="/orderComplete" element={<OrderCompletePage />} /> */}
+        {/* <Route path="/orderLookUp" element={<OrderLookUpPage />} /> */}
+        {/* <Route path="/orderModify" element={<OrderModifyPage />} /> */}
+        {/* <Route
+          path="/orderModifyComplete"
+          element={<OrderModifyCompletePage />}
+        /> */}
+        {/* <Route path="/admin" element={<AdminPage />} /> */} */}
       </Routes>
     </BrowserRouter>
   );

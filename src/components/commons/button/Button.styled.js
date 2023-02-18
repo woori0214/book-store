@@ -1,29 +1,6 @@
-import React from 'react';
 import styled from 'styled-components';
 
-function CommonButton({
-  buttonTitle,
-  width,
-  height,
-  borderColor,
-  borderRadius,
-  margin,
-}) {
-  return (
-    <Button
-      type="button"
-      width={width}
-      height={height}
-      borderColor={borderColor}
-      borderRadius={borderRadius}
-      margin={margin}
-    >
-      {buttonTitle}
-    </Button>
-  );
-}
-
-const Button = styled.button`
+export const ButtonContainer = styled.button`
   box-sizing: border-box;
   width: ${props => props.width || '163px'};
   height: ${props => props.height || '64px'};
@@ -38,5 +15,3 @@ const Button = styled.button`
   margin: ${props => props.margin || '0'};
   cursor: pointer;
 `;
-
-export default CommonButton;
