@@ -1,8 +1,16 @@
 import React from 'react';
 import styled from 'styled-components';
+import { useNavigate } from 'react-router-dom';
+import CommonButton from '../commons/CommonButton';
 import OrderTemplate from './OrderTemplate';
 
-function OrderForm() {
+function OrderForm({ modify }) {
+  const navigate = useNavigate();
+
+  const handleModifyComplete = () => {
+    navigate('/orderModifyComplete');
+  };
+
   return (
     <Wrapper>
       <OrderTemplate templateTitle="주문정보" />
@@ -27,9 +35,10 @@ function OrderForm() {
           <InputTitle>배송지</InputTitle>
           <Input type="text" name="orderUserAddress" placeholder="배송지를 입력해주세요." />
         </FormInput>
-
       </FormWrapper>
-
+      {modify && (
+        <CommonButton buttonTitle="수정 완료" borderColor="#9E8CEC" width="200px" height="59px" borderRadius="20px" margin="49px 0 0 1048px" onClick={handleModifyComplete} />
+      )}
     </Wrapper>
   );
 }

@@ -9,7 +9,7 @@ import OrderPage from './Pages/order/OrderPage';
 // import CategoryPage from './pages/CategoryPage';
 import OrderCompletePage from './Pages/order/OrderCompletePage';
 // import OrderLookUpPage from './pages/order/OrderLookUpPage';
-// import OrderModifyPage from './pages/order/OrderModifyPage';
+import OrderModifyPage from './Pages/order/OrderModifyPage';
 import OrderModifyCompletePage from './Pages/order/OrderModifyCompletePage';
 // import AdminPage from './pages/AdminPage';
 
@@ -26,8 +26,8 @@ function Router() {
         <Route path="/order" element={<OrderPage />} />
         {/* <Route path="/:category" element={<CategoryPage />} /> */}
         <Route path="/orderComplete" element={<OrderCompletePage />} />
-        {/* <Route path="/orderLookUp" element={<OrderLookUpPage />} />
-        <Route path="/orderModify" element={<OrderModifyPage />} /> */}
+        {/* <Route path="/orderLookUp" element={<OrderLookUpPage />} /> */}
+        <Route path="/orderModify" element={<OrderModifyPage />} />
         <Route path="/orderModifyComplete" element={<OrderModifyCompletePage />} />
         {/* <Route path="/admin" element={<AdminPage />} /> */}
       </Routes>
