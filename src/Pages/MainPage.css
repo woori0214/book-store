@@ -1,0 +1,16 @@
+.Main-Title {
+  /* position: absolute; */
+  left: 50%;
+  /* top: 20%; */
+  margin-top: 5%;
+  margin-bottom: 10%;
+  font-family: 'Cormorant Garamond';
+  font-size: 1.4em;
+  font-style: normal;
+  font-weight: 400;
+  text-align: center;
+}
+
+.Recommend-Book-Wrapper {
+  margin: 5%;
+}

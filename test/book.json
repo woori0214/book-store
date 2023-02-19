@@ -1,0 +1,106 @@
+{
+  "category": [
+    {
+      "id": "1",
+      "title": "자기개발서적",
+      "description": "이상한 나라 책장수에서는 꾸준히 도전해야합니다. 오늘 자기개발서를 읽고 한층 더 성장하는건 어떨까요?"
+    },
+    {
+      "id": "2",
+      "title": "소설책",
+      "description": "소설-소설-소설"
+    },
+    {
+      "id": "3",
+      "title": "만화책",
+      "description": "만화-카툰-만화"
+    },
+    {
+      "id": "4",
+      "title": "아동책",
+      "description": "아동책-아동책"
+    }
+  ],
+  "book": [
+    {
+      "id": "1",
+      "name": "아몬드",
+      "image": "",
+      "price": 5600,
+      "stock": 3,
+      "quantity": 10,
+      "lastUpdate": "20230218T09:00:00",
+      "category": "2"
+    },
+    {
+      "id": "5",
+      "name": "나미야 잡화점",
+      "image": "",
+      "price": 5100,
+      "stock": 3,
+      "quantity": 10,
+      "lastUpdate": "20230218T09:00:00",
+      "category": "2"
+    },
+    {
+      "id": "2",
+      "name": "Algorithm",
+      "image": "",
+      "price": 8000,
+      "stock": 2,
+      "quantity": 5,
+      "lastUpdate": "20230218T09:01:00",
+      "category": "1"
+    },
+    {
+      "id": "6",
+      "name": "모던 딥다이브",
+      "image": "",
+      "price": 9000,
+      "stock": 6,
+      "quantity": 5,
+      "lastUpdate": "20230218T09:01:00",
+      "category": "1"
+    },
+    {
+      "id": "3",
+      "name": "미스터초밥왕",
+      "image": "",
+      "price": 4800,
+      "stock": 99,
+      "quantity": 10,
+      "lastUpdate": "20230218T09:05:00",
+      "category": "3"
+    },
+    {
+      "id": "7",
+      "name": "검정고무신",
+      "image": "",
+      "price": 5100,
+      "stock": 19,
+      "quantity": 20,
+      "lastUpdate": "20230218T09:05:00",
+      "category": "3"
+    },
+    {
+      "id": "4",
+      "name": "똑똑한 돼지",
+      "image": "",
+      "price": 4300,
+      "stock": 1,
+      "quantity": 15,
+      "lastUpdate": "20230218T10:02:00",
+      "category": "4"
+    },
+    {
+      "id": "9",
+      "name": "곰돌이 푸",
+      "image": "",
+      "price": 2300,
+      "stock": 15,
+      "quantity": 19,
+      "lastUpdate": "20230218T10:02:00",
+      "category": "4"
+    }
+  ]
+}

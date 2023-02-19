@@ -19,13 +19,13 @@ function Router() {
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<MainPage />} />
+          <Route path="/category/:id" element={<CategoryPage />} />
           <Route path="/shoppingCart" element={<ShoppingCartPage />} />
           <Route path="/detail/:id" element={<DetailPage />} />
           <Route path="/login" element={<LoginPage />} />
           <Route path="/myPage" element={<MyPage />} />
           <Route path="/signUp" element={<SignUpPage />} />
           {/* <Route path="/order" element={<OrderPage />} /> */}
-          <Route path="/:category" element={<CategoryPage />} />
           {/* <Route path="/orderComplete" element={<OrderCompletePage />} />
           <Route path="/orderLookUp" element={<OrderLookUpPage />} />
           <Route path="/orderModify" element={<OrderModifyPage />} />
