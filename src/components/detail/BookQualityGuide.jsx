@@ -72,7 +72,7 @@ const Wrapper = styled.div`
 `;
 
 const GuideTitle = styled.h2`
-  font-family: 'NotoSansKR-Medium';
+  font-family: 'NotoSansKR-Regular';
   font-size: 30px;
   line-height: 43px;
   margin-left: 49px;
@@ -88,13 +88,14 @@ const GuideTable = styled.table`
 `;
 
 const GuideTh = styled.th`
-  font-family: 'NotoSansKR-Medium';
+  font-family: 'NotoSansKR-Regular';
   height: 77px;
   background-color: #edeafc;
   font-size: 23px;
   line-height: 33px;
   text-align: center;
   border: 1px solid #d0c5fe;
+  vertical-align: middle;
 `;
 
 const GuideTr = styled.tr``;
@@ -104,8 +105,9 @@ const GuideTd = styled.td`
   width: 308px;
   font-size: 18px;
   line-height: 29px;
-  font-family: 'NotoSansKR-Medium';
+  font-family: 'NotoSansKR-Regular';
   padding-left: 15px;
+  vertical-align: middle;
 
   &:first-child {
     padding: 0;
