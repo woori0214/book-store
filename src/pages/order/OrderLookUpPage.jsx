@@ -107,6 +107,7 @@ const OrderInfoTable = styled.table`
 `;
 
 const OrderInfoTh = styled.th`
+  vertical-align: middle;
   font-family: 'NotoSansKR-Medium';
   height: 77px;
   background-color: #edeafc;
@@ -121,8 +122,9 @@ const OrderInfoTr = styled.tr`
 `;
 
 const OrderInfoTd = styled.td`
+  vertical-align: middle;
   border: 1px solid #d0c5fe;
-  font-family: 'NotoSansKR-Medium';
+  font-family: 'NotoSansKR-Regular';
   font-size: 25px;
   line-height: 36px;
   text-align: center;
