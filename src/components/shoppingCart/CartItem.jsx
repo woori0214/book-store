@@ -1,26 +1,26 @@
 import React from 'react';
 import styled from 'styled-components';
 
-function CartItem({ book, handleDelete, handleMinus, handlePlus }) {
-  const onDelete = () => {
-    handleDelete(book.id);
+function CartItem({ book, onDelete, onMinus, onPlus }) {
+  const onClickDelete = () => {
+    onDelete(book.id);
   };
 
-  const onMinus = () => {
+  const onClickMinus = () => {
     if (book.quantity === 0) {
       return;
     }
-    handleMinus(book.id);
+    onMinus(book.id);
   };
 
-  const onPlus = () => {
-    handlePlus(book.id);
+  const onClickPlus = () => {
+    onPlus(book.id);
   };
 
   return (
     <BookItem>
       <ListBox>
-        <BookImage src={book.bookImage} alt="책 이미지입니다." />
+        <BookImage src={book.imageURL} alt="책 이미지입니다." />
         <BookInfo>
           <Span>{book.title}</Span>
         </BookInfo>
@@ -28,17 +28,25 @@ function CartItem({ book, handleDelete, handleMinus, handlePlus }) {
       <CartInfo>
         <Quantity>
           <MinusBtn>
-            <MinusImg src="images/minusBtn.png" alt="감소 버튼" onClick={onMinus} />
+            <MinusImg
+              src="images/minusBtn.png"
+              alt="감소 버튼"
+              onClick={onClickMinus}
+            />
           </MinusBtn>
           <NumberInput type="number" value={book.quantity} />
           <PlusBtn>
-            <PlusImg src="images/plusBtn.png" alt="증가 버튼" onClick={onPlus} />
+            <PlusImg
+              src="images/plusBtn.png"
+              alt="증가 버튼"
+              onClick={onClickPlus}
+            />
           </PlusBtn>
         </Quantity>
         <Price>{`${book.price}원`}</Price>
       </CartInfo>
 
-      <Button type="button" onClick={onDelete}>
+      <Button type="button" onClick={onClickDelete}>
         삭제
       </Button>
     </BookItem>

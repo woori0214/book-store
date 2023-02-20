@@ -1,12 +1,19 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
+import Button from '../commons/button/Button';
 
-function CartAcount({ amount }) {
+function CartAcount({ totalAmount }) {
+  const navigate = useNavigate();
   let deliveryFee = 3000;
 
-  if (!amount) {
+  if (!totalAmount) {
     deliveryFee = 0;
   }
+
+  const handleOrderButton = () => {
+    navigate('/order');
+  };
 
   return (
     <PaymentArea>
@@ -14,7 +21,7 @@ function CartAcount({ amount }) {
         <Amount>
           <AmountItem>
             <Span>총 상품금액</Span>
-            <SpanPrice>{`${amount}원`}</SpanPrice>
+            <SpanPrice>{`${totalAmount}원`}</SpanPrice>
           </AmountItem>
           <AmountDelivery>
             <Span>배송비</Span>
@@ -23,9 +30,16 @@ function CartAcount({ amount }) {
         </Amount>
         <Total>
           <PurpleSpan>결제예상금액</PurpleSpan>
-          <PurpleSpan>{`${amount + deliveryFee}원`}</PurpleSpan>
+          <PurpleSpan>{`${totalAmount + deliveryFee}원`}</PurpleSpan>
         </Total>
       </PaymentResult>
+      <Button
+        buttonTitle="주문하기"
+        width="150px"
+        height="50px"
+        margin="40px auto"
+        onClick={handleOrderButton}
+      />
     </PaymentArea>
   );
 }
@@ -33,6 +47,8 @@ function CartAcount({ amount }) {
 export default CartAcount;
 
 const PaymentArea = styled.div`
+  display: flex;
+  flex-direction: column;
   flex-basis: 30%;
   padding-top: 44.4px;
 `;
