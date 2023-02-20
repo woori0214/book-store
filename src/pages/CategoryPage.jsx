@@ -3,6 +3,7 @@ import { useParams } from 'react-router-dom';
 import axios from 'axios';
 import Nav from '../Components/commons/Nav';
 import BookList from '../Components/category/BookList';
+import './CategoryPage.css';
 
 export default function CategoryPage() {
   const { id } = useParams();
@@ -27,8 +28,10 @@ export default function CategoryPage() {
     <div>
       <Nav />
       <h1>{id}</h1>
-      <h1>{title}</h1>
-      <h2>{description}</h2>
+      <div className="title-description">
+        <p id="title">{title}</p>
+        <p>{description}</p>
+      </div>
       <BookList categoryId={id} />
     </div>
   );

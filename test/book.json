@@ -3,22 +3,22 @@
     {
       "id": "1",
       "title": "자기개발서적",
-      "description": "이상한 나라 책장수에서는 꾸준히 도전해야합니다. 오늘 자기개발서를 읽고 한층 더 성장하는건 어떨까요?"
+      "description": "이상한 나라 책장수에서는 꾸준히 도전해야합니다.\n오늘 자기개발서를 읽고 한층 더 성장하는건 어떨까요?"
     },
     {
       "id": "2",
       "title": "소설책",
-      "description": "소설-소설-소설"
+      "description": "\"인생을 사랑한다면 시간을 낭비하지 마라.왜냐 하면 인생이란 시간 그 자체이기 때문이다.\"                -벤자민프랭클린-"
     },
     {
       "id": "3",
       "title": "만화책",
-      "description": "만화-카툰-만화"
+      "description": "만화책은 재미와 숨겨진 교훈이 담겨있죠. 미스터 초밥왕을 아시나요?\n초밥에 대해 아무것도 모르는 초보 주인공이 자신의 꿈을 위해 보이지 않는 곳에서\n묵묵히 노력해 보여지는 기술이 아닌 기본을 중시하는 모습을 보여줍니다.\n이때 주인공이 발전시키는 데에는 스스로의 힘도 필요하지만 주변사람들의 도움도 필요합니다.\n그 도움은 일하는 초밥집 사장님과 동료들에게서 나옵니다.\n서로의 개발동료로서 좋은 시너지가 나왔으면 좋겠죠? "
     },
     {
       "id": "4",
       "title": "아동책",
-      "description": "아동책-아동책"
+      "description": "페이지에 꽉 찬 글자보다\n가끔은 귀여운 그림과 함께 있는 동심의 글로 힐링을 느껴보아요."
     }
   ],
   "book": [
@@ -28,22 +28,83 @@
       "image": "",
       "price": 5600,
       "stock": 3,
-      "quantity": 10,
+      "quantity": 94,
       "lastUpdate": "20230218T09:00:00",
       "category": "2"
     },
     {
-      "id": "5",
+      "id": "2",
       "name": "나미야 잡화점",
       "image": "",
       "price": 5100,
+      "stock": 3,
+      "quantity": 57,
+      "lastUpdate": "20230218T09:00:00",
+      "category": "2"
+    },
+    {
+      "id": "3",
+      "name": "참을 수 없는 존재의 가벼움",
+      "image": "",
+      "price": 4700,
       "stock": 3,
       "quantity": 10,
       "lastUpdate": "20230218T09:00:00",
       "category": "2"
     },
     {
-      "id": "2",
+      "id": "4",
+      "name": "파친코",
+      "image": "",
+      "price": 5700,
+      "stock": 3,
+      "quantity": 9,
+      "lastUpdate": "20230218T09:00:00",
+      "category": "2"
+    },
+    {
+      "id": "5",
+      "name": "멋진 신세계",
+      "image": "",
+      "price": 5900,
+      "stock": 44,
+      "quantity": 7,
+      "lastUpdate": "20230218T09:00:00",
+      "category": "2"
+    },
+    {
+      "id": "6",
+      "name": "데미안",
+      "image": "",
+      "price": 4600,
+      "stock": 6,
+      "quantity": 10,
+      "lastUpdate": "20230218T09:00:00",
+      "category": "2"
+    },
+    {
+      "id": "7",
+      "name": "어린왕자",
+      "image": "",
+      "price": 3900,
+      "stock": 27,
+      "quantity": 13,
+      "lastUpdate": "20230218T09:00:00",
+      "category": "2"
+    },
+    {
+      "id": "8",
+      "name": "눈먼 자들의 도시",
+      "image": "",
+      "price": 4300,
+      "stock": 18,
+      "quantity": 8,
+      "lastUpdate": "20230218T09:00:00",
+      "category": "2"
+    },
+
+    {
+      "id": "9",
       "name": "Algorithm",
       "image": "",
       "price": 8000,
@@ -53,7 +114,7 @@
       "category": "1"
     },
     {
-      "id": "6",
+      "id": "10",
       "name": "모던 딥다이브",
       "image": "",
       "price": 9000,
@@ -63,42 +124,223 @@
       "category": "1"
     },
     {
-      "id": "3",
+      "id": "11",
+      "name": "러닝 리액트",
+      "image": "",
+      "price": 6700,
+      "stock": 16,
+      "quantity": 5,
+      "lastUpdate": "20230218T09:01:00",
+      "category": "1"
+    },
+    {
+      "id": "12",
+      "name": "GSWR Pi",
+      "image": "",
+      "price": 5300,
+      "stock": 16,
+      "quantity": 5,
+      "lastUpdate": "20230218T09:01:00",
+      "category": "1"
+    },
+    {
+      "id": "13",
+      "name": "아두이노 IoT",
+      "image": "",
+      "price": 5100,
+      "stock": 16,
+      "quantity": 8,
+      "lastUpdate": "20230218T09:01:00",
+      "category": "1"
+    },
+    {
+      "id": "14",
+      "name": "팀 개발을 위한 Git",
+      "image": "",
+      "price": 4300,
+      "stock": 13,
+      "quantity": 25,
+      "lastUpdate": "20230218T09:01:00",
+      "category": "1"
+    },
+    {
+      "id": "15",
+      "name": "어떤 개발자가 되고 싶니?",
+      "image": "",
+      "price": 3800,
+      "stock": 12,
+      "quantity": 19,
+      "lastUpdate": "20230218T09:01:00",
+      "category": "1"
+    },
+    {
+      "id": "16",
+      "name": "RESTful Web API",
+      "image": "",
+      "price": 4600,
+      "stock": 26,
+      "quantity": 15,
+      "lastUpdate": "20230218T09:01:00",
+      "category": "1"
+    },
+    {
+      "id": "17",
       "name": "미스터초밥왕",
       "image": "",
       "price": 4800,
       "stock": 99,
+      "quantity": 32,
+      "lastUpdate": "20230218T09:05:00",
+      "category": "3"
+    },
+    {
+      "id": "18",
+      "name": "정글에서 살아남는 법",
+      "image": "",
+      "price": 2800,
+      "stock": 19,
       "quantity": 10,
       "lastUpdate": "20230218T09:05:00",
       "category": "3"
     },
     {
-      "id": "7",
-      "name": "검정고무신",
+      "id": "19",
+      "name": "슬램덩크",
       "image": "",
-      "price": 5100,
-      "stock": 19,
-      "quantity": 20,
+      "price": 5300,
+      "stock": 67,
+      "quantity": 53,
       "lastUpdate": "20230218T09:05:00",
       "category": "3"
     },
     {
-      "id": "4",
+      "id": "20",
+      "name": "신 암행어사",
+      "image": "",
+      "price": 3100,
+      "stock": 19,
+      "quantity": 81,
+      "lastUpdate": "20230218T09:05:00",
+      "category": "3"
+    },
+    {
+      "id": "21",
+      "name": "검정 고무신",
+      "image": "",
+      "price": 2200,
+      "stock": 19,
+      "quantity": 81,
+      "lastUpdate": "20230218T09:05:00",
+      "category": "3"
+    },
+    {
+      "id": "22",
+      "name": "뚱딴지",
+      "image": "",
+      "price": 1800,
+      "stock": 5,
+      "quantity": 4,
+      "lastUpdate": "20230218T09:05:00",
+      "category": "3"
+    },
+    {
+      "id": "23",
+      "name": "무서운게 딱! 좋아",
+      "image": "",
+      "price": 2100,
+      "stock": 2,
+      "quantity": 7,
+      "lastUpdate": "20230218T09:05:00",
+      "category": "3"
+    },
+    {
+      "id": "24",
+      "name": "아기공룡 둘리",
+      "image": "",
+      "price": 2900,
+      "stock": 5,
+      "quantity": 13,
+      "lastUpdate": "20230218T09:05:00",
+      "category": "3"
+    },
+
+    {
+      "id": "25",
       "name": "똑똑한 돼지",
       "image": "",
-      "price": 4300,
-      "stock": 1,
+      "price": 1400,
+      "stock": 6,
+      "quantity": 18,
+      "lastUpdate": "20230218T10:02:00",
+      "category": "4"
+    },
+    {
+      "id": "26",
+      "name": "누가 내머리에 똥 쌌어?",
+      "image": "",
+      "price": 3100,
+      "stock": 8,
+      "quantity": 25,
+      "lastUpdate": "20230218T10:02:00",
+      "category": "4"
+    },
+    {
+      "id": "27",
+      "name": "아낌없이 주는 나무",
+      "image": "",
+      "price": 2300,
+      "stock": 6,
       "quantity": 15,
       "lastUpdate": "20230218T10:02:00",
       "category": "4"
     },
     {
-      "id": "9",
-      "name": "곰돌이 푸",
+      "id": "28",
+      "name": "뜰이 있는 메이지 하우스",
+      "image": "",
+      "price": 2600,
+      "stock": 3,
+      "quantity": 4,
+      "lastUpdate": "20230218T10:02:00",
+      "category": "4"
+    },
+    {
+      "id": "29",
+      "name": "여우와 두루미",
       "image": "",
       "price": 2300,
-      "stock": 15,
-      "quantity": 19,
+      "stock": 4,
+      "quantity": 18,
+      "lastUpdate": "20230218T10:02:00",
+      "category": "4"
+    },
+    {
+      "id": "30",
+      "name": "피리부는 사나이",
+      "image": "",
+      "price": 1700,
+      "stock": 19,
+      "quantity": 13,
+      "lastUpdate": "20230218T10:02:00",
+      "category": "4"
+    },
+    {
+      "id": "31",
+      "name": "마법 천자문",
+      "image": "",
+      "price": 4300,
+      "stock": 12,
+      "quantity": 11,
+      "lastUpdate": "20230218T10:02:00",
+      "category": "4"
+    },
+    {
+      "id": "32",
+      "name": "엄마가 학교에 갔어요!",
+      "image": "",
+      "price": 2100,
+      "stock": 14,
+      "quantity": 175,
       "lastUpdate": "20230218T10:02:00",
       "category": "4"
     }

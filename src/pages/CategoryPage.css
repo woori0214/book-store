@@ -1,0 +1,18 @@
+.title-description {
+  /* position: absolute; */
+  left: 50%;
+  /* top: 20%; */
+  margin-top: 5%;
+  margin-bottom: 10%;
+  margin-left: 5%;
+  font-family: 'Cormorant Garamond';
+  font-size: 1.2em;
+  font-style: normal;
+  font-weight: 400;
+  text-align: left;
+}
+
+#title {
+  font-size: 1.5em;
+  font-weight: bolder;
+}

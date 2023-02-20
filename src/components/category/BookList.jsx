@@ -20,5 +20,5 @@ export default function BookList(props) {
     getData();
   }, [categoryId]);
 
-  return <div>{loading ? bookList.map((book, index) => <BookData book={bookList[index]} />) : <h1>Book Loading!</h1>}</div>;
+  return <div>{loading ? bookList.map((book, index) => <BookData book={bookList[index]} />) : <h1>Book Loading...!</h1>}</div>;
 }
