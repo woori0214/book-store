@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import axios from 'axios';
 import { useParams, useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
-import CommonButton from '../commons/CommonButton';
+import CommonButton from '../commons/button/Button';
 
 function BookInfo() {
   const [foundBook, setFoundBook] = useState([]);
@@ -10,8 +10,8 @@ function BookInfo() {
   const navigate = useNavigate();
 
   useEffect(() => {
-    axios.get('http://localhost:9999/books').then((result) => {
-      setFoundBook(result.data.filter((book) => Number(id) === Number(book.id)));
+    axios.get('http://localhost:9999/books').then(result => {
+      setFoundBook(result.data.filter(book => Number(id) === Number(book.id)));
     });
   }, []);
 
@@ -26,7 +26,7 @@ function BookInfo() {
   const bookInfo = {
     rating: '상태',
     stock: '재고',
-    price: '판매가'
+    price: '판매가',
   };
 
   return (
@@ -51,8 +51,17 @@ function BookInfo() {
         </BookInfoWrapper>
       )}
       <ButtonWrapper>
-        <CommonButton buttonTitle="장바구니 추가" borderColor="#9E8CEC" margin="561px 0 0 816px" onClick={handleAddCart} />
-        <CommonButton buttonTitle="바로 결제하기" margin="561px 0 0 40px" onClick={handleOrder} />
+        <CommonButton
+          buttonTitle="장바구니 추가"
+          borderColor="#9E8CEC"
+          margin="561px 0 0 816px"
+          onClick={handleAddCart}
+        />
+        <CommonButton
+          buttonTitle="바로 결제하기"
+          margin="561px 0 0 40px"
+          onClick={handleOrder}
+        />
       </ButtonWrapper>
     </Wrapper>
   );
@@ -84,6 +93,7 @@ const DescriptionTable = styled.table`
   border-top: 4px solid #353535;
   margin: 100px 0 0 94px;
   border-collapse: collapse;
+  vertical-align: middle;
 `;
 
 const DescriptionTr = styled.tr`
@@ -97,9 +107,10 @@ const DescriptionTd = styled.td`
   &:first-child {
     width: 178px;
     text-align: center;
-    font-family: ${(props) => (props.bold ? 'NotoSansKR-Bold' : 'NotoSansKR-Regular')};
+    font-family: ${props =>
+      props.bold ? 'NotoSansKR-Bold' : 'NotoSansKR-Regular'};
     font-size: 30px;
-    line-height: ${(props) => (props.bold ? '41px' : '43px')};
+    line-height: ${props => (props.bold ? '41px' : '43px')};
   }
   margin-left: 28px;
   border-bottom: 1px solid #b5b5b5;

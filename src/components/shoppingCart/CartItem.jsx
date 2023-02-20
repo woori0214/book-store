@@ -153,7 +153,7 @@ const Button = styled.button`
 
   background-color: white;
 
-  &: hover {
+  &:hover {
     color: #bdbdbd;
   }
 `;
