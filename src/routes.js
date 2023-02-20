@@ -1,7 +1,7 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 // import MainPage from './pages/MainPage';
-import DetailPage from './Pages/DetailPage';
-import ShoppingCartPage from './Pages/ShoppingCartPage';
+import DetailPage from './pages/DetailPage';
+import ShoppingCartPage from './pages/ShoppingCartPage';
 // import LoginPage from './pages/LoginPage';
 // import MyPage from './pages/MyPage';
 // import SignUpPage from './pages/SignUpPage';
