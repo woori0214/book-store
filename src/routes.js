@@ -18,7 +18,7 @@ function Router() {
     <BrowserRouter>
       <Routes>
         {/* <Route path="/" element={<MainPage />} /> */}
-        <Route path="/shoppingCartPage" element={<ShoppingCartPage />} />
+        <Route path="/shoppingCart" element={<ShoppingCartPage />} />
         {/* <Route path="/detail/:id" element={<DetailPage />} /> */}
         <Route path="/login" element={<LoginPage />} />
         {/* <Route path="/myPage" element={<MyPage />} /> */}
