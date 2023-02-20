@@ -3,11 +3,11 @@ import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 import Button from '../commons/button/Button';
 
-function CartAcount({ amount }) {
+function CartAcount({ totalAmount }) {
   const navigate = useNavigate();
   let deliveryFee = 3000;
 
-  if (!amount) {
+  if (!totalAmount) {
     deliveryFee = 0;
   }
 
@@ -21,7 +21,7 @@ function CartAcount({ amount }) {
         <Amount>
           <AmountItem>
             <Span>총 상품금액</Span>
-            <SpanPrice>{`${amount}원`}</SpanPrice>
+            <SpanPrice>{`${totalAmount}원`}</SpanPrice>
           </AmountItem>
           <AmountDelivery>
             <Span>배송비</Span>
@@ -30,7 +30,7 @@ function CartAcount({ amount }) {
         </Amount>
         <Total>
           <PurpleSpan>결제예상금액</PurpleSpan>
-          <PurpleSpan>{`${amount + deliveryFee}원`}</PurpleSpan>
+          <PurpleSpan>{`${totalAmount + deliveryFee}원`}</PurpleSpan>
         </Total>
       </PaymentResult>
       <Button
