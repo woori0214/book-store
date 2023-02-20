@@ -2,6 +2,7 @@ import React, { useMemo, useState } from 'react';
 import styled from 'styled-components';
 import CartItem from '../components/shoppingCart/CartItem';
 import CartAcount from '../components/shoppingCart/CartAccount';
+import PageTitle from '../components/commons/PageTitle';
 
 const data = [
   {
@@ -37,11 +38,10 @@ function ShoppingCartPage() {
   const [books, setBooks] = useState(
     JSON.parse(localStorage.getItem('test-1')),
   );
-
-  if (!books) {
+  if (books.length === 0) {
     return (
       <>
-        <CartTitle>장바구니</CartTitle>
+        <PageTitle title="장바구니" />
         <EmptyCart>장바구니에 물건을 추가해주세요.</EmptyCart>
       </>
     );
@@ -100,12 +100,19 @@ function ShoppingCartPage() {
     setBooks(newBooks);
   };
 
-  // 장바구니에 아무것도 포함하지 않았을 경우 랜더링 화면
-  console.log(books);
+  if (!books) {
+    console.log(1);
+    return (
+      <>
+        <PageTitle title="장바구니" />
+        <EmptyCart>장바구니에 물건을 추가해주세요.</EmptyCart>
+      </>
+    );
+  }
 
   return (
     <>
-      <CartTitle>장바구니</CartTitle>
+      <PageTitle title="장바구니" />
       <CartWrapper>
         <CartContent>
           <CartHeader>
@@ -133,23 +140,10 @@ function ShoppingCartPage() {
 
 export default ShoppingCartPage;
 
-const CartTitle = styled.h2`
-  height: 200px;
-
-  font-family: 'Noto Sans KR';
-  font-style: normal;
-  font-weight: 700;
-  font-size: 44px;
-  line-height: 200px;
-  text-align: center;
-
-  text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-`;
-
 const CartWrapper = styled.div`
   display: flex;
   width: 60%;
-  margin: auto;
+  margin: 60px auto;
 `;
 
 const CartContent = styled.div`
@@ -168,6 +162,7 @@ const CartList = styled.div`
 `;
 
 const EmptyCart = styled.div`
+  margin-top: 60px;
   height: 300px;
   font-family: 'Noto Sans KR';
   font-style: normal;
