@@ -39,6 +39,7 @@ function CartAcount({ totalAmount }) {
         height="50px"
         margin="40px auto"
         onClick={handleOrderButton}
+        type="button"
       />
     </PaymentArea>
   );

@@ -4,7 +4,7 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import ShoppingCartPage from './pages/ShoppingCartPage';
 import LoginPage from './pages/LoginPage';
 // import MyPage from './pages/MyPage';
-// import SignUpPage from './pages/SignUpPage';
+import SignUpPage from './pages/SignUpPage';
 // import OrderPage from './pages/order/OrderPage';
 // import CategoryPage from './pages/CategoryPage';
 // import OrderCompletePage from './pages/order/OrderCompletePage';
@@ -22,7 +22,7 @@ function Router() {
         {/* <Route path="/detail/:id" element={<DetailPage />} /> */}
         <Route path="/login" element={<LoginPage />} />
         {/* <Route path="/myPage" element={<MyPage />} /> */}
-        {/* <Route path="/signUp" element={<SignUpPage />} /> */}
+        <Route path="/signUp" element={<SignUpPage />} />
         {/* <Route path="/order" element={<OrderPage />} /> */}
         {/* <Route path="/:category" element={<CategoryPage />} /> */}
         {/* <Route path="/orderComplete" element={<OrderCompletePage />} /> */}
@@ -32,7 +32,7 @@ function Router() {
           path="/orderModifyComplete"
           element={<OrderModifyCompletePage />}
         /> */}
-        {/* <Route path="/admin" element={<AdminPage />} /> */} */}
+        {/* <Route path="/admin" element={<AdminPage />} /> */}
       </Routes>
     </BrowserRouter>
   );
