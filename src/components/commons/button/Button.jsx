@@ -9,10 +9,11 @@ function Button({
   borderRadius,
   margin,
   onClick,
+  type,
 }) {
   return (
     <ButtonContainer
-      type="button"
+      type={type}
       width={width}
       height={height}
       borderColor={borderColor}
