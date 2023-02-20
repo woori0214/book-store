@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
-import CartItem from '../Components/shoppingCart/CartItem';
-import CartAccount from '../Components/shoppingCart/CartAccount';
+import CartItem from '../components/shoppingCart/CartItem';
+import CartAccount from '../components/shoppingCart/CartAccount';
 
 function ShoppingCart() {
   // 장바구니에 추가한 책들의 데이터
