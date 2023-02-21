@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import axios from 'axios';
 import { useParams, useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
-import CommonButton from '../commons/button/Button';
+import Button from '../commons/button/Button';
 
 function BookInfo() {
   const [foundBook, setFoundBook] = useState([]);
@@ -51,13 +51,13 @@ function BookInfo() {
         </BookInfoWrapper>
       )}
       <ButtonWrapper>
-        <CommonButton
+        <Button
           buttonTitle="장바구니 추가"
           borderColor="#9E8CEC"
           margin="561px 0 0 816px"
           onClick={handleAddCart}
         />
-        <CommonButton
+        <Button
           buttonTitle="바로 결제하기"
           margin="561px 0 0 40px"
           onClick={handleOrder}
@@ -93,7 +93,6 @@ const DescriptionTable = styled.table`
   border-top: 4px solid #353535;
   margin: 100px 0 0 94px;
   border-collapse: collapse;
-  vertical-align: middle;
 `;
 
 const DescriptionTr = styled.tr`
@@ -104,6 +103,7 @@ const DescriptionTr = styled.tr`
 `;
 
 const DescriptionTd = styled.td`
+  vertical-align: middle;
   &:first-child {
     width: 178px;
     text-align: center;
