@@ -5,13 +5,15 @@ import styled from 'styled-components';
 
 function BookInfoContext() {
   const [foundBook, setFoundBook] = useState([]);
+  const [realPrice, setRealPrice] = useState(0);
   const { id } = useParams();
 
   useEffect(() => {
     const fetchBooks = async () => {
       const response = await axios.get(
-        'http://elice.iptime.org:3000/book/read',
+        'http://elice.iptime.org:8080/book/read',
       );
+      console.log(response);
       const filteredBook = response.data.filter(book => id === book._id);
       setFoundBook(filteredBook);
     };
@@ -93,4 +95,4 @@ const DescriptionTd = styled.td`
 export default BookInfoContext;
 
 // _id: 63f215b543f49c54529a68db
-// _id: 63f2131534c2e6f0d92751bb
+// _id: 63f21764bce010f1e5053c89
