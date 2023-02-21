@@ -4,41 +4,12 @@ import CartItem from '../components/shoppingCart/CartItem';
 import CartAcount from '../components/shoppingCart/CartAccount';
 import PageTitle from '../components/commons/PageTitle';
 
-const data = [
-  {
-    id: 1,
-    title: '탈무드',
-    author: '이동민(옮긴이)',
-    publisher: '인디북(인디아이)',
-    publicationDate: '2001년 5월',
-    quantity: 1,
-    imageURL: 'images/탈무드.png',
-    rating: '상',
-    stock: '1부',
-    price: 5400,
-  },
-  {
-    id: 2,
-    title: '탈무드2',
-    author: '이동민(옮긴이)2',
-    publisher: '인디북(인디아이)2',
-    publicationDate: '2001년 5월2',
-    quantity: 1,
-    imageURL: 'images/book2.jpg',
-    rating: '중',
-    stock: '1부',
-    price: 6000,
-  },
-];
-
-localStorage.setItem('test-1', JSON.stringify(data));
-
 function ShoppingCartPage() {
   // 장바구니에 추가한 책들의 데이터
-  const [books, setBooks] = useState(
-    JSON.parse(localStorage.getItem('test-1')),
-  );
-  if (books.length === 0) {
+  const [books, setBooks] = useState(JSON.parse(localStorage.getItem('books')));
+
+  if (books === null || books.length === 0) {
+    console.log('1');
     return (
       <>
         <PageTitle title="장바구니" />
@@ -57,10 +28,10 @@ function ShoppingCartPage() {
     const newBooks = JSON.parse(JSON.stringify(books));
     const filterBook = newBooks.filter(book => book.id !== id);
 
-    localStorage.removeItem('test-1');
+    localStorage.removeItem('books');
 
     if (filterBook.length !== 0) {
-      localStorage.setItem('test-1', JSON.stringify(filterBook));
+      localStorage.setItem('books', JSON.stringify(filterBook));
     }
 
     setBooks(filterBook);
@@ -69,7 +40,7 @@ function ShoppingCartPage() {
   // 전체 삭제 버튼 클릭시 로직
   const handleDeleteAll = () => {
     setBooks([]);
-    localStorage.removeItem('test-1');
+    localStorage.removeItem('books');
   };
 
   // 마이너스 버튼 클릭시 로직
@@ -78,10 +49,10 @@ function ShoppingCartPage() {
     const newBooks = JSON.parse(JSON.stringify(books));
     newBooks[findBookIndex].quantity -= 1;
 
-    localStorage.removeItem('test-1');
-    localStorage.setItem('test-1', JSON.stringify(newBooks));
+    localStorage.removeItem('books');
+    localStorage.setItem('books', JSON.stringify(newBooks));
 
-    if (JSON.parse(localStorage.getItem('test-1')).length === 0) {
+    if (JSON.parse(localStorage.getItem('books')).length === 0) {
       localStorage.clear();
     }
 
@@ -94,8 +65,8 @@ function ShoppingCartPage() {
     const newBooks = JSON.parse(JSON.stringify(books));
     newBooks[findBookIndex].quantity += 1;
 
-    localStorage.removeItem('test-1');
-    localStorage.setItem('test-1', JSON.stringify(newBooks));
+    localStorage.removeItem('books');
+    localStorage.setItem('books', JSON.stringify(newBooks));
 
     setBooks(newBooks);
   };

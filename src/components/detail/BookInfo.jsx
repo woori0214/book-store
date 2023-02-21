@@ -16,7 +16,20 @@ function BookInfo() {
   }, []);
 
   const handleAddCart = () => {
-    navigate('/shoppingCart');
+    let booksList = JSON.parse(localStorage.getItem('books'));
+    if (booksList) {
+      if (
+        booksList.some(book => {
+          if (book.id === foundBook[0].id) return true;
+        })
+      ) {
+        return;
+      }
+      booksList.push(foundBook[0]);
+    } else {
+      booksList = [foundBook[0]];
+    }
+    localStorage.setItem('books', JSON.stringify(booksList));
   };
 
   const handleOrder = () => {

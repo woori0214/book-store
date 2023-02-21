@@ -5,22 +5,26 @@
       "title": "탈무드",
       "author": "이동민(옮긴이)",
       "publisher": "인디북(인디아이)",
-      "publicationDate": "2001년 5월",
+      "publicationDate": "2001년 5월 2일",
       "imageURL": "/탈무드.png",
-      "rating": "상",
-      "stock": "1부",
-      "price": "5,400 원"
+      "condition": "상",
+      "quantity": 1,
+      "price": 5400,
+      "salePrice": 5400,
+      "stock": 5
     },
     {
       "id": 2,
       "title": "탈무드2",
       "author": "이동민(옮긴이)2",
       "publisher": "인디북(인디아이)2",
-      "publicationDate": "2001년 5월2",
+      "publicationDate": "2001년 5월 2일",
       "imageURL": "/탈무드.png",
-      "rating": "중",
-      "stock": "1부",
-      "price": "5,400 원"
+      "condition": "중",
+      "quantity": 1,
+      "price": 5400,
+      "salePrice": 5400,
+      "stock": 5
     }
   ],
   "comments": [

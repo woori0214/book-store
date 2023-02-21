@@ -10,7 +10,7 @@ PageTitle.defaultProps = {
 };
 
 const H1 = styled.h1`
-  margin: 83px 0 0 634px;
+  margin-top: 83px;
   font-family: 'NotoSansKR-Bold';
   font-size: 44px;
   line-height: 64px;
