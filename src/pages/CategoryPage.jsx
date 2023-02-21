@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import axios from 'axios';
-import Nav from '../Components/commons/Nav';
-import BookList from '../Components/category/BookList';
+import Nav from '../components/commons/Nav';
+import BookList from '../components/category/BookList';
 import './CategoryPage.css';
 
 export default function CategoryPage() {
@@ -24,15 +24,16 @@ export default function CategoryPage() {
     }
     getData();
   });
+
   return (
     <div>
       <Nav />
-      <h1>{id}</h1>
       <div className="title-description">
         <p id="title">{title}</p>
-        <p>{description}</p>
+        <pre id="description">{description}</pre>
+        {/* <p>{description}</p> */}
+        <BookList categoryId={id} />
       </div>
-      <BookList categoryId={id} />
     </div>
   );
 }

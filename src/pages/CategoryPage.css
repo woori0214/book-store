@@ -2,9 +2,9 @@
   /* position: absolute; */
   left: 50%;
   /* top: 20%; */
-  margin-top: 5%;
+  margin-top: 7%;
   margin-bottom: 10%;
-  margin-left: 5%;
+  margin-left: 15%;
   font-family: 'Cormorant Garamond';
   font-size: 1.2em;
   font-style: normal;
@@ -15,4 +15,7 @@
 #title {
   font-size: 1.5em;
   font-weight: bolder;
+}
+#description {
+  margin-left: 3%;
 }

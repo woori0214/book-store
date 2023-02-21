@@ -1,6 +1,7 @@
 import React from 'react';
-import Nav from '../Components/commons/Nav';
-import RecommendBooks from '../Components/main/RecommendBooks';
+import Footer from '../components/commons/Footer';
+import Nav from '../components/commons/Nav';
+import RecommendBooks from '../components/main/RecommendBooks';
 import './MainPage.css';
 
 export default function Main() {
@@ -18,6 +19,7 @@ export default function Main() {
       <div className="Recommend-Book-Wrapper">
         <RecommendBooks />
       </div>
+      <Footer />
     </div>
   );
 }

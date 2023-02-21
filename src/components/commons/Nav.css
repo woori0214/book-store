@@ -1,11 +1,50 @@
 .NavBarClass {
+  display: flex;
+  justify-content: space-around;
   margin-top: 1.5%;
   background-color: #ffffff;
   border-radius: 4px;
   width: 100%;
   height: 10%;
+  border-bottom: 2px solid #b5b5b5;
+}
+
+.last {
+  display: flex;
+  justify-content: center;
+  width: 100px;
+  margin: 1%;
+}
+
+.last > span {
+  padding: 10%;
 }
 
 .NavBarClass > span {
   text-decoration-line: none;
+  padding: 1%;
+}
+
+.span > span {
+  padding: 2%;
+}
+
+.span {
+  display: flex;
+  margin-left: 10%;
+  /* justify-content: center; */
+  width: 100%;
+}
+
+#search {
+  width: 2vw;
+  height: 2.5vh;
+}
+#cart {
+  width: 2vw;
+  height: 2.7vh;
+}
+#mypage {
+  width: 3vw;
+  height: 4.5vh;
 }

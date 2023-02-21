@@ -2,13 +2,14 @@ import React from 'react';
 
 export default function BookData(props) {
   const { book } = props;
+  // const count = 0;
 
   return (
-    <div>
-      <p>bookImg</p>
+    <span>
+      <img src={book.imgsrc} alt="" />
       <p>{book.name}</p>
       <p>{book.price}</p>
       <p>{book.stock}</p>
-    </div>
+    </span>
   );
 }

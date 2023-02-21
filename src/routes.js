@@ -1,17 +1,17 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import MainPage from './Pages/MainPage';
-import DetailPage from './Pages/DetailPage';
-import ShoppingCartPage from './Pages/ShoppingCartPage';
-import LoginPage from './Pages/LoginPage';
-import MyPage from './Pages/MyPage';
-import SignUpPage from './Pages/SignUpPage';
-// import OrderPage from './Pages/OrderPage';
-import CategoryPage from './Pages/CategoryPage';
-// import OrderCompletePage from './Pages/OrderCompletePage';
-// import OrderLookUpPage from './Pages/OrderLookUpPage';
-// import OrderModifyPage from './Pages/OrderModifyPage';
-// import OrderModifyCompletePage from '/Pages/OrderModifyCompletePage';
-import AdminPage from './Pages/AdminPage';
+import MainPage from './pages/MainPage';
+import DetailPage from './pages/DetailPage';
+import ShoppingCartPage from './pages/ShoppingCartPage';
+import LoginPage from './pages/LoginPage';
+import MyPage from './pages/MyPage';
+import SignUpPage from './pages/SignUpPage';
+// import OrderPage from './pages/OrderPage';
+import CategoryPage from './pages/CategoryPage';
+// import OrderCompletePage from './pages/OrderCompletePage';
+// import OrderLookUpPage from './pages/OrderLookUpPage';
+// import OrderModifyPage from './pages/OrderModifyPage';
+// import OrderModifyCompletePage from '/pages/OrderModifyCompletePage';
+import AdminPage from './pages/AdminPage';
 
 function Router() {
   return (
