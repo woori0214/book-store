@@ -132,4 +132,8 @@ const ButtonList = styled.li`
   opacity: 0.5;
   font-size: 14px;
   cursor: pointer;
+
+  &:hover {
+    opacity: 0.9;
+  }
 `;
