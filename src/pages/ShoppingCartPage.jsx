@@ -1,22 +1,17 @@
-import React, { useMemo, useState } from 'react';
+import React, { Fragment, useMemo, useState } from 'react';
 import styled from 'styled-components';
 import CartItem from '../components/shoppingCart/CartItem';
 import CartAcount from '../components/shoppingCart/CartAccount';
 import PageTitle from '../components/commons/PageTitle';
 
+const getInitialValue = () => {
+  const basketItems = localStorage.getItem('books');
+  return basketItems ? JSON.parse(basketItems) : [];
+};
+
 function ShoppingCartPage() {
   // 장바구니에 추가한 책들의 데이터
-  const [books, setBooks] = useState(JSON.parse(localStorage.getItem('books')));
-
-  if (books === null || books.length === 0) {
-    console.log('1');
-    return (
-      <>
-        <PageTitle title="장바구니" />
-        <EmptyCart>장바구니에 물건을 추가해주세요.</EmptyCart>
-      </>
-    );
-  }
+  const [books, setBooks] = useState(getInitialValue());
 
   // 책 갯수의 변경에 따른 총 가격 계산 로직
   const totalAmount = useMemo(
@@ -78,40 +73,34 @@ function ShoppingCartPage() {
     setBooks(newBooks);
   };
 
-  if (!books) {
-    console.log(1);
-    return (
-      <>
-        <PageTitle title="장바구니" />
-        <EmptyCart>장바구니에 물건을 추가해주세요.</EmptyCart>
-      </>
-    );
-  }
-
   return (
     <>
       <PageTitle title="장바구니" />
-      <CartWrapper>
-        <CartContent>
-          <CartHeader>
-            <Button type="button" onClick={handleDeleteAll}>
-              전체삭제
-            </Button>
-          </CartHeader>
-          <CartList>
-            {books.map(book => (
-              <CartItem
-                key={book.id}
-                book={book}
-                onDelete={handleDelete}
-                onMinus={handleMinus}
-                onPlus={handlePlus}
-              />
-            ))}
-          </CartList>
-        </CartContent>
-        <CartAcount totalAmount={totalAmount} />
-      </CartWrapper>
+      {books.length === 0 ? (
+        <EmptyCart>장바구니에 물건을 추가해주세요.</EmptyCart>
+      ) : (
+        <CartWrapper>
+          <CartContent>
+            <CartHeader>
+              <Button type="button" onClick={handleDeleteAll}>
+                전체삭제
+              </Button>
+            </CartHeader>
+            <CartList>
+              {books.map(book => (
+                <CartItem
+                  key={book.id}
+                  book={book}
+                  onDelete={handleDelete}
+                  onMinus={handleMinus}
+                  onPlus={handlePlus}
+                />
+              ))}
+            </CartList>
+          </CartContent>
+          <CartAcount totalAmount={totalAmount} />
+        </CartWrapper>
+      )}
     </>
   );
 }
