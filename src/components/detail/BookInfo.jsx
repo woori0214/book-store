@@ -10,9 +10,14 @@ function BookInfo() {
   const navigate = useNavigate();
 
   useEffect(() => {
-    axios.get('http://localhost:9999/books').then(result => {
-      setFoundBook(result.data.filter(book => Number(id) === Number(book.id)));
-    });
+    const fetchBooks = async () => {
+      const response = await axios.get('http://localhost:9999/books');
+      const filteredBook = response.data.filter(
+        book => Number(id) === Number(book.id),
+      );
+      setFoundBook(filteredBook);
+    };
+    fetchBooks();
   }, []);
 
   const handleAddCart = () => {
