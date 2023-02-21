@@ -1,24 +1,11 @@
-import { useState, useEffect } from 'react';
-import axios from 'axios';
-import { useParams, useNavigate } from 'react-router-dom';
+import React, { Suspense } from 'react';
+import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 import Button from '../commons/button/Button';
+import BookInfoContext from './BookInfoContext';
 
 function BookInfo() {
-  const [foundBook, setFoundBook] = useState([]);
-  const { id } = useParams();
   const navigate = useNavigate();
-
-  useEffect(() => {
-    const fetchBooks = async () => {
-      const response = await axios.get('http://localhost:9999/books');
-      const filteredBook = response.data.filter(
-        book => Number(id) === Number(book.id),
-      );
-      setFoundBook(filteredBook);
-    };
-    fetchBooks();
-  }, []);
 
   const handleAddCart = () => {
     navigate('/shoppingCart');
@@ -28,33 +15,12 @@ function BookInfo() {
     navigate('/order');
   };
 
-  const bookInfo = {
-    rating: '상태',
-    stock: '재고',
-    price: '판매가',
-  };
-
   return (
     <Wrapper>
-      {foundBook.length === 0 ? (
-        <div>...Loading</div>
-      ) : (
-        <BookInfoWrapper>
-          <FoundBookImg src={`/images/${foundBook[0].imageURL}`} alt="이미지" />
-          <DescriptionTable>
-            <DescriptionTr>
-              <DescriptionTd bold>{foundBook[0].title}</DescriptionTd>
-              <DescriptionTd>{`${foundBook[0].author} | ${foundBook[0].publisher}  |  ${foundBook[0].publicationDate}`}</DescriptionTd>
-            </DescriptionTr>
-            {Object.entries(bookInfo).map(([key, value]) => (
-              <DescriptionTr>
-                <DescriptionTd>{value}</DescriptionTd>
-                <DescriptionTd>{foundBook[0][key]}</DescriptionTd>
-              </DescriptionTr>
-            ))}
-          </DescriptionTable>
-        </BookInfoWrapper>
-      )}
+      <Suspense fallback={'Loading...'}>
+        <BookInfoContext />
+      </Suspense>
+
       <ButtonWrapper>
         <Button
           buttonTitle="장바구니 추가"
