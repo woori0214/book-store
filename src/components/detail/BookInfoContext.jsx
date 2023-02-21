@@ -9,34 +9,38 @@ function BookInfoContext() {
 
   useEffect(() => {
     const fetchBooks = async () => {
-      const response = await axios('http://localhost:9999/books');
-      const filteredBook = response.data.filter(
-        book => Number(id) === Number(book.id),
+      const response = await axios.get(
+        'http://elice.iptime.org:3000/book/read',
       );
+      const filteredBook = response.data.filter(book => id === book._id);
       setFoundBook(filteredBook);
     };
     fetchBooks();
   }, []);
 
   const bookInfo = {
-    rating: '상태',
-    stock: '재고',
+    condition: '상태',
+    quantity: '재고',
     price: '판매가',
   };
 
   return (
     <BookInfoWrapper>
-      <FoundBookImg src={`/images/${foundBook?.[0]?.imageURL}`} alt="이미지" />
+      <FoundBookImg src={foundBook?.[0]?.image} alt="이미지" />
       <DescriptionTable>
-        <DescriptionTr>
-          <DescriptionTd bold>{foundBook?.[0]?.title}</DescriptionTd>
-          <DescriptionTd>{`${foundBook?.[0]?.author} | ${foundBook?.[0]?.publisher}  |  ${foundBook?.[0]?.publicationDate}`}</DescriptionTd>
-        </DescriptionTr>
-        {Object.entries(bookInfo).map(([key, value]) => (
-          <DescriptionTr>
-            <DescriptionTd>{value}</DescriptionTd>
-            <DescriptionTd>{foundBook?.[0]?.[key]}</DescriptionTd>
-          </DescriptionTr>
+        <DescriptionTbody>
+          <tr>
+            <DescriptionTd bold>{foundBook?.[0]?.title}</DescriptionTd>
+            <DescriptionTd>{`${foundBook?.[0]?.author} | ${foundBook?.[0]?.publisher}  |  ${foundBook?.[0]?.publishedDate}`}</DescriptionTd>
+          </tr>
+        </DescriptionTbody>
+        {Object.entries(bookInfo).map(([key, value, index]) => (
+          <DescriptionTbody key={index}>
+            <tr key={index}>
+              <DescriptionTd key={key}>{value}</DescriptionTd>
+              <DescriptionTd key={value}>{foundBook?.[0]?.[key]}</DescriptionTd>
+            </tr>
+          </DescriptionTbody>
         ))}
       </DescriptionTable>
     </BookInfoWrapper>
@@ -63,7 +67,7 @@ const DescriptionTable = styled.table`
   border-collapse: collapse;
 `;
 
-const DescriptionTr = styled.tr`
+const DescriptionTbody = styled.tbody`
   height: 99px;
   &:first-child {
     height: 117px;
@@ -87,3 +91,6 @@ const DescriptionTd = styled.td`
 `;
 
 export default BookInfoContext;
+
+// _id: 63f215b543f49c54529a68db
+// _id: 63f2131534c2e6f0d92751bb

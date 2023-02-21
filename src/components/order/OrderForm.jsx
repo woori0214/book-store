@@ -87,7 +87,7 @@ const FormWrapper = styled.form`
 
 const FormInput = styled.div`
   &:first-child {
-    margin: 41px 0 0 36px;
+    margin: 50px 0 0 36px;
   }
   margin: 31px 0 0 36px;
 `;
