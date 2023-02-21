@@ -19,12 +19,6 @@ function BookInfoContext() {
     fetchBooks();
   }, []);
 
-  const bookInfo = {
-    condition: '상태',
-    quantity: '재고',
-    price: '판매가',
-  };
-
   return (
     <BookInfoWrapper>
       <FoundBookImg src={foundBook?.[0]?.image} alt="이미지" />
@@ -34,15 +28,29 @@ function BookInfoContext() {
             <DescriptionTd bold>{foundBook?.[0]?.title}</DescriptionTd>
             <DescriptionTd>{`${foundBook?.[0]?.author} | ${foundBook?.[0]?.publisher}  |  ${foundBook?.[0]?.publishedDate}`}</DescriptionTd>
           </tr>
-        </DescriptionTbody>
-        {Object.entries(bookInfo).map(([key, value, index]) => (
+
+          {/* {Object.entries(bookInfo).map(([key, value, index]) => (
           <DescriptionTbody key={index}>
             <tr key={index}>
               <DescriptionTd key={key}>{value}</DescriptionTd>
               <DescriptionTd key={value}>{foundBook?.[0]?.[key]}</DescriptionTd>
             </tr>
           </DescriptionTbody>
-        ))}
+        ))} */}
+
+          <tr>
+            <DescriptionTd>상태</DescriptionTd>
+            <DescriptionTd>{foundBook?.[0]?.condition}</DescriptionTd>
+          </tr>
+          <tr>
+            <DescriptionTd>재고</DescriptionTd>
+            <DescriptionTd>{`${foundBook?.[0]?.quantity} 부`}</DescriptionTd>
+          </tr>
+          <tr>
+            <DescriptionTd>판매가</DescriptionTd>
+            <DescriptionTd>{`${foundBook?.[0]?.price} 원`}</DescriptionTd>
+          </tr>
+        </DescriptionTbody>
       </DescriptionTable>
     </BookInfoWrapper>
   );
