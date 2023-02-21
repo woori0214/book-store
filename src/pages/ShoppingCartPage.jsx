@@ -18,8 +18,15 @@ function ShoppingCartPage() {
     );
   }
 
+  // 책 갯수의 변경에 따른 총 가격 계산 로직
   const totalAmount = useMemo(
-    () => books.reduce((sum, curr) => sum + curr.quantity * curr.price, 0),
+    () =>
+      books.reduce((sum, curr) => {
+        if (curr.salePrice === curr.price) {
+          return sum + curr.quantity * curr.price;
+        }
+        return sum + curr.quantity * curr.salePrice;
+      }, 0),
     [books],
   );
 

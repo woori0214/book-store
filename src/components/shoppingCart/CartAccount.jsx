@@ -12,6 +12,10 @@ function CartAcount({ totalAmount }) {
   }
 
   const handleOrderButton = () => {
+    localStorage.setItem(
+      'totalPrice',
+      JSON.stringify(totalAmount + deliveryFee),
+    );
     navigate('/order');
   };
 
