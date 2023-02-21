@@ -5,7 +5,6 @@ import styled from 'styled-components';
 
 function BookInfoContext() {
   const [foundBook, setFoundBook] = useState([]);
-  const [realPrice, setRealPrice] = useState(0);
   const { id } = useParams();
 
   useEffect(() => {
