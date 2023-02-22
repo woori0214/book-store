@@ -11,6 +11,8 @@ function OrderList({ ordererInfo }) {
   const getOrderItems = localStorage.getItem('test-1');
   const orderItemList = JSON.parse(getOrderItems);
 
+  const getTotalPrice = localStorage.getItem('totalPrice');
+
   const handleOrder = () => {
     const postOrder = async () => {
       try {
@@ -20,6 +22,7 @@ function OrderList({ ordererInfo }) {
           phone: `${ordererInfo.ordererPhone}`,
           address: `${ordererInfo.ordererAddress}`,
           orderItemList,
+          totalPrice: `${getTotalPrice}`,
         });
         console.log(response);
       } catch (err) {
@@ -56,13 +59,13 @@ function OrderList({ ordererInfo }) {
             <div>
               <OrderItemInfo>{item.title}</OrderItemInfo>
               <OrderItemInfo>{`수량: ${item.stock}`}</OrderItemInfo>
-              <OrderItemInfo>{`${item.stock} 원`}</OrderItemInfo>
+              <OrderItemInfo>{`${item.price} 원`}</OrderItemInfo>
             </div>
           </OrderItem>
         ))}
       </OrderListWrapper>
       <OrderBottomWrapper>
-        <TotalPrice>주문 총액 : 15,300원</TotalPrice>
+        <TotalPrice>{`주문 총액 : ${getTotalPrice} 원`}</TotalPrice>
         <CommonButton
           buttonTitle="주문하기"
           height="59px"
