@@ -3,55 +3,50 @@ import styled from 'styled-components';
 import { useNavigate } from 'react-router-dom';
 import OrderTemplate from './OrderTemplate';
 import CommonButton from '../commons/button/Button';
+import axios from 'axios';
 
-function OrderList() {
+function OrderList({ ordererInfo }) {
   const navigate = useNavigate();
+
+  const getOrderItems = localStorage.getItem('test-1');
+  const parsedOrderItems = JSON.parse(getOrderItems);
+
   const handleOrder = () => {
+    const postOrder = async () => {
+      try {
+        const response = await axios.post('http://localhost:9999/orders', {
+          orderName: `${ordererInfo.ordererName}`,
+          email: `${ordererInfo.ordererEmail}`,
+          phone: `${ordererInfo.ordererPhone}`,
+          address: `${ordererInfo.ordererAddress}`,
+        });
+        console.log(response);
+      } catch (err) {
+        console.log(err);
+      }
+    };
+    postOrder();
     navigate('/orderComplete');
   };
   return (
     <Wrapper>
       <OrderTemplate templateTitle="주문상품" />
       <OrderListWrapper>
-        <OrderItem>
-          <OrderItemImage
-            src="/images/탈무드.png"
-            alt="탈무드 이미지"
-            width="100px"
-            height=" 100px"
-          />
-          <div>
-            <OrderItemInfo>탈무드</OrderItemInfo>
-            <OrderItemInfo>수량 : 1개</OrderItemInfo>
-            <OrderItemInfo>5,400원</OrderItemInfo>
-          </div>
-        </OrderItem>
-        <OrderItem>
-          <OrderItemImage
-            src="/images/탈무드.png"
-            alt="탈무드 이미지"
-            width="100px"
-            height=" 100px"
-          />
-          <div>
-            <OrderItemInfo>탈무드</OrderItemInfo>
-            <OrderItemInfo>수량 : 1개</OrderItemInfo>
-            <OrderItemInfo>5,400원</OrderItemInfo>
-          </div>
-        </OrderItem>
-        <OrderItem>
-          <OrderItemImage
-            src="/images/탈무드.png"
-            alt="탈무드 이미지"
-            width="100px"
-            height=" 100px"
-          />
-          <div>
-            <OrderItemInfo>탈무드</OrderItemInfo>
-            <OrderItemInfo>수량 : 1개</OrderItemInfo>
-            <OrderItemInfo>5,400원</OrderItemInfo>
-          </div>
-        </OrderItem>
+        {parsedOrderItems.map(item => (
+          <OrderItem key={item.id}>
+            <OrderItemImage
+              src={`${item.imageURL}`}
+              alt="탈무드 이미지"
+              width="100px"
+              height=" 100px"
+            />
+            <div>
+              <OrderItemInfo>{item.title}</OrderItemInfo>
+              <OrderItemInfo>{`수량: ${item.stock}`}</OrderItemInfo>
+              <OrderItemInfo>{`${item.stock} 원`}</OrderItemInfo>
+            </div>
+          </OrderItem>
+        ))}
       </OrderListWrapper>
       <OrderBottomWrapper>
         <TotalPrice>주문 총액 : 15,300원</TotalPrice>
