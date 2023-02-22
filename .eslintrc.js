@@ -4,13 +4,16 @@ module.exports = {
     es2021: true,
     jest: true,
   },
-  extends: ['plugin:prettier/recommended'],
+  extends: ['plugin:react/recommended', 'plugin:prettier/recommended'],
   overrides: [],
   parserOptions: {
+    ecmaFeatures: {
+      jsx: true,
+    },
     ecmaVersion: 'latest',
     sourceType: 'module',
   },
-  plugins: ['react'],
+  plugins: ['react', 'prettier'],
   rules: {
     'max-len': [
       'error',
@@ -24,5 +27,7 @@ module.exports = {
         endOfLine: 'auto',
       },
     ],
+    'react/react-in-jsx-scope': 'off',
+    'react/prop-types': 'off',
   },
 };
