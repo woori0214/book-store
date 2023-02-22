@@ -38,24 +38,28 @@ function BookQualityGuide() {
     <Wrapper>
       <GuideTitle>품질 판정 가이드</GuideTitle>
       <GuideTable>
-        <GuideTr>
-          <GuideTh>구분</GuideTh>
-          <GuideTh>헌 상태</GuideTh>
-          <GuideTh>표지</GuideTh>
-          <GuideTh>책등 / 책배</GuideTh>
-          <GuideTh>내부 / 제본상태</GuideTh>
-        </GuideTr>
+        <thead>
+          <tr>
+            <GuideTh>구분</GuideTh>
+            <GuideTh>헌 상태</GuideTh>
+            <GuideTh>표지</GuideTh>
+            <GuideTh>책등 / 책배</GuideTh>
+            <GuideTh>내부 / 제본상태</GuideTh>
+          </tr>
+        </thead>
         {guide.map(obj => (
-          <GuideTr key={obj.category}>
-            {Object.values(obj).map(values => (
-              <GuideTd
-                key={values}
-                dangerouslySetInnerHTML={{
-                  __html: values,
-                }}
-              />
-            ))}
-          </GuideTr>
+          <tbody key={obj.category}>
+            <tr key={obj.category}>
+              {Object.values(obj).map(values => (
+                <GuideTd
+                  key={values}
+                  dangerouslySetInnerHTML={{
+                    __html: values,
+                  }}
+                />
+              ))}
+            </tr>
+          </tbody>
         ))}
       </GuideTable>
     </Wrapper>
@@ -79,7 +83,7 @@ const GuideTitle = styled.h2`
 `;
 
 const GuideTable = styled.table`
-  width: 1315px;
+  width: 100%;
   height: 480px;
   margin-top: 27px;
   border-collapse: collapse;
@@ -98,11 +102,9 @@ const GuideTh = styled.th`
   vertical-align: middle;
 `;
 
-const GuideTr = styled.tr``;
-
 const GuideTd = styled.td`
   border: 1px solid #d0c5fe;
-  width: 308px;
+  width: 24%;
   font-size: 18px;
   line-height: 29px;
   font-family: 'NotoSansKR-Regular';
@@ -111,14 +113,14 @@ const GuideTd = styled.td`
 
   &:first-child {
     padding: 0;
-    width: 84px;
+    width: 5%;
     font-size: 23px;
     line-height: 33px;
     text-align: center;
   }
   &:nth-child(2) {
     padding: 0;
-    width: 307px;
+    width: 23%;
     text-align: center;
   }
 `;

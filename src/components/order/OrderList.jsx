@@ -20,11 +20,11 @@ function OrderList() {
             width="100px"
             height=" 100px"
           />
-          <OrderItemInfoGroup>
+          <div>
             <OrderItemInfo>탈무드</OrderItemInfo>
             <OrderItemInfo>수량 : 1개</OrderItemInfo>
             <OrderItemInfo>5,400원</OrderItemInfo>
-          </OrderItemInfoGroup>
+          </div>
         </OrderItem>
         <OrderItem>
           <OrderItemImage
@@ -33,11 +33,11 @@ function OrderList() {
             width="100px"
             height=" 100px"
           />
-          <OrderItemInfoGroup>
+          <div>
             <OrderItemInfo>탈무드</OrderItemInfo>
             <OrderItemInfo>수량 : 1개</OrderItemInfo>
             <OrderItemInfo>5,400원</OrderItemInfo>
-          </OrderItemInfoGroup>
+          </div>
         </OrderItem>
         <OrderItem>
           <OrderItemImage
@@ -46,11 +46,11 @@ function OrderList() {
             width="100px"
             height=" 100px"
           />
-          <OrderItemInfoGroup>
+          <div>
             <OrderItemInfo>탈무드</OrderItemInfo>
             <OrderItemInfo>수량 : 1개</OrderItemInfo>
             <OrderItemInfo>5,400원</OrderItemInfo>
-          </OrderItemInfoGroup>
+          </div>
         </OrderItem>
       </OrderListWrapper>
       <OrderBottomWrapper>
@@ -107,8 +107,6 @@ const OrderItemInfo = styled.p`
   font-size: 16px;
   line-height: 23px;
 `;
-
-const OrderItemInfoGroup = styled.div``;
 
 const OrderBottomWrapper = styled.div`
   position: relative;

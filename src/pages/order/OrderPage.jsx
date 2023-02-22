@@ -1,5 +1,5 @@
 import React from 'react';
-import PageTitle from '../../components/commons/PageTitle';
+import PageTitle from '../../components/commons/pageTitle/PageTitle';
 import OrderForm from '../../components/order/OrderForm';
 import OrderList from '../../components/order/OrderList';
 
