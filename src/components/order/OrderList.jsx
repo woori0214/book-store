@@ -17,12 +17,13 @@ function OrderList({ ordererInfo }) {
     const postOrder = async () => {
       try {
         const response = await axios.post('http://localhost:9999/orders', {
-          orderName: `${ordererInfo.ordererName}`,
+          userName: `${ordererInfo.ordererName}`,
           email: `${ordererInfo.ordererEmail}`,
           phone: `${ordererInfo.ordererPhone}`,
           address: `${ordererInfo.ordererAddress}`,
           orderItemList,
           totalPrice: `${getTotalPrice}`,
+          userDbId: '63f43ffc0c47ceb602b27567',
         });
         console.log(response);
       } catch (err) {
@@ -52,7 +53,7 @@ function OrderList({ ordererInfo }) {
           <OrderItem key={item.id}>
             <OrderItemImage
               src={`${item.imageURL}`}
-              alt="탈무드 이미지"
+              alt="도서 이미지"
               width="100px"
               height=" 100px"
             />

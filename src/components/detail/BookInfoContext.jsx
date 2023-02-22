@@ -21,7 +21,7 @@ function BookInfoContext() {
 
   return (
     <BookInfoWrapper>
-      <FoundBookImg src={foundBook?.[0]?.image} alt="이미지" />
+      <FoundBookImg src={foundBook?.[0]?.imageUrl} alt="이미지" />
       <DescriptionTable>
         <DescriptionTbody>
           <tr>
