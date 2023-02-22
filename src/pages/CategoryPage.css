@@ -2,18 +2,18 @@
   /* position: absolute; */
   left: 50%;
   /* top: 20%; */
-  margin-top: 7%;
+  margin-top: 5%;
   margin-bottom: 10%;
-  margin-left: 15%;
+  margin-left: 8%;
   font-family: 'Cormorant Garamond';
-  font-size: 1.2em;
+  font-size: 1.1em;
   font-style: normal;
   font-weight: 400;
   text-align: left;
 }
 
 #title {
-  font-size: 1.5em;
+  font-size: 1.3em;
   font-weight: bolder;
 }
 #description {

@@ -90,3 +90,43 @@ export default function Nav() {
 // const NavBarClassSpan = styled.span`
 //   text-decoration-line: none;
 // `;
+
+// "id": "5",
+// "name": "멋진 신세계",
+// "imgsrc": "/image/1.png",
+// "price": 5900,
+// "stock": 44,
+// "quantity": 7,
+// "lastUpdate": "20230218T09:00:00",
+// "category": "2"
+// },
+// {
+// "id": "6",
+// "name": "데미안",
+// "image": "",
+// "price": 4600,
+// "stock": 6,
+// "quantity": 10,
+// "lastUpdate": "20230218T09:00:00",
+// "category": "2"
+// },
+// {
+// "id": "7",
+// "name": "어린왕자",
+// "image": "",
+// "price": 3900,
+// "stock": 27,
+// "quantity": 13,
+// "lastUpdate": "20230218T09:00:00",
+// "category": "2"
+// },
+// {
+// "id": "8",
+// "name": "눈먼 자들의 도시",
+// "image": "",
+// "price": 4300,
+// "stock": 18,
+// "quantity": 8,
+// "lastUpdate": "20230218T09:00:00",
+// "category": "2"
+// },

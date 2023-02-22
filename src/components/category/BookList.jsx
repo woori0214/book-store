@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import styled from 'styled-components';
 import BookData from './BookData';
 
 export default function BookList(props) {
@@ -20,5 +21,16 @@ export default function BookList(props) {
     getData();
   }, [categoryId]);
 
-  return <div>{loading ? bookList.map((book, index) => <BookData book={bookList[index]} />) : <h1>Book Loading...!</h1>}</div>;
+  return <BookDataList>{loading ? bookList.map((book, index) => <BookDataStyle book={bookList[index]} />) : <h1>Book Loading...!</h1>}</BookDataList>;
 }
+
+const BookDataList = styled.div`
+  display: flex;
+  justify-content: around;
+  padding-top: 5%;
+`;
+
+const BookDataStyle = styled(BookData)`
+  width: 20%;
+  padding: 50%;
+`;

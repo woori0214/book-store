@@ -10,15 +10,3 @@ export default function DropBoxex() {
     </select>
   );
 }
-
-const SelectBox = (props) => {
-  return (
-    <select>
-      {props.oprions.map((option) => (
-        <option key={option.value} value={option.value}>
-          {oprion.name}
-        </option>
-      ))}
-    </select>
-  );
-};

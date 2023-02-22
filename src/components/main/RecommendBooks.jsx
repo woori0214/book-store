@@ -1,8 +1,4 @@
 import React from 'react';
-import book1 from './1.png';
-import book2 from './2.png';
-import book3 from './3.png';
-import book4 from './4.png';
 import './RecommendBooks.css';
 
 export default function RecommendBooks() {
@@ -13,16 +9,16 @@ export default function RecommendBooks() {
       </div>
       <div className="Recommend-Book-List">
         <span>
-          <img src={book1} alt="" />
+          <img src={`${process.env.PUBLIC_URL}/image/1.png`} alt="" />
         </span>
         <span>
-          <img src={book2} alt="" />
+          <img src={`${process.env.PUBLIC_URL}/image/2.png`} alt="" />
         </span>
         <span>
-          <img src={book3} alt="" />
+          <img src={`${process.env.PUBLIC_URL}/image/3.png`} alt="" />
         </span>
         <span>
-          <img src={book4} alt="" />
+          <img src={`${process.env.PUBLIC_URL}/image/4.png`} alt="" />
         </span>
       </div>
     </div>

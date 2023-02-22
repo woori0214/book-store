@@ -32,7 +32,6 @@
 .span {
   display: flex;
   margin-left: 10%;
-  /* justify-content: center; */
   width: 100%;
 }
 
