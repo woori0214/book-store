@@ -8,7 +8,22 @@ function BookInfo() {
   const navigate = useNavigate();
 
   const handleAddCart = () => {
-    navigate('/shoppingCart');
+    let booksList = JSON.parse(localStorage.getItem('books'));
+    if (booksList) {
+      if (
+        booksList.some(book => {
+          if (book.id === foundBook[0].id) return true;
+        })
+      ) {
+        alert('동일한 제품이 장바구니에 있습니다.');
+        return;
+      }
+      booksList.push(foundBook[0]);
+    } else {
+      booksList = [foundBook[0]];
+    }
+    localStorage.setItem('books', JSON.stringify(booksList));
+    alert('장바구니에 추가 되었습니다.');
   };
 
   const handleOrder = () => {
