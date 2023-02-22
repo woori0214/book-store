@@ -57,96 +57,142 @@ function OrderLookUpPage() {
     <>
       <PageTitle title="주문 / 배송 조회" />
       <OrderInfoTable>
-        <thead>
-          <OrderInfoTr>
-            <OrderInfoTh>주문 일자</OrderInfoTh>
-            <OrderInfoTh>주문 번호</OrderInfoTh>
-            <OrderInfoTh>상품 정보</OrderInfoTh>
-            <OrderInfoTh>주문 총액</OrderInfoTh>
-            <OrderInfoTh>주문 처리 상태</OrderInfoTh>
-            <OrderInfoTh>주문 취소 / 수정</OrderInfoTh>
-          </OrderInfoTr>
-        </thead>
+        <OrderInfoLabelSection>
+          <div className="item">주문 일자</div>
+          <div className="item">주문 번호</div>
+          <div className="item">상품 정보</div>
+          <div className="item">주문 총액</div>
+          <div className="item">주문 처리 상태</div>
+          <div className="item">주문 취소 / 수정</div>
+        </OrderInfoLabelSection>
+
         {/* DB연동 후 key값 orderId로 바꿀 예정 (index 사용 x) */}
-        <tbody>
-          {orderInfo.map((obj, index) => (
-            <OrderInfoTr key={index}>
-              {Object.entries(obj).map(([key, value]) => (
-                <OrderInfoTd key={key}>{value}</OrderInfoTd>
-              ))}
-              <OrderInfoTd>
-                <CommonButton
-                  buttonTitle="취소"
-                  width="68px"
-                  height="35px"
-                  borderRadius="20px"
-                  borderColor="#9E8CEC"
-                  onClick={handleCancel}
-                />
-                <CommonButton
-                  buttonTitle="수정"
-                  width="68px"
-                  height="35px"
-                  borderRadius="20px"
-                  margin=" 0 0 0 14px"
-                  onClick={handleModify}
-                />
-              </OrderInfoTd>
-            </OrderInfoTr>
-          ))}
-        </tbody>
+
+        <OrderInfoDataSection>
+          <>
+            {orderInfo.map((obj, index) => {
+              return (
+                <div key={index} className="row">
+                  {Object.entries(obj).map(([key, value]) => (
+                    <div key={key} className="item">
+                      {value}
+                    </div>
+                  ))}
+                  <div className="item">
+                    <CommonButton
+                      buttonTitle="취소"
+                      width="68px"
+                      height="35px"
+                      borderRadius="20px"
+                      borderColor="#9E8CEC"
+                      onClick={() => handleCancel(obj.orderId)}
+                    />
+                    <CommonButton
+                      buttonTitle="수정"
+                      width="68px"
+                      height="35px"
+                      borderRadius="20px"
+                      margin=" 0 0 0 14px"
+                    />
+                  </div>
+                </div>
+              );
+            })}
+          </>
+        </OrderInfoDataSection>
       </OrderInfoTable>
     </>
   );
 }
 
-const OrderInfoTable = styled.table`
+const OrderInfoTable = styled.div`
+  display: flex;
+  flex-direction: column;
   width: 1219px;
-  height: 570px;
-  margin-top: 84px;
-  margin-left: auto;
-  margin-right: auto;
+  min-height: 570px;
+  margin: 84px auto 0;
   border-collapse: collapse;
   box-sizing: border-box;
   border: 1px solid #d0c5fe;
 `;
 
-const OrderInfoTh = styled.th`
-  vertical-align: middle;
-  font-family: 'NotoSansKR-Medium';
+const OrderInfoLabelSection = styled.div`
+  display: flex;
+  width: 100%;
   height: 77px;
+  font-family: 'NotoSansKR-Medium';
   background-color: #edeafc;
   font-size: 23px;
   line-height: 33px;
-  text-align: center;
-  border: 1px solid #d0c5fe;
+
+  .item {
+    display: flex;
+    height: inherit;
+    justify-content: center;
+    align-items: center;
+
+    &:first-child {
+      width: 194px;
+    }
+    &:nth-child(2) {
+      width: 201px;
+    }
+    &:nth-child(3) {
+      width: 243px;
+    }
+    &:nth-child(4) {
+      width: 166px;
+    }
+    &:nth-child(5) {
+      width: 199px;
+    }
+  }
 `;
 
-const OrderInfoTr = styled.tr`
-  height: 89px;
-`;
+const OrderInfoDataSection = styled.div`
+  display: flex;
+  flex-direction: column;
+  width: 100%;
 
-const OrderInfoTd = styled.td`
-  vertical-align: middle;
-  border: 1px solid #d0c5fe;
-  font-family: 'NotoSansKR-Regular';
-  font-size: 25px;
-  line-height: 36px;
-  text-align: center;
-  &:first-child {
-    width: 194px;
-  }
-  &:nth-child(2) {
-    width: 201px;
-  }
-  &:nth-child(3) {
-    width: 243px;
-  }
-  &:nth-child(4) {
-    width: 166px;
-  }
-  &:nth-child(5) {
-    width: 199px;
+  .row {
+    display: flex;
+    width: 100%;
+    min-height: 89px;
+
+    .item {
+      display: flex;
+      text-align: center;
+      justify-content: center;
+      align-items: center;
+      border-left: 1px solid #d0c5fe;
+
+      &:first-child {
+        border-left: none;
+        min-width: 194px;
+      }
+      &:nth-child(2) {
+        min-width: 201px;
+      }
+      &:nth-child(3) {
+        min-width: 243px;
+      }
+      &:nth-child(4) {
+        min-width: 166px;
+      }
+      &:nth-child(5) {
+        min-width: 199px;
+      }
+      &:nth-child(6) {
+        border-right: none;
+        min-width: 216px;
+      }
+    }
+
+    border-bottom: 1px solid #d0c5fe;
+
+    &:last-child {
+      border-bottom: none;
+    }
   }
 `;
 
