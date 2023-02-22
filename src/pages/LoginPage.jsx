@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import styled from 'styled-components';
 import PageTitle from '../components/commons/PageTitle';
 import Button from '../components/commons/button/Button';
-import { useNavigate } from 'react-router';
+import { useNavigate } from 'react-router-dom';
 
 function LoginPage() {
   const navigate = useNavigate();
@@ -132,7 +132,8 @@ const ButtonList = styled.li`
   opacity: 0.5;
   font-size: 14px;
   cursor: pointer;
+
   &:hover {
-    opacity: 1;
+    opacity: 0.9;
   }
 `;

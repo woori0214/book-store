@@ -20,7 +20,7 @@ function CartItem({ book, onDelete, onMinus, onPlus }) {
   return (
     <BookItem>
       <ListBox>
-        <BookImage src={book.imageURL} alt="책 이미지입니다." />
+        <BookImage src={`/images/${book.imageURL}`} alt="책 이미지입니다." />
         <BookInfo>
           <Span>{book.title}</Span>
         </BookInfo>
@@ -153,7 +153,7 @@ const Button = styled.button`
 
   background-color: white;
 
-  &: hover {
+  &:hover {
     color: #bdbdbd;
   }
 `;

@@ -1,31 +1,55 @@
 import { useState, useEffect } from 'react';
 import axios from 'axios';
-import { useParams } from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
-import OrderButton from '../commons/CommonButton';
+import Button from '../commons/button/Button';
 
 function BookInfo() {
   const [foundBook, setFoundBook] = useState([]);
   const { id } = useParams();
+  const navigate = useNavigate();
 
   useEffect(() => {
-    axios.get('http://localhost:9999/books').then((result) => {
-      setFoundBook(result.data.filter((book) => Number(id) === Number(book.id)));
+    axios.get('http://localhost:9999/books').then(result => {
+      setFoundBook(result.data.filter(book => Number(id) === Number(book.id)));
     });
   }, []);
+
+  const handleAddCart = () => {
+    let booksList = JSON.parse(localStorage.getItem('books'));
+    if (booksList) {
+      if (
+        booksList.some(book => {
+          if (book.id === foundBook[0].id) return true;
+        })
+      ) {
+        alert('동일한 제품이 장바구니에 있습니다.');
+        return;
+      }
+      booksList.push(foundBook[0]);
+    } else {
+      booksList = [foundBook[0]];
+    }
+    localStorage.setItem('books', JSON.stringify(booksList));
+    alert('장바구니에 추가 되었습니다.');
+  };
+
+  const handleOrder = () => {
+    navigate('/order');
+  };
 
   const bookInfo = {
     rating: '상태',
     stock: '재고',
-    price: '판매가'
+    price: '판매가',
   };
 
   return (
-    <>
+    <Wrapper>
       {foundBook.length === 0 ? (
         <div>...Loading</div>
       ) : (
-        <Wrapper>
+        <BookInfoWrapper>
           <FoundBookImg src={`/images/${foundBook[0].imageURL}`} alt="이미지" />
           <DescriptionTable>
             <DescriptionTr>
@@ -39,25 +63,42 @@ function BookInfo() {
               </DescriptionTr>
             ))}
           </DescriptionTable>
-        </Wrapper>
+        </BookInfoWrapper>
       )}
-
       <ButtonWrapper>
-        <AddCartButton type="button">장바구니 추가</AddCartButton>
-        <OrderButton margin="14px 0 0 40px" />
+        <Button
+          buttonTitle="장바구니 추가"
+          borderColor="#9E8CEC"
+          margin="561px 0 0 816px"
+          onClick={handleAddCart}
+        />
+        <Button
+          buttonTitle="바로 결제하기"
+          margin="561px 0 0 40px"
+          onClick={handleOrder}
+        />
       </ButtonWrapper>
-    </>
+    </Wrapper>
   );
 }
 
 const Wrapper = styled.div`
+  position: relative;
   display: flex;
+  width: 1181px;
+  margin-top: 0;
+  margin: 0 auto;
+`;
+
+const BookInfoWrapper = styled.div`
+  display: flex;
+  position: relative;
 `;
 
 const FoundBookImg = styled.img`
   width: 326px;
   height: 462px;
-  margin: 85px 0 0 369px;
+  margin-top: 85px;
 `;
 
 const DescriptionTable = styled.table`
@@ -77,12 +118,14 @@ const DescriptionTr = styled.tr`
 `;
 
 const DescriptionTd = styled.td`
+  vertical-align: middle;
   &:first-child {
     width: 178px;
     text-align: center;
-    font-family: ${(props) => (props.bold ? 'NotoSansKR-Bold' : 'NotoSansKR-Regular')};
+    font-family: ${props =>
+      props.bold ? 'NotoSansKR-Bold' : 'NotoSansKR-Regular'};
     font-size: 30px;
-    line-height: ${(props) => (props.bold ? '41px' : '43px')};
+    line-height: ${props => (props.bold ? '41px' : '43px')};
   }
   margin-left: 28px;
   border-bottom: 1px solid #b5b5b5;
@@ -92,21 +135,7 @@ const DescriptionTd = styled.td`
 
 const ButtonWrapper = styled.div`
   display: flex;
-`;
-
-const AddCartButton = styled.button`
-  box-sizing: border-box;
-  width: 163px;
-  height: 64px;
-  border: 2px solid #9e8cec;
-  box-shadow: 0px 4px 2px rgba(0, 0, 0, 0.25);
-  border-radius: 30px;
-  background: #ffffff;
-  font-family: 'NotoSansKR-Regular';
-  font-size: 20px;
-  line-height: 29px;
-  margin: 14px 0 0 1184px;
-  cursor: pointer;
+  position: absolute;
 `;
 
 export default BookInfo;

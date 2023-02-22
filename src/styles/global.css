@@ -141,3 +141,18 @@ input[type='number']::-webkit-inner-spin-button {
 button {
   cursor: pointer;
 }
+
+@font-face {
+  font-family: NotoSansKR-Bold;
+  src: url('./fonts/NotoSansKR-Bold.otf');
+}
+
+@font-face {
+  font-family: NotoSansKR-Medium;
+  src: url('./fonts/NotoSansKR-Medium.otf');
+}
+
+@font-face {
+  font-family: NotoSansKR-Regular;
+  src: url('./fonts/NotoSansKR-Regular.otf');
+}

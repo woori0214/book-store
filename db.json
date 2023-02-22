@@ -1,15 +1,33 @@
 {
   "category": [
     {
-      "id": "1",
-      "title": "자기개발서적",
-      "description": "이상한 나라 책장수에서는 꾸준히 도전해야합니다.\n오늘 자기개발서를 읽고 한층 더 성장하는건 어떨까요?"
+      "id": 1,
+      "title": "탈무드",
+      "author": "이동민(옮긴이)",
+      "publisher": "인디북(인디아이)",
+      "publicationDate": "2001년 5월 2일",
+      "imageURL": "/탈무드.png",
+      "condition": "상",
+      "quantity": 1,
+      "price": 5400,
+      "salePrice": 5400,
+      "stock": 5
     },
     {
-      "id": "2",
-      "title": "소설책",
-      "description": "\"인생을 사랑한다면 시간을 낭비하지 마라.왜냐 하면 인생이란 시간 그 자체이기 때문이다.\"                -벤자민프랭클린-"
-    },
+      "id": 2,
+      "title": "탈무드2",
+      "author": "이동민(옮긴이)2",
+      "publisher": "인디북(인디아이)2",
+      "publicationDate": "2001년 5월 2일",
+      "imageURL": "/탈무드.png",
+      "condition": "중",
+      "quantity": 1,
+      "price": 5400,
+      "salePrice": 5400,
+      "stock": 5
+    }
+  ],
+  "comments": [
     {
       "id": "3",
       "title": "만화책",
