@@ -9,7 +9,7 @@ function OrderList({ ordererInfo }) {
   const navigate = useNavigate();
 
   const getOrderItems = localStorage.getItem('test-1');
-  const parsedOrderItems = JSON.parse(getOrderItems);
+  const orderItemList = JSON.parse(getOrderItems);
 
   const handleOrder = () => {
     const postOrder = async () => {
@@ -19,6 +19,7 @@ function OrderList({ ordererInfo }) {
           email: `${ordererInfo.ordererEmail}`,
           phone: `${ordererInfo.ordererPhone}`,
           address: `${ordererInfo.ordererAddress}`,
+          orderItemList,
         });
         console.log(response);
       } catch (err) {
@@ -26,13 +27,25 @@ function OrderList({ ordererInfo }) {
       }
     };
     postOrder();
-    navigate('/orderComplete');
+
+    if (!ordererInfo.ordererName) {
+      alert('주문자명을 입력해주세요');
+    } else if (!ordererInfo.ordererEmail) {
+      alert('이메일을 입력해주세요');
+    } else if (!ordererInfo.ordererPhone) {
+      alert('연락처를 입력해주세요');
+    } else if (!ordererInfo.ordererPhone) {
+      alert('배송지를 입력해주세요');
+    } else {
+      navigate('/orderComplete');
+    }
   };
+
   return (
     <Wrapper>
       <OrderTemplate templateTitle="주문상품" />
       <OrderListWrapper>
-        {parsedOrderItems.map(item => (
+        {orderItemList.map(item => (
           <OrderItem key={item.id}>
             <OrderItemImage
               src={`${item.imageURL}`}
