@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
-import PageTitle from '../components/commons/PageTitle';
+import PageTitle from '../components/commons/pageTitle/PageTitle';
 import Button from '../components/commons/button/Button';
 import { useNavigate } from 'react-router-dom';
 
