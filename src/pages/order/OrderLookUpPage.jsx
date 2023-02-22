@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import { useNavigate } from 'react-router-dom';
-import PageTitle from '../../components/commons/PageTitle';
+import PageTitle from '../../components/commons/pageTitle/PageTitle';
 import CommonButton from '../../components/commons/button/Button';
 
 function OrderLookUpPage() {

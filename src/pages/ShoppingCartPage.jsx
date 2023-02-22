@@ -2,7 +2,7 @@ import React, { useMemo, useState } from 'react';
 import styled from 'styled-components';
 import CartItem from '../components/shoppingCart/CartItem';
 import CartAcount from '../components/shoppingCart/CartAccount';
-import PageTitle from '../components/commons/PageTitle';
+import PageTitle from '../components/commons/pageTitle/PageTitle';
 
 const getInitailValue = () => {
   const basketItems = localStorage.getItem('books');
