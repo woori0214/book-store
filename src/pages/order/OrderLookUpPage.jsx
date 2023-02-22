@@ -68,15 +68,14 @@ function OrderLookUpPage() {
           </OrderInfoTr>
         </thead>
         {/* DB연동 후 key값 orderId로 바꿀 예정 (index 사용 x) */}
-        {orderInfo.map((obj, index) => (
-          <tbody key={obj.orderNumber}>
+        <tbody>
+          {orderInfo.map((obj, index) => (
             <OrderInfoTr key={index}>
               {Object.entries(obj).map(([key, value]) => (
                 <OrderInfoTd key={key}>{value}</OrderInfoTd>
               ))}
               <OrderInfoTd>
                 <CommonButton
-                  key="cancelButton"
                   buttonTitle="취소"
                   width="68px"
                   height="35px"
@@ -85,7 +84,6 @@ function OrderLookUpPage() {
                   onClick={handleCancel}
                 />
                 <CommonButton
-                  key="modifyButton"
                   buttonTitle="수정"
                   width="68px"
                   height="35px"
@@ -95,8 +93,8 @@ function OrderLookUpPage() {
                 />
               </OrderInfoTd>
             </OrderInfoTr>
-          </tbody>
-        ))}
+          ))}
+        </tbody>
       </OrderInfoTable>
     </>
   );

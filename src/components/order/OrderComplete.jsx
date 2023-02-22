@@ -29,7 +29,7 @@ function OrderComplete({ completeMessage }) {
       <OrderInfoBox>
         <OrderInfoContainer>
           {Object.entries(orderData).map(([key, value]) => (
-            <OrderInfo>
+            <OrderInfo key={key}>
               <OrderInfoName>{key}</OrderInfoName>
               <OrderInfoValue>{value}</OrderInfoValue>
             </OrderInfo>
