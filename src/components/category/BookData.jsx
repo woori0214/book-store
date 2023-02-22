@@ -3,7 +3,6 @@ import styled from 'styled-components';
 
 export default function BookData(props) {
   const { book } = props;
-  // const count = 0;
 
   return (
     <BookSpan>

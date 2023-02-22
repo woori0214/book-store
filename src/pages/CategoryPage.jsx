@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from 'react';
+import styled from 'styled-components';
 import { useParams } from 'react-router-dom';
 import axios from 'axios';
 import Nav from '../components/commons/Nav';
 import BookList from '../components/category/BookList';
-import './CategoryPage.css';
 
 export default function CategoryPage() {
   const { id } = useParams();
@@ -28,12 +28,34 @@ export default function CategoryPage() {
   return (
     <div>
       <Nav />
-      <div className="title-description">
-        <p id="title">{title}</p>
-        <pre id="description">{description}</pre>
-        {/* <p>{description}</p> */}
+      <TitleDescription>
+        <MainTitle>{title}</MainTitle>
+        <pre
+          style={{
+            marginleft: '30%'
+          }}
+        >
+          {description}
+        </pre>
         <BookList categoryId={id} />
-      </div>
+      </TitleDescription>
     </div>
   );
 }
+
+const TitleDescription = styled.div`
+  left: 50%;
+  margin-top: 5%;
+  margin-bottom: 10%;
+  margin-left: 8%;
+  font-family: 'Cormorant Garamond';
+  font-size: 1.1em;
+  font-style: normal;
+  font-weight: 400;
+  text-align: left;
+`;
+
+const MainTitle = styled.p`
+  font-size: 1.3em;
+  font-weight: bolder;
+`;
