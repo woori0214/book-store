@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import { useNavigate } from 'react-router-dom';
 import OrderTemplate from './OrderTemplate';
 import CommonButton from '../commons/button/Button';
+// import api from '../../utils/api';
 import axios from 'axios';
 
 function OrderList({ ordererInfo }) {
@@ -26,7 +27,7 @@ function OrderList({ ordererInfo }) {
             orderItemList,
             totalPrice: `${getTotalPrice}`,
             userDbId: '63f43ffc0c47ceb602b27567',
-          },
+          }
         );
 
         console.log('resData', response.data.order);
