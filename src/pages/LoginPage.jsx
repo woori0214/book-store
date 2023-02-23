@@ -62,8 +62,9 @@ function LoginPage() {
     await axios
       .post(`${baseURL}/auth`, user)
       .then(response => {
-        const accessToken = response.data;
-        localStorage.setItem('Auth', accessToken);
+        // const accessToken = response.data;
+        console.log(response);
+        // localStorage.setItem('Auth', accessToken);
 
         // navigate('/shoppingCart');
       })
