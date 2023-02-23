@@ -3,11 +3,12 @@ import styled from 'styled-components';
 import PageTitle from '../components/commons/pageTitle/PageTitle';
 import Button from '../components/commons/button/Button';
 import { useNavigate } from 'react-router-dom';
+import axios from 'axios';
 
 function LoginPage() {
   const navigate = useNavigate();
   const [user, setUser] = useState({
-    id: '',
+    email: '',
     password: '',
   });
 
@@ -15,7 +16,7 @@ function LoginPage() {
   const handleIdChange = e => {
     const newUser = JSON.parse(JSON.stringify(user));
 
-    newUser.id = e.target.value;
+    newUser.email = e.target.value;
     setUser(newUser);
   };
 
@@ -28,11 +29,28 @@ function LoginPage() {
   };
 
   // 로그인 버튼 클릭시
-  const handleSubmit = e => {
+  const handleSubmit = async e => {
     e.preventDefault();
 
-    if (!user.id) {
+    const baseURL = 'http://elice.iptime.org:8080';
+
+    if (!user.email) {
       alert('아이디를 입력 해주세요.');
+      return;
+    }
+
+    if (
+      !user.email.match(
+        new RegExp(
+          /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i,
+        ),
+      )
+    ) {
+      alert('이메일 형식에 맞게 입력해주세요.');
+      setUser({
+        email: '',
+        password: '',
+      });
       return;
     }
 
@@ -41,12 +59,30 @@ function LoginPage() {
       return;
     }
 
-    alert(user);
+    await axios
+      .post(`${baseURL}/auth`, user)
+      .then(response => {
+        const { accessToken } = response.data.token;
+        localStorage.setItem('Auth', accessToken);
+
+        // axios.defaults.headers.common[
+        //   'Authorization'
+        // ] = `Bearer ${accessToken}`;
+
+        // navigate('/shoppingCart');
+      })
+      .catch(error => {
+        // console.log(error);
+      });
   };
 
+  // 회원가입 버튼 클릭
   const handleSignUpClick = () => {
     navigate('/signUp');
   };
+
+  // 비회원 주문조회 버튼 클릭
+  const handleSearchOrderInfo = () => {};
 
   return (
     <LoginContainer>
@@ -54,13 +90,19 @@ function LoginPage() {
       <LoginForm onSubmit={handleSubmit}>
         <div>
           <LoginInputBox>
-            <LoginLabel htmlFor="">로그인</LoginLabel>
-            <LoginInput type="text" value={user.id} onChange={handleIdChange} />
+            <LoginLabel htmlFor="email">이메일</LoginLabel>
+            <LoginInput
+              id="email"
+              type="text"
+              value={user.email}
+              onChange={handleIdChange}
+            />
           </LoginInputBox>
           <LoginInputBox>
-            <LoginLabel htmlFor="">비밀번호</LoginLabel>
+            <LoginLabel htmlFor="password">비밀번호</LoginLabel>
             <LoginInput
-              type="text"
+              id="password"
+              type="password"
               value={user.password}
               onChange={handlePasswordChange}
             />
@@ -78,6 +120,7 @@ function LoginPage() {
         <ButtonList onClick={handleSignUpClick}>회원가입</ButtonList>
         <ButtonList>아이디 찾기</ButtonList>
         <ButtonList>비밀번호 찾기</ButtonList>
+        <ButtonList onClick={handleSearchOrderInfo}>비회원 주문조회</ButtonList>
       </ButtonListContainer>
     </LoginContainer>
   );
@@ -128,7 +171,7 @@ const ButtonListContainer = styled.ul`
 `;
 
 const ButtonList = styled.li`
-  padding-left: 20px;
+  padding: 0 10px;
   opacity: 0.5;
   font-size: 14px;
   cursor: pointer;
