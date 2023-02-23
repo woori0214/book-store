@@ -29,7 +29,10 @@ function Router() {
           <Route path="/orderComplete" element={<OrderCompletePage />} />
           <Route path="/orderLookUp" element={<OrderLookUpPage />} />
           <Route path="/orderModify" element={<OrderModifyPage />} />
-          <Route path="/orderModifyComplete" element={<OrderModifyCompletePage />} />
+          <Route
+            path="/orderModifyComplete"
+            element={<OrderModifyCompletePage />}
+          />
           <Route path="/admin" element={<AdminPage />} />
         </Routes>
       </BrowserRouter>

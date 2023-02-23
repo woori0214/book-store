@@ -2,52 +2,32 @@ module.exports = {
   env: {
     browser: true,
     es2021: true,
-    jest: true
+    jest: true,
   },
-  extends: ['plugin:react/recommended', 'airbnb'],
+  extends: ['plugin:react/recommended', 'plugin:prettier/recommended'],
   overrides: [],
   parserOptions: {
+    ecmaFeatures: {
+      jsx: true,
+    },
     ecmaVersion: 'latest',
-    sourceType: 'module'
+    sourceType: 'module',
   },
-  parser: '@babel/eslint-parser',
-  plugins: ['react'],
+  plugins: ['react', 'prettier'],
   rules: {
-    'react/jsx-filename-extension': [
-      1,
-      {
-        extensions: ['.js', '.jsx']
-      }
-    ],
-    'react/react-in-jsx-scope': 'off',
-    'linebreak-style': 0,
-    'comma-dangle': ['error', 'never'],
-    'jsx-a11y/label-has-associated-control': [
-      2,
-      {
-        labelAttributes: ['htmlFor']
-      }
-    ],
-    'react/prop-types': 'off',
-    'object-curly-newline': [
-      'error',
-      {
-        ObjectExpression: 'always',
-        ObjectPattern: {
-          multiline: true
-        },
-        ImportDeclaration: 'never',
-        ExportDeclaration: {
-          multiline: true,
-          minProperties: 3
-        }
-      }
-    ],
     'max-len': [
       'error',
       {
-        code: 200
-      }
-    ]
-  }
+        code: 300,
+      },
+    ],
+    'prettier/prettier': [
+      'error',
+      {
+        endOfLine: 'auto',
+      },
+    ],
+    'react/react-in-jsx-scope': 'off',
+    'react/prop-types': 'off',
+  },
 };

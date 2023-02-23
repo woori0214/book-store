@@ -1,0 +1,380 @@
+{
+  "category": [
+    {
+      "id": 1,
+      "title": "탈무드",
+      "author": "이동민(옮긴이)",
+      "publisher": "인디북(인디아이)",
+      "publicationDate": "2001년 5월 2일",
+      "imageURL": "/탈무드.png",
+      "condition": "상",
+      "quantity": 1,
+      "price": 5400,
+      "salePrice": 5400,
+      "stock": 5
+    },
+    {
+      "id": 2,
+      "title": "탈무드2",
+      "author": "이동민(옮긴이)2",
+      "publisher": "인디북(인디아이)2",
+      "publicationDate": "2001년 5월 2일",
+      "imageURL": "/탈무드.png",
+      "condition": "중",
+      "quantity": 1,
+      "price": 5400,
+      "salePrice": 5400,
+      "stock": 5
+    }
+  ],
+  "orders": [
+    {
+      "_id": "63f472abe53141a5bc348715",
+      "orderId": "orderf79e2edd",
+      "userDbId": {
+        "_id": "63f4427be8165a65bb434ab3",
+        "name": "김미나",
+        "userId": "elice04",
+        "password": "8cb2237d0679ca88db6464eac60da96345513964",
+        "phone": "456-8987",
+        "address": "경기도 화성시",
+        "createdAt": "2023-02-21T04:03:07.427Z",
+        "updatedAt": "2023-02-21T04:03:07.427Z",
+        "__v": 0
+      },
+      "address": "서울시 강남구",
+      "phone": "123456",
+      "totalPrice": 12300,
+      "status": "pending",
+      "createdAt": "2023-02-21T07:28:43.614Z",
+      "updatedAt": "2023-02-21T07:28:43.614Z",
+      "orderName": "홍길동",
+      "email": "test.com",
+      "__v": 0
+    }
+  ],
+  "book": [
+    {
+      "id": "1",
+      "name": "아몬드",
+      "image": "",
+      "price": 5600,
+      "stock": 3,
+      "quantity": 94,
+      "lastUpdate": "20230218T09:00:00",
+      "category": "2"
+    },
+    {
+      "id": "2",
+      "name": "나미야 잡화점",
+      "image": "",
+      "price": 5100,
+      "stock": 3,
+      "quantity": 57,
+      "lastUpdate": "20230218T09:00:00",
+      "category": "2"
+    },
+    {
+      "id": "3",
+      "name": "참을 수 없는 존재의 가벼움",
+      "image": "",
+      "price": 4700,
+      "stock": 3,
+      "quantity": 10,
+      "lastUpdate": "20230218T09:00:00",
+      "category": "2"
+    },
+    {
+      "id": "4",
+      "name": "파친코",
+      "image": "",
+      "price": 5700,
+      "stock": 3,
+      "quantity": 9,
+      "lastUpdate": "20230218T09:00:00",
+      "category": "2"
+    },
+    {
+      "id": "5",
+      "name": "멋진 신세계",
+      "image": "",
+      "price": 5900,
+      "stock": 44,
+      "quantity": 7,
+      "lastUpdate": "20230218T09:00:00",
+      "category": "2"
+    },
+    {
+      "id": "6",
+      "name": "데미안",
+      "image": "",
+      "price": 4600,
+      "stock": 6,
+      "quantity": 10,
+      "lastUpdate": "20230218T09:00:00",
+      "category": "2"
+    },
+    {
+      "id": "7",
+      "name": "어린왕자",
+      "image": "",
+      "price": 3900,
+      "stock": 27,
+      "quantity": 13,
+      "lastUpdate": "20230218T09:00:00",
+      "category": "2"
+    },
+    {
+      "id": "8",
+      "name": "눈먼 자들의 도시",
+      "image": "",
+      "price": 4300,
+      "stock": 18,
+      "quantity": 8,
+      "lastUpdate": "20230218T09:00:00",
+      "category": "2"
+    },
+
+    {
+      "id": "9",
+      "name": "Algorithm",
+      "image": "",
+      "price": 8000,
+      "stock": 2,
+      "quantity": 5,
+      "lastUpdate": "20230218T09:01:00",
+      "category": "1"
+    },
+    {
+      "id": "10",
+      "name": "모던 딥다이브",
+      "image": "",
+      "price": 9000,
+      "stock": 6,
+      "quantity": 5,
+      "lastUpdate": "20230218T09:01:00",
+      "category": "1"
+    },
+    {
+      "id": "11",
+      "name": "러닝 리액트",
+      "image": "",
+      "price": 6700,
+      "stock": 16,
+      "quantity": 5,
+      "lastUpdate": "20230218T09:01:00",
+      "category": "1"
+    },
+    {
+      "id": "12",
+      "name": "GSWR Pi",
+      "image": "",
+      "price": 5300,
+      "stock": 16,
+      "quantity": 5,
+      "lastUpdate": "20230218T09:01:00",
+      "category": "1"
+    },
+    {
+      "id": "13",
+      "name": "아두이노 IoT",
+      "image": "",
+      "price": 5100,
+      "stock": 16,
+      "quantity": 8,
+      "lastUpdate": "20230218T09:01:00",
+      "category": "1"
+    },
+    {
+      "id": "14",
+      "name": "팀 개발을 위한 Git",
+      "image": "",
+      "price": 4300,
+      "stock": 13,
+      "quantity": 25,
+      "lastUpdate": "20230218T09:01:00",
+      "category": "1"
+    },
+    {
+      "id": "15",
+      "name": "어떤 개발자가 되고 싶니?",
+      "image": "",
+      "price": 3800,
+      "stock": 12,
+      "quantity": 19,
+      "lastUpdate": "20230218T09:01:00",
+      "category": "1"
+    },
+    {
+      "id": "16",
+      "name": "RESTful Web API",
+      "image": "",
+      "price": 4600,
+      "stock": 26,
+      "quantity": 15,
+      "lastUpdate": "20230218T09:01:00",
+      "category": "1"
+    },
+    {
+      "id": "17",
+      "name": "미스터초밥왕",
+      "image": "",
+      "price": 4800,
+      "stock": 99,
+      "quantity": 32,
+      "lastUpdate": "20230218T09:05:00",
+      "category": "3"
+    },
+    {
+      "id": "18",
+      "name": "정글에서 살아남는 법",
+      "image": "",
+      "price": 2800,
+      "stock": 19,
+      "quantity": 10,
+      "lastUpdate": "20230218T09:05:00",
+      "category": "3"
+    },
+    {
+      "id": "19",
+      "name": "슬램덩크",
+      "image": "",
+      "price": 5300,
+      "stock": 67,
+      "quantity": 53,
+      "lastUpdate": "20230218T09:05:00",
+      "category": "3"
+    },
+    {
+      "id": "20",
+      "name": "신 암행어사",
+      "image": "",
+      "price": 3100,
+      "stock": 19,
+      "quantity": 81,
+      "lastUpdate": "20230218T09:05:00",
+      "category": "3"
+    },
+    {
+      "id": "21",
+      "name": "검정 고무신",
+      "image": "",
+      "price": 2200,
+      "stock": 19,
+      "quantity": 81,
+      "lastUpdate": "20230218T09:05:00",
+      "category": "3"
+    },
+    {
+      "id": "22",
+      "name": "뚱딴지",
+      "image": "",
+      "price": 1800,
+      "stock": 5,
+      "quantity": 4,
+      "lastUpdate": "20230218T09:05:00",
+      "category": "3"
+    },
+    {
+      "id": "23",
+      "name": "무서운게 딱! 좋아",
+      "image": "",
+      "price": 2100,
+      "stock": 2,
+      "quantity": 7,
+      "lastUpdate": "20230218T09:05:00",
+      "category": "3"
+    },
+    {
+      "id": "24",
+      "name": "아기공룡 둘리",
+      "image": "",
+      "price": 2900,
+      "stock": 5,
+      "quantity": 13,
+      "lastUpdate": "20230218T09:05:00",
+      "category": "3"
+    },
+
+    {
+      "id": "25",
+      "name": "똑똑한 돼지",
+      "image": "",
+      "price": 1400,
+      "stock": 6,
+      "quantity": 18,
+      "lastUpdate": "20230218T10:02:00",
+      "category": "4"
+    },
+    {
+      "id": "26",
+      "name": "누가 내머리에 똥 쌌어?",
+      "image": "",
+      "price": 3100,
+      "stock": 8,
+      "quantity": 25,
+      "lastUpdate": "20230218T10:02:00",
+      "category": "4"
+    },
+    {
+      "id": "27",
+      "name": "아낌없이 주는 나무",
+      "image": "",
+      "price": 2300,
+      "stock": 6,
+      "quantity": 15,
+      "lastUpdate": "20230218T10:02:00",
+      "category": "4"
+    },
+    {
+      "id": "28",
+      "name": "뜰이 있는 메이지 하우스",
+      "image": "",
+      "price": 2600,
+      "stock": 3,
+      "quantity": 4,
+      "lastUpdate": "20230218T10:02:00",
+      "category": "4"
+    },
+    {
+      "id": "29",
+      "name": "여우와 두루미",
+      "image": "",
+      "price": 2300,
+      "stock": 4,
+      "quantity": 18,
+      "lastUpdate": "20230218T10:02:00",
+      "category": "4"
+    },
+    {
+      "id": "30",
+      "name": "피리부는 사나이",
+      "image": "",
+      "price": 1700,
+      "stock": 19,
+      "quantity": 13,
+      "lastUpdate": "20230218T10:02:00",
+      "category": "4"
+    },
+    {
+      "id": "31",
+      "name": "마법 천자문",
+      "image": "",
+      "price": 4300,
+      "stock": 12,
+      "quantity": 11,
+      "lastUpdate": "20230218T10:02:00",
+      "category": "4"
+    },
+    {
+      "id": "32",
+      "name": "엄마가 학교에 갔어요!",
+      "image": "",
+      "price": 2100,
+      "stock": 14,
+      "quantity": 175,
+      "lastUpdate": "20230218T10:02:00",
+      "category": "4"
+    }
+  ]
+}
