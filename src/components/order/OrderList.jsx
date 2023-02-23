@@ -3,58 +3,76 @@ import styled from 'styled-components';
 import { useNavigate } from 'react-router-dom';
 import OrderTemplate from './OrderTemplate';
 import CommonButton from '../commons/button/Button';
+import axios from 'axios';
 
-function OrderList() {
+function OrderList({ ordererInfo }) {
   const navigate = useNavigate();
+
+  const getOrderItems = localStorage.getItem('test-1');
+  const orderItemList = JSON.parse(getOrderItems);
+
+  const getTotalPrice = localStorage.getItem('totalPrice');
+
   const handleOrder = () => {
-    navigate('/orderComplete');
+    const postOrder = async () => {
+      try {
+        const response = await axios.post(
+          'http://elice.iptime.org:8080/order/create',
+          {
+            userName: `${ordererInfo.ordererName}`,
+            email: `${ordererInfo.ordererEmail}`,
+            phone: `${ordererInfo.ordererPhone}`,
+            address: `${ordererInfo.ordererAddress}`,
+            orderItemList,
+            totalPrice: `${getTotalPrice}`,
+            userDbId: '63f43ffc0c47ceb602b27567',
+          },
+        );
+
+        console.log('resData', response.data.order);
+
+        if (!ordererInfo.ordererName) {
+          alert('주문자명을 입력해주세요');
+        } else if (!ordererInfo.ordererEmail) {
+          alert('이메일을 입력해주세요');
+        } else if (!ordererInfo.ordererPhone) {
+          alert('연락처를 입력해주세요');
+        } else if (!ordererInfo.ordererPhone) {
+          alert('배송지를 입력해주세요');
+        } else {
+          navigate('/orderComplete', {
+            state: response.data.order,
+          });
+        }
+      } catch (err) {
+        console.log(err);
+      }
+    };
+    postOrder();
   };
+
   return (
     <Wrapper>
       <OrderTemplate templateTitle="주문상품" />
       <OrderListWrapper>
-        <OrderItem>
-          <OrderItemImage
-            src="/images/탈무드.png"
-            alt="탈무드 이미지"
-            width="100px"
-            height=" 100px"
-          />
-          <div>
-            <OrderItemInfo>탈무드</OrderItemInfo>
-            <OrderItemInfo>수량 : 1개</OrderItemInfo>
-            <OrderItemInfo>5,400원</OrderItemInfo>
-          </div>
-        </OrderItem>
-        <OrderItem>
-          <OrderItemImage
-            src="/images/탈무드.png"
-            alt="탈무드 이미지"
-            width="100px"
-            height=" 100px"
-          />
-          <div>
-            <OrderItemInfo>탈무드</OrderItemInfo>
-            <OrderItemInfo>수량 : 1개</OrderItemInfo>
-            <OrderItemInfo>5,400원</OrderItemInfo>
-          </div>
-        </OrderItem>
-        <OrderItem>
-          <OrderItemImage
-            src="/images/탈무드.png"
-            alt="탈무드 이미지"
-            width="100px"
-            height=" 100px"
-          />
-          <div>
-            <OrderItemInfo>탈무드</OrderItemInfo>
-            <OrderItemInfo>수량 : 1개</OrderItemInfo>
-            <OrderItemInfo>5,400원</OrderItemInfo>
-          </div>
-        </OrderItem>
+        {orderItemList.map(item => (
+          <OrderItem key={item.id}>
+            <OrderItemImage
+              src={`${item.imageURL}`}
+              alt="도서 이미지"
+              width="100px"
+              height=" 100px"
+            />
+            <div>
+              <OrderItemInfo>{item.title}</OrderItemInfo>
+              <OrderItemInfo>{`수량: ${item.stock}`}</OrderItemInfo>
+              <OrderItemInfo>{`${item.price} 원`}</OrderItemInfo>
+            </div>
+          </OrderItem>
+        ))}
       </OrderListWrapper>
       <OrderBottomWrapper>
-        <TotalPrice>주문 총액 : 15,300원</TotalPrice>
+        <TotalPrice>{`주문 총액 : ${getTotalPrice} 원`}</TotalPrice>
         <CommonButton
           buttonTitle="주문하기"
           height="59px"

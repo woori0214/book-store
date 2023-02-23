@@ -1,11 +1,26 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
 import { useNavigate } from 'react-router-dom';
 import CommonButton from '../commons/button/Button';
 import OrderTemplate from './OrderTemplate';
+import OrderList from './OrderList';
 
-function OrderForm({ modify }) {
+function OrderForm({ order, modify }) {
+  const [ordererInfo, setOrdererInfo] = useState({
+    ordererName: '',
+    ordererEmail: '',
+    ordererPhone: '',
+    ordererAddress: '',
+  });
   const navigate = useNavigate();
+
+  const handleChange = e => {
+    const { name, value } = e.target;
+    const newOrderInfo = { ...ordererInfo };
+    newOrderInfo[name] = value;
+    setOrdererInfo(newOrderInfo);
+    console.log(ordererInfo);
+  };
 
   const handleModifyComplete = () => {
     navigate('/orderModifyComplete');
@@ -20,8 +35,10 @@ function OrderForm({ modify }) {
           <InputTitle>주문자</InputTitle>
           <Input
             type="text"
-            name="orderUser"
+            name="ordererName"
             placeholder="이름을 입력해주세요."
+            value={ordererInfo.ordererName}
+            onChange={handleChange}
           />
         </FormInput>
         <FormInput>
@@ -29,8 +46,10 @@ function OrderForm({ modify }) {
           <InputTitle>이메일</InputTitle>
           <Input
             type="email"
-            name="orderUserEmail"
+            name="ordererEmail"
             placeholder="이메일을 입력해주세요."
+            value={ordererInfo.ordererEmail}
+            onChange={handleChange}
           />
         </FormInput>
         <FormInput>
@@ -38,8 +57,10 @@ function OrderForm({ modify }) {
           <InputTitle>연락처</InputTitle>
           <Input
             type="tel"
-            name="orderUserTel"
+            name="ordererPhone"
             placeholder="연락처를 입력해주세요."
+            value={ordererInfo.ordererPhone}
+            onChange={handleChange}
           />
         </FormInput>
         <FormInput>
@@ -47,11 +68,14 @@ function OrderForm({ modify }) {
           <InputTitle>배송지</InputTitle>
           <Input
             type="text"
-            name="orderUserAddress"
+            name="ordererAddress"
             placeholder="배송지를 입력해주세요."
+            value={ordererInfo.ordererAddress}
+            onChange={handleChange}
           />
         </FormInput>
       </FormWrapper>
+      {order && <OrderList ordererInfo={ordererInfo} />}
       {modify && (
         <CommonButton
           buttonTitle="수정 완료"
