@@ -16,33 +16,39 @@ function OrderList({ ordererInfo }) {
   const handleOrder = () => {
     const postOrder = async () => {
       try {
-        const response = await axios.post('http://localhost:9999/orders', {
-          userName: `${ordererInfo.ordererName}`,
-          email: `${ordererInfo.ordererEmail}`,
-          phone: `${ordererInfo.ordererPhone}`,
-          address: `${ordererInfo.ordererAddress}`,
-          orderItemList,
-          totalPrice: `${getTotalPrice}`,
-          userDbId: '63f43ffc0c47ceb602b27567',
-        });
-        console.log(response);
+        const response = await axios.post(
+          'http://elice.iptime.org:8080/order/create',
+          {
+            userName: `${ordererInfo.ordererName}`,
+            email: `${ordererInfo.ordererEmail}`,
+            phone: `${ordererInfo.ordererPhone}`,
+            address: `${ordererInfo.ordererAddress}`,
+            orderItemList,
+            totalPrice: `${getTotalPrice}`,
+            userDbId: '63f43ffc0c47ceb602b27567',
+          },
+        );
+
+        console.log('resData', response.data.order);
+
+        if (!ordererInfo.ordererName) {
+          alert('주문자명을 입력해주세요');
+        } else if (!ordererInfo.ordererEmail) {
+          alert('이메일을 입력해주세요');
+        } else if (!ordererInfo.ordererPhone) {
+          alert('연락처를 입력해주세요');
+        } else if (!ordererInfo.ordererPhone) {
+          alert('배송지를 입력해주세요');
+        } else {
+          navigate('/orderComplete', {
+            state: response.data.order,
+          });
+        }
       } catch (err) {
         console.log(err);
       }
     };
     postOrder();
-
-    if (!ordererInfo.ordererName) {
-      alert('주문자명을 입력해주세요');
-    } else if (!ordererInfo.ordererEmail) {
-      alert('이메일을 입력해주세요');
-    } else if (!ordererInfo.ordererPhone) {
-      alert('연락처를 입력해주세요');
-    } else if (!ordererInfo.ordererPhone) {
-      alert('배송지를 입력해주세요');
-    } else {
-      navigate('/orderComplete');
-    }
   };
 
   return (
