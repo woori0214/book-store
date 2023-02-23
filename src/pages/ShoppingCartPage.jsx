@@ -1,8 +1,10 @@
-import React, { useMemo, useState } from 'react';
+import React, { useEffect, useMemo, useState } from 'react';
 import styled from 'styled-components';
 import CartItem from '../components/shoppingCart/CartItem';
 import CartAcount from '../components/shoppingCart/CartAccount';
 import PageTitle from '../components/commons/pageTitle/PageTitle';
+// import Api from '../utils/api';
+// import axios from 'axios';
 
 const data = [
   {
@@ -16,6 +18,7 @@ const data = [
     rating: '상',
     stock: '1부',
     price: 5400,
+    salePrice: 5400,
   },
   {
     id: 2,
@@ -28,16 +31,22 @@ const data = [
     rating: '중',
     stock: '1부',
     price: 6000,
+    salePrice: 6000,
   },
 ];
 
-localStorage.setItem('test-1', JSON.stringify(data));
+localStorage.setItem('books', JSON.stringify(data));
 
 function ShoppingCartPage() {
   // 장바구니에 추가한 책들의 데이터
-  const [books, setBooks] = useState(
-    JSON.parse(localStorage.getItem('test-1')),
-  );
+  const [books, setBooks] = useState(JSON.parse(localStorage.getItem('books')));
+
+  // useEffect(() => {
+  //   Api({
+  //     url: '/book/read',
+  //     method: 'get',
+  //   });
+  // }, []);
 
   if (!books) {
     return (
@@ -50,7 +59,7 @@ function ShoppingCartPage() {
 
   const totalAmount = useMemo(
     () => books.reduce((sum, curr) => sum + curr.quantity * curr.price, 0),
-    [books],
+    [books]
   );
 
   // 삭제 버튼 클릭시 로직
@@ -58,10 +67,10 @@ function ShoppingCartPage() {
     const newBooks = JSON.parse(JSON.stringify(books));
     const filterBook = newBooks.filter(book => book.id !== id);
 
-    localStorage.removeItem('test-1');
+    localStorage.removeItem('books');
 
     if (filterBook.length !== 0) {
-      localStorage.setItem('test-1', JSON.stringify(filterBook));
+      localStorage.setItem('books', JSON.stringify(filterBook));
     }
 
     setBooks(filterBook);
@@ -70,7 +79,7 @@ function ShoppingCartPage() {
   // 전체 삭제 버튼 클릭시 로직
   const handleDeleteAll = () => {
     setBooks([]);
-    localStorage.removeItem('test-1');
+    localStorage.removeItem('books');
   };
 
   // 마이너스 버튼 클릭시 로직
@@ -79,10 +88,10 @@ function ShoppingCartPage() {
     const newBooks = JSON.parse(JSON.stringify(books));
     newBooks[findBookIndex].quantity -= 1;
 
-    localStorage.removeItem('test-1');
-    localStorage.setItem('test-1', JSON.stringify(newBooks));
+    localStorage.removeItem('books');
+    localStorage.setItem('books', JSON.stringify(newBooks));
 
-    if (JSON.parse(localStorage.getItem('test-1')).length === 0) {
+    if (JSON.parse(localStorage.getItem('books')).length === 0) {
       localStorage.clear();
     }
 
@@ -95,8 +104,8 @@ function ShoppingCartPage() {
     const newBooks = JSON.parse(JSON.stringify(books));
     newBooks[findBookIndex].quantity += 1;
 
-    localStorage.removeItem('test-1');
-    localStorage.setItem('test-1', JSON.stringify(newBooks));
+    localStorage.removeItem('books');
+    localStorage.setItem('books', JSON.stringify(newBooks));
 
     setBooks(newBooks);
   };

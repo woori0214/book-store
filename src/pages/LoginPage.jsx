@@ -42,8 +42,8 @@ function LoginPage() {
     if (
       !user.email.match(
         new RegExp(
-          /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i,
-        ),
+          /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i
+        )
       )
     ) {
       alert('이메일 형식에 맞게 입력해주세요.');
@@ -62,14 +62,10 @@ function LoginPage() {
     await axios
       .post(`${baseURL}/auth`, user)
       .then(response => {
-        const { accessToken } = response.data.token;
+        const accessToken = response.data;
         localStorage.setItem('Auth', accessToken);
 
-        // axios.defaults.headers.common[
-        //   'Authorization'
-        // ] = `Bearer ${accessToken}`;
-
-        // navigate('/shoppingCart');
+        navigate('/');
       })
       .catch(error => {
         // console.log(error);
@@ -82,7 +78,7 @@ function LoginPage() {
   };
 
   // 비회원 주문조회 버튼 클릭
-  const handleSearchOrderInfo = () => {};
+  // const handleSearchOrderInfo = () => { };
 
   return (
     <LoginContainer>
@@ -120,7 +116,7 @@ function LoginPage() {
         <ButtonList onClick={handleSignUpClick}>회원가입</ButtonList>
         <ButtonList>아이디 찾기</ButtonList>
         <ButtonList>비밀번호 찾기</ButtonList>
-        <ButtonList onClick={handleSearchOrderInfo}>비회원 주문조회</ButtonList>
+        <ButtonList>비회원 주문조회</ButtonList>
       </ButtonListContainer>
     </LoginContainer>
   );
