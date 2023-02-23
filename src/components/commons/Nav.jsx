@@ -1,9 +1,9 @@
 import React from 'react';
 import styled from 'styled-components';
 import { NavLink } from 'react-router-dom';
-import cart from './img/shopping-cart.png';
-import myElice from './img/myElice.png';
-import logo from './img/logo.png';
+import cart from '../commons/navBarShoppingCart.png';
+import myElice from '../commons/navBarMyElice.png';
+import logo from '../commons/logo.png';
 // 중복 스타일적용
 
 export default function Nav() {
@@ -55,21 +55,20 @@ const NavBarClass = styled.div`
   margin-top: 1.5%;
   background-color: #ffffff;
   border-radius: 4px;
-  // width: 100%;
-  // height: 10%;
   border-bottom: 2px solid #b5b5b5;
 `;
 
 const LogoStyle = styled(NavLink)`
   padding-left: 20%;
 `;
+
 const Category = styled(NavLink)`
-  color: black;
+  font-size: 1.5em;
+  padding-left: 30px;
+  padding-right: 30px;
   border-radius: 18px;
-  padding: 10%;
-  // width: 100%;
-  // padding-left: 30px;
-  // padding-right: 30px;
+  padding: 5%;
+  color: black;
   &.active {
     background-color: #9e8cec;
     color: white;
@@ -94,14 +93,16 @@ const MiddleNavBar = styled.div`
 const MiddleSpan = styled.div`
   width: 100%;
   padding: 2%;
+  text-align: center;
 `;
 
 const EndClass = styled.div`
   display: flex;
-  align-item: center;
+  align-items: center;
   width: 15%;
   height: 100%;
 `;
+
 const EndDiv = styled.div`
   display: iline-block;
   justify-content: center;
@@ -113,6 +114,7 @@ const CartNavBar = styled(NavLink)`
   width: 100%;
   height: 100%;
 `;
+
 const LoginButton = styled.button`
   background-color: #edeafc;
   border-radius: 18px;
@@ -122,6 +124,7 @@ const MyElice = styled(NavLink)`
   width: 100%;
   height: 100%;
 `;
+
 const IconSize = styled.img`
   width: 2vw;
   height: 3.5vh;

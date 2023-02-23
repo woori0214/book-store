@@ -6,6 +6,7 @@ import Nav from '../components/commons/Nav';
 import BookList from '../components/category/BookList';
 import PageList from '../components/category/PageNation';
 import './Paging.css';
+import DropBox from '../components/category/DropBoxes';
 
 export default function CategoryPage() {
   const { id } = useParams();
@@ -13,19 +14,18 @@ export default function CategoryPage() {
   const [description, setDescription] = useState('loading..');
   const [page, setPage] = useState(1);
 
-  const changePage = (nextPage) => {
+  const changePage = nextPage => {
     setPage(nextPage);
   };
 
   // 함수 내에서 async await함수를 만들어서 호출하는 것이다.
   useEffect(() => {
     async function getData() {
-      const res = await axios.get('http://localhost:8080/category/', {
+      const res = await axios.get('http://localhost:8080/category', {
         params: {
-          id
-        }
+          id,
+        },
       });
-      // console.log(res);
       setTitle(res.data[0].title);
       setDescription(res.data[0].description);
     }
@@ -46,11 +46,14 @@ export default function CategoryPage() {
         <MainTitle>{title}</MainTitle>
         <pre
           style={{
-            marginleft: '30%'
+            marginLeft: '4%',
           }}
         >
           {description}
         </pre>
+        <div style={{ width: '100%', marginLeft: '85%' }}>
+          <DropBox />
+        </div>
         <BookList categoryId={id} page={page} />
       </TitleDescription>
       <PageList changePage={changePage} page={page} />
@@ -70,6 +73,7 @@ const TitleDescription = styled.div`
 `;
 
 const MainTitle = styled.p`
-  font-size: 1.3em;
+  font-size: 2em;
   font-weight: bolder;
+  margin-bottom: 2%;
 `;
