@@ -10,7 +10,7 @@ module.exports = {
     ecmaVersion: 'latest',
     sourceType: 'module'
   },
-  parser: 'babel-eslint',
+  parser: '@babel/eslint-parser',
   plugins: ['react'],
   rules: {
     'react/jsx-filename-extension': [

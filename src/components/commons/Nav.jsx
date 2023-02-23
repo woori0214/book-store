@@ -6,15 +6,6 @@ import myElice from './img/myElice.png';
 import logo from './img/logo.png';
 // 중복 스타일적용
 
-// const ButtonStyle = styled(button)`
-//   text-align: center;
-// `;
-// const navigator = useNavigate();
-
-// const cartPageMove = () => {
-//   navigator('../../pages/MainPage');
-// };
-
 export default function Nav() {
   return (
     <NavBarClass>
@@ -76,8 +67,9 @@ const Category = styled(NavLink)`
   color: black;
   border-radius: 18px;
   padding: 10%;
-  padding-left: 30px;
-  padding-right: 30px;
+  // width: 100%;
+  // padding-left: 30px;
+  // padding-right: 30px;
   &.active {
     background-color: #9e8cec;
     color: white;
@@ -100,23 +92,35 @@ const MiddleNavBar = styled.div`
 `;
 
 const MiddleSpan = styled.div`
+  width: 100%;
   padding: 2%;
 `;
 
 const EndClass = styled.div`
   display: flex;
+  align-item: center;
+  width: 15%;
+  height: 100%;
 `;
 const EndDiv = styled.div`
   display: iline-block;
   justify-content: center;
+  width: 100%;
+  height: 100%;
 `;
 
 const CartNavBar = styled(NavLink)`
-  margin: 25%;
+  width: 100%;
+  height: 100%;
 `;
-const LoginButton = styled.button``;
+const LoginButton = styled.button`
+  background-color: #edeafc;
+  border-radius: 18px;
+`;
+
 const MyElice = styled(NavLink)`
-  padding: 25%;
+  width: 100%;
+  height: 100%;
 `;
 const IconSize = styled.img`
   width: 2vw;

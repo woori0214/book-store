@@ -9,21 +9,50 @@ export default function RecommendBooks() {
       </div>
       <RecommendBookList>
         <BookSpan>
-          <img src={`${process.env.PUBLIC_URL}/image/1.png`} alt="" />
+          <img
+            src="https://contents.kyobobook.co.kr/sih/fit-in/458x0/pdt/9788936456788.jpg"
+            alt=""
+            style={{
+              width: '12vw',
+              height: '27vh'
+            }}
+          />
         </BookSpan>
         <BookSpan>
-          <img src={`${process.env.PUBLIC_URL}/image/2.png`} alt="" />
+          <img
+            src="https://contents.kyobobook.co.kr/sih/fit-in/458x0/pdt/9788972976189.jpg"
+            alt=""
+            style={{
+              width: '12vw',
+              height: '27vh'
+            }}
+          />
         </BookSpan>
         <BookSpan>
-          <img src={`${process.env.PUBLIC_URL}/image/3.png`} alt="" />
+          <img
+            src="https://contents.kyobobook.co.kr/sih/fit-in/280x0/pdt/9791187444725.jpg"
+            alt=""
+            style={{
+              width: '12vw',
+              height: '27vh'
+            }}
+          />
         </BookSpan>
         <BookSpan>
-          <img src={`${process.env.PUBLIC_URL}/image/4.png`} alt="" />
+          <img
+            src="https://image.aladin.co.kr/product/425/46/cover150/신암행어사.jpg"
+            alt=""
+            style={{
+              width: '12vw',
+              height: '27vh'
+            }}
+          />
         </BookSpan>
       </RecommendBookList>
     </RecommendBookClass>
   );
 }
+
 const RecommendTitle = styled.p`
   font-family: 'Cormorant Garamond';
   font-style: normal;
@@ -47,5 +76,9 @@ const BookSpan = styled.span`
   padding: 5%;
 `;
 
+// const BookImgSize = {
+//   width:30%,
+//   height: 25vh
+// }
 /* TO-DO : img별 bottom값 적용시키기 */
 /* TO-DO : hover 이미지 적용시키기 */

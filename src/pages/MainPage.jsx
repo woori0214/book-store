@@ -1,8 +1,8 @@
 import React from 'react';
+import styled from 'styled-components';
 import Footer from '../components/commons/Footer';
 import Nav from '../components/commons/Nav';
 import RecommendBooks from '../components/main/RecommendBooks';
-import './MainPage.css';
 
 export default function Main() {
   const title1 = '이상한 나라에서 살아 남는 법 ...';
@@ -11,15 +11,30 @@ export default function Main() {
   return (
     <div>
       <Nav />
-      <div className="Main-Title">
+      <MainTitle>
         <p>{title1}</p>
         <p>{title2}</p>
         <p>{title3}</p>
-      </div>
-      <div className="Recommend-Book-Wrapper">
+      </MainTitle>
+      <RecommendBookWrapper>
         <RecommendBooks />
-      </div>
+      </RecommendBookWrapper>
       <Footer />
     </div>
   );
 }
+
+const MainTitle = styled.div`
+  left: 50%;
+  margin-top: 5%;
+  margin-bottom: 10%;
+  font-family: 'Cormorant Garamond';
+  font-size: 1.4em;
+  font-style: normal;
+  font-weight: 400;
+  text-align: center;
+`;
+
+const RecommendBookWrapper = styled.div`
+  margin: 5%;
+`;

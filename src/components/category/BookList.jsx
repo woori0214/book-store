@@ -6,20 +6,21 @@ import BookData from './BookData';
 export default function BookList(props) {
   const [bookList, setBookList] = useState('');
   const [loading, setLoading] = useState(false);
-  const { categoryId } = props;
+  const { categoryId, page } = props;
 
   useEffect(() => {
     async function getData() {
       const res = await axios.get('http://localhost:8080/book/', {
         params: {
-          category: categoryId
+          category: categoryId,
+          page
         }
       });
       setBookList(res.data);
       setLoading(true);
     }
     getData();
-  }, [categoryId]);
+  }, [categoryId, page]);
 
   return <BookDataList>{loading ? bookList.map((book, index) => <BookDataStyle book={bookList[index]} />) : <h1>Book Loading...!</h1>}</BookDataList>;
 }
