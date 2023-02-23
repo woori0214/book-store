@@ -13,7 +13,7 @@ export default function CategoryPage() {
   const [description, setDescription] = useState('loading..');
   const [page, setPage] = useState(1);
 
-  const changePage = (nextPage) => {
+  const changePage = nextPage => {
     setPage(nextPage);
   };
 
@@ -22,8 +22,8 @@ export default function CategoryPage() {
     async function getData() {
       const res = await axios.get('http://localhost:8080/category/', {
         params: {
-          id
-        }
+          id,
+        },
       });
       // console.log(res);
       setTitle(res.data[0].title);
@@ -46,7 +46,7 @@ export default function CategoryPage() {
         <MainTitle>{title}</MainTitle>
         <pre
           style={{
-            marginleft: '30%'
+            marginleft: '30%',
           }}
         >
           {description}
