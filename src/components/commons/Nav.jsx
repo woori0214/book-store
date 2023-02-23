@@ -98,7 +98,7 @@ const MiddleSpan = styled.div`
 
 const EndClass = styled.div`
   display: flex;
-  align-item: center;
+  align-items: center;
   width: 15%;
   height: 100%;
 `;

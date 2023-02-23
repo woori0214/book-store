@@ -42,8 +42,8 @@ function LoginPage() {
     if (
       !user.email.match(
         new RegExp(
-          /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i,
-        ),
+          /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i
+        )
       )
     ) {
       alert('이메일 형식에 맞게 입력해주세요.');
@@ -62,11 +62,10 @@ function LoginPage() {
     await axios
       .post(`${baseURL}/auth`, user)
       .then(response => {
-        // const accessToken = response.data;
-        console.log(response);
-        // localStorage.setItem('Auth', accessToken);
+        const accessToken = response.data;
+        localStorage.setItem('Auth', accessToken);
 
-        // navigate('/shoppingCart');
+        navigate('/');
       })
       .catch(error => {
         // console.log(error);
