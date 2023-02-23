@@ -13,8 +13,8 @@ export default function BookList(props) {
       const res = await axios.get('http://localhost:8080/book/', {
         params: {
           category: categoryId,
-          page
-        }
+          page,
+        },
       });
       setBookList(res.data);
       setLoading(true);
@@ -22,7 +22,15 @@ export default function BookList(props) {
     getData();
   }, [categoryId, page]);
 
-  return <BookDataList>{loading ? bookList.map((book, index) => <BookDataStyle book={bookList[index]} />) : <h1>Book Loading...!</h1>}</BookDataList>;
+  return (
+    <BookDataList>
+      {loading ? (
+        bookList.map((book, index) => <BookDataStyle book={bookList[index]} />)
+      ) : (
+        <h1>Book Loading...!</h1>
+      )}
+    </BookDataList>
+  );
 }
 
 const BookDataList = styled.div`

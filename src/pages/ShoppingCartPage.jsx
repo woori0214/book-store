@@ -3,8 +3,6 @@ import styled from 'styled-components';
 import CartItem from '../components/shoppingCart/CartItem';
 import CartAcount from '../components/shoppingCart/CartAccount';
 import PageTitle from '../components/commons/pageTitle/PageTitle';
-// import Api from '../utils/api';
-// import axios from 'axios';
 
 const data = [
   {
@@ -40,13 +38,6 @@ localStorage.setItem('books', JSON.stringify(data));
 function ShoppingCartPage() {
   // 장바구니에 추가한 책들의 데이터
   const [books, setBooks] = useState(JSON.parse(localStorage.getItem('books')));
-
-  // useEffect(() => {
-  //   Api({
-  //     url: '/book/read',
-  //     method: 'get',
-  //   });
-  // }, []);
 
   if (!books) {
     return (
