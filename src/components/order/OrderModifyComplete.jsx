@@ -7,15 +7,15 @@ import Api from '../../utils/api';
 function OrderModifyComplete({ completeMessage }) {
   const navigate = useNavigate();
   const location = useLocation();
-  const getModifyInfo = location.state?.getModifyInfo;
-  console.log('getModifyInfo', getModifyInfo);
+  const modifyData = location.state?.modifyData;
+  console.log('modifyData', modifyData);
 
-  const modifyData = {
-    주문번호: `${getModifyInfo.orderItemList[0].orderID}`,
-    주문자명: `${getModifyInfo.order.userName}`,
-    배송지: `${getModifyInfo.order.address}`,
-    연락처: `${getModifyInfo.order.phone}`,
-    이메일: `${getModifyInfo.order.email}`,
+  const modifyInfo = {
+    주문번호: `${modifyData.orderItemList[0].orderID}`,
+    주문자명: `${modifyData.order.userName}`,
+    배송지: `${modifyData.order.address}`,
+    연락처: `${modifyData.order.phone}`,
+    이메일: `${modifyData.order.email}`
   };
 
   const handleMain = () => {
@@ -28,7 +28,7 @@ function OrderModifyComplete({ completeMessage }) {
       <CompleteMessage>{completeMessage}이 완료되었습니다.</CompleteMessage>
       <OrderInfoBox>
         <OrderInfoContainer>
-          {Object.entries(modifyData).map(([key, value]) => (
+          {Object.entries(modifyInfo).map(([key, value]) => (
             <OrderInfo key={key}>
               <OrderInfoName>{key}</OrderInfoName>
               <OrderInfoValue>{value}</OrderInfoValue>

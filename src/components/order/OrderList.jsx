@@ -2,16 +2,16 @@ import React from 'react';
 import styled from 'styled-components';
 import { useNavigate } from 'react-router-dom';
 import OrderTemplate from './OrderTemplate';
-import CommonButton from '../commons/button/Button';
-import Api from '../../utils/api';
+import CommonButton from 'components/commons/button/Button';
+import Api from 'utils/api';
+import calculatePrice from 'utils/calculatePrice';
 
 function OrderList({ ordererInfo }) {
   const navigate = useNavigate();
 
-  const getOrderItems = localStorage.getItem('books');
-  const orderItemList = JSON.parse(getOrderItems);
-
-  const getTotalPrice = localStorage.getItem('totalPrice');
+  const orderItems = localStorage.getItem('books');
+  const orderItemList = JSON.parse(orderItems);
+  const totalPrice = calculatePrice(orderItemList);
 
   const handleOrder = async () => {
     try {
@@ -21,11 +21,11 @@ function OrderList({ ordererInfo }) {
         phone: `${ordererInfo.ordererPhone}`,
         address: `${ordererInfo.ordererAddress}`,
         orderItemList,
-        totalPrice: `${getTotalPrice}`,
-        userID: '63f7c9e661dcba07b90725f2',
+        totalPrice,
+        userID: '63f7c9e661dcba07b90725f2'
       });
 
-      console.log('resData', response.data);
+      console.log('resData', response);
 
       if (!ordererInfo.ordererName) {
         alert('주문자명을 입력해주세요');
@@ -41,8 +41,8 @@ function OrderList({ ordererInfo }) {
         // });
         navigate('/orderComplete', {
           state: {
-            getOrderData: response.data,
-          },
+            orderData: response.data
+          }
         });
       }
     } catch (err) {
@@ -54,14 +54,9 @@ function OrderList({ ordererInfo }) {
     <Wrapper>
       <OrderTemplate templateTitle="주문상품" />
       <OrderListWrapper>
-        {orderItemList.map(item => (
+        {orderItemList.map((item) => (
           <OrderItem key={item.id}>
-            <OrderItemImage
-              src={`${item.imageURL}`}
-              alt="도서 이미지"
-              width="100px"
-              height=" 100px"
-            />
+            <OrderItemImage src={`${item.imageURL}`} alt="도서 이미지" width="100px" height=" 100px" />
             <div>
               <OrderItemInfo>{item.title}</OrderItemInfo>
               <OrderItemInfo>{`수량: ${item.stock}`}</OrderItemInfo>
@@ -71,7 +66,7 @@ function OrderList({ ordererInfo }) {
         ))}
       </OrderListWrapper>
       <OrderBottomWrapper>
-        <TotalPrice>{`주문 총액 : ${getTotalPrice} 원`}</TotalPrice>
+        <TotalPrice>{`주문 총액 : ${totalPrice} 원`}</TotalPrice>
         <CommonButton
           buttonTitle="주문하기"
           height="59px"

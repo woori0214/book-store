@@ -7,29 +7,29 @@ import Api from '../../utils/api';
 function OrderComplete({ completeMessage, orderComplete, modifyComplete }) {
   const navigate = useNavigate();
   const location = useLocation();
-  const getOrderData = location.state?.getOrderData;
-  console.log('getOrderData', getOrderData);
+  const orderData = location.state?.orderData;
+  console.log('orderData', orderData);
 
-  const orderData = {
-    주문번호: `${getOrderData.orderItem[0].orderID}`,
-    주문자명: `${getOrderData.order.userName}`,
-    배송지: `${getOrderData.order.address}`,
-    연락처: `${getOrderData.order.phone}`,
-    이메일: `${getOrderData.order.email}`,
+  const orderInfo = {
+    주문번호: `${orderData.orderItem[0].orderID}`,
+    주문자명: `${orderData.order.userName}`,
+    배송지: `${orderData.order.address}`,
+    연락처: `${orderData.order.phone}`,
+    이메일: `${orderData.order.email}`
   };
 
   const handleLookUp = async () => {
-    const userId = getOrderData.order.userID;
+    const userId = orderData.order.userID;
     const response = await Api.get(`/users/orders`, {
       params: {
-        userID: userId,
-      },
+        userID: userId
+      }
     });
 
     navigate('/orderLookUp', {
       state: {
-        getOrderCompleteData: response.data,
-      },
+        orderCompleteData: response.data
+      }
     });
   };
 
@@ -43,7 +43,7 @@ function OrderComplete({ completeMessage, orderComplete, modifyComplete }) {
       <CompleteMessage>{completeMessage}이 완료되었습니다.</CompleteMessage>
       <OrderInfoBox>
         <OrderInfoContainer>
-          {Object.entries(orderData).map(([key, value]) => (
+          {Object.entries(orderInfo).map(([key, value]) => (
             <OrderInfo key={key}>
               <OrderInfoName>{key}</OrderInfoName>
               <OrderInfoValue>{value}</OrderInfoValue>

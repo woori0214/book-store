@@ -10,11 +10,11 @@ function OrderForm({ order, modify }) {
     ordererName: '',
     ordererEmail: '',
     ordererPhone: '',
-    ordererAddress: '',
+    ordererAddress: ''
   });
   const navigate = useNavigate();
 
-  const handleChange = e => {
+  const handleChange = (e) => {
     const { name, value } = e.target;
     const newOrderInfo = { ...ordererInfo };
     newOrderInfo[name] = value;
@@ -129,9 +129,7 @@ const Input = styled.input`
   width: 1021px;
   height: 42px;
   border-radius: 5px;
-  &::placeholder {
-    padding-left: 15px;
-  }
+  padding-left: 15px;
 `;
 
 export default OrderForm;

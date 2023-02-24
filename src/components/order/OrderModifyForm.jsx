@@ -11,11 +11,11 @@ function OrderModifyForm({ order, modify, initialOrdererInfo, orderId }) {
     ordererName: initialOrdererInfo.userName,
     ordererEmail: initialOrdererInfo.email,
     ordererPhone: initialOrdererInfo.phone,
-    ordererAddress: initialOrdererInfo.address,
+    ordererAddress: initialOrdererInfo.address
   });
   const navigate = useNavigate();
 
-  const handleChange = e => {
+  const handleChange = (e) => {
     const { name, value } = e.target;
     const newOrderInfo = { ...ordererInfo };
     newOrderInfo[name] = value;
@@ -31,19 +31,19 @@ function OrderModifyForm({ order, modify, initialOrdererInfo, orderId }) {
           userName: `${ordererInfo.ordererName}`,
           email: `${ordererInfo.ordererEmail}`,
           phone: `${ordererInfo.ordererPhone}`,
-          address: `${ordererInfo.ordererAddress}`,
+          address: `${ordererInfo.ordererAddress}`
         },
         {
           params: {
-            orderID: orderId,
-          },
+            orderID: orderId
+          }
         }
       );
 
-      const getResponse = await Api.get(`/orders/${orderId}`);
+      const orderInfoResponse = await Api.get(`/orders/${orderId}`);
 
       console.log('resData', response);
-      console.log('getResponse', getResponse.data.result[0]);
+      console.log('orderInfoResponse', orderInfoResponse.data.result[0]);
 
       if (!ordererInfo.ordererName) {
         alert('주문자명을 입력해주세요');
@@ -56,8 +56,8 @@ function OrderModifyForm({ order, modify, initialOrdererInfo, orderId }) {
       } else {
         navigate('/orderModifyComplete', {
           state: {
-            getModifyInfo: getResponse.data.result[0],
-          },
+            modifyData: orderInfoResponse.data.result[0]
+          }
         });
       }
     } catch (err) {

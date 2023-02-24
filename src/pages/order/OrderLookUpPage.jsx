@@ -9,17 +9,17 @@ function OrderLookUpPage() {
   const navigate = useNavigate();
 
   const location = useLocation();
-  const getOrderCompleteData = location.state?.getOrderCompleteData;
-  console.log('getOrderCompleteData', getOrderCompleteData);
+  const orderCompleteData = location.state?.orderCompleteData;
+  console.log('orderCompleteData', orderCompleteData);
 
-  const orderInfo = getOrderCompleteData.map(obj => {
+  const orderInfo = orderCompleteData.map((obj) => {
     const orderItemCount = obj.orderItemList.length - 1;
     return {
       orderDate: obj.order.createdAt,
       orderNumber: obj.orderItemList[0].orderID,
       orderItem: `${obj.orderItemList[0].bookTitle} 외 ${orderItemCount}개`,
       orderPrice: `${obj.order.totalPrice} 원`,
-      orderStatus: obj.order.status,
+      orderStatus: obj.order.status
     };
   });
   console.log('orderInfo', orderInfo);
@@ -61,24 +61,24 @@ function OrderLookUpPage() {
   //     orderStatus: '배송 준비중',
   //   },
   // ];
-  const handleModify = async obj => {
+  const handleModify = async (obj) => {
     const objOrderNumber = obj.orderNumber;
     const response = await Api.get(`/orders/${objOrderNumber}`);
     const initialOrdererInfo = response.data.result[0];
     console.log(response.data.result[0]);
     navigate('/orderModify', {
       state: {
-        initialOrdererInfo: initialOrdererInfo,
-      },
+        initialOrdererInfo: initialOrdererInfo
+      }
     });
   };
 
-  const handleCancel = async obj => {
+  const handleCancel = async (obj) => {
     if (window.confirm('주문을 취소하시겠습니까?')) {
       const response = await Api.delete('/orders/', {
         params: {
-          orderID: obj.orderNumber,
-        },
+          orderID: obj.orderNumber
+        }
       });
       console.log(response);
       console.log('취소되었습니다');
