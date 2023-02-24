@@ -3,7 +3,6 @@ import styled from 'styled-components';
 import { useNavigate, useLocation } from 'react-router-dom';
 import PageTitle from '../../components/commons/pageTitle/PageTitle';
 import CommonButton from '../../components/commons/button/Button';
-import axios from 'axios';
 import Api from '../../utils/api';
 
 function OrderLookUpPage() {

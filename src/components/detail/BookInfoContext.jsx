@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import axios from 'axios';
+import Api from '../../utils/api';
 import { useParams } from 'react-router-dom';
 import styled from 'styled-components';
 
@@ -9,9 +9,11 @@ function BookInfoContext() {
 
   useEffect(() => {
     const fetchBooks = async () => {
-      const response = await axios.get(
-        'http://elice.iptime.org:8080/book/read'
-      );
+      const response = await Api.get('http://elice.iptime.org:5500/books', {
+        params: {
+          bookID: '63f6c9925b3f904343f3350c',
+        },
+      });
       console.log(response);
       const filteredBook = response.data.filter(book => id === book._id);
       setFoundBook(filteredBook);

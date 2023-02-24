@@ -1,8 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import { useNavigate, useLocation } from 'react-router-dom';
 import CommonButton from '../commons/button/Button';
-import Api from '../../utils/api';
 import OrderComplete from './OrderComplete';
 
 function OrderCompleteTemplate({

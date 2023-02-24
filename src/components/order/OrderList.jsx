@@ -3,8 +3,7 @@ import styled from 'styled-components';
 import { useNavigate } from 'react-router-dom';
 import OrderTemplate from './OrderTemplate';
 import CommonButton from '../commons/button/Button';
-// import api from '../../utils/api';
-import axios from 'axios';
+import Api from '../../utils/api';
 
 function OrderList({ ordererInfo }) {
   const navigate = useNavigate();
@@ -16,7 +15,7 @@ function OrderList({ ordererInfo }) {
 
   const handleOrder = async () => {
     try {
-      const response = await axios.post('http://elice.iptime.org:5500/orders', {
+      const response = await Api.post('/orders', {
         userName: `${ordererInfo.ordererName}`,
         email: `${ordererInfo.ordererEmail}`,
         phone: `${ordererInfo.ordererPhone}`,

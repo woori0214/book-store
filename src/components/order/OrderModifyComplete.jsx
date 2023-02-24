@@ -2,7 +2,6 @@ import React, { useEffect } from 'react';
 import styled from 'styled-components';
 import { useNavigate, useLocation } from 'react-router-dom';
 import CommonButton from '../commons/button/Button';
-import axios from 'axios';
 import Api from '../../utils/api';
 
 function OrderModifyComplete({ completeMessage }) {

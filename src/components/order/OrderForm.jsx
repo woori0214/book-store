@@ -4,7 +4,6 @@ import { useNavigate } from 'react-router-dom';
 import CommonButton from '../commons/button/Button';
 import OrderTemplate from './OrderTemplate';
 import OrderList from './OrderList';
-import axios from 'axios';
 
 function OrderForm({ order, modify }) {
   const [ordererInfo, setOrdererInfo] = useState({

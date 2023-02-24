@@ -4,7 +4,6 @@ import { useNavigate } from 'react-router-dom';
 import CommonButton from '../commons/button/Button';
 import OrderTemplate from './OrderTemplate';
 import OrderList from './OrderList';
-import axios from 'axios';
 import Api from '../../utils/api';
 
 function OrderModifyForm({ order, modify, initialOrdererInfo, orderId }) {
@@ -26,8 +25,8 @@ function OrderModifyForm({ order, modify, initialOrdererInfo, orderId }) {
 
   const handleModifyComplete = async () => {
     try {
-      const response = await axios.put(
-        'http://elice.iptime.org:5500/orders',
+      const response = await Api.put(
+        '/orders',
         {
           userName: `${ordererInfo.ordererName}`,
           email: `${ordererInfo.ordererEmail}`,
