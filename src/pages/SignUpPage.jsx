@@ -31,8 +31,8 @@ function SignUpPage() {
     message: '',
   });
 
-  const [phoneNumber, setPhoneNumber] = useState('');
-  const [warningPhoneNumber, setWarningPhoneNumber] = useState({
+  const [phone, setPhone] = useState('');
+  const [warningPhone, setWarningPhone] = useState({
     visible: true,
     message: '',
   });
@@ -141,18 +141,18 @@ function SignUpPage() {
   };
 
   // 전화번호 로직
-  const handlePhoneNumberInputBlur = () => {
-    const newWarning = JSON.parse(JSON.stringify(warningPhoneNumber));
+  const handlePhoneInputBlur = () => {
+    const newWarning = JSON.parse(JSON.stringify(warningPhone));
 
-    if (phoneNumber.length === 0) {
+    if (phone.length === 0) {
       newWarning.visible = true;
       newWarning.message = '필수 정보입니다.';
 
-      return setWarningPhoneNumber(newWarning);
+      return setWarningPhone(newWarning);
     }
 
     if (
-      phoneNumber.match(
+      phone.match(
         new RegExp(/^01([0|1|6|7|8|9])-?([0-9]{3,4})-?([0-9]{4})$/)
       ) === null
     ) {
@@ -160,11 +160,11 @@ function SignUpPage() {
       newWarning.message =
         '010-0000-0000 이나 010-000-0000 형식으로 입력해주세요.';
 
-      return setWarningPhoneNumber(newWarning);
+      return setWarningPhone(newWarning);
     }
 
     newWarning.visible = false;
-    setWarningPhoneNumber(newWarning);
+    setWarningPhone(newWarning);
   };
 
   // 주소 로직
@@ -190,7 +190,7 @@ function SignUpPage() {
       warningAddress.visible ||
       warningPassword.visible ||
       warningPasswordConfirm.visible ||
-      warningPhoneNumber.visible
+      warningPhone.visible
     ) {
       return alert('모든 정보를 정상적으로 입력해주세요.');
     }
@@ -200,7 +200,7 @@ function SignUpPage() {
       name,
       email,
       password,
-      phone: phoneNumber,
+      phone,
       address,
     };
 
@@ -213,6 +213,7 @@ function SignUpPage() {
       })
       .catch(error => {
         console.log(error);
+        alert('이미 가입한 회원 입니다.');
       });
   };
 
@@ -222,7 +223,7 @@ function SignUpPage() {
       <SignUpContainer>
         <SignUpListContainer>
           <SignUpList>
-            <SignUpLabel htmlFor="id">아이디</SignUpLabel>
+            <SignUpLabel htmlFor="id">이메일</SignUpLabel>
             <SignUpInput
               type="text"
               id="id"
@@ -276,16 +277,16 @@ function SignUpPage() {
             )}
           </SignUpList>
           <SignUpList>
-            <SignUpLabel htmlFor="phoneNumber">휴대폰 번호</SignUpLabel>
-            <SignUpInputPhoneNumber
+            <SignUpLabel htmlFor="phone">휴대폰 번호</SignUpLabel>
+            <SignUpInputPhone
               type="text"
-              id="phoneNumber"
-              value={phoneNumber}
-              onChange={e => setPhoneNumber(e.target.value)}
-              onBlur={handlePhoneNumberInputBlur}
+              id="phone"
+              value={phone}
+              onChange={e => setPhone(e.target.value)}
+              onBlur={handlePhoneInputBlur}
             />
-            {warningPhoneNumber.visible && (
-              <WarningMessage>{warningPhoneNumber.message}</WarningMessage>
+            {warningPhone.visible && (
+              <WarningMessage>{warningPhone.message}</WarningMessage>
             )}
           </SignUpList>
           <SignUpList>
@@ -369,7 +370,7 @@ const SignUpInputName = styled(SignUpInput)`
   flex-basis: 30%;
 `;
 
-const SignUpInputPhoneNumber = styled(SignUpInput)`
+const SignUpInputPhone = styled(SignUpInput)`
   flex-basis: 30%;
 `;
 
