@@ -6,12 +6,12 @@ import OrderTemplate from './OrderTemplate';
 import OrderList from './OrderList';
 import axios from 'axios';
 
-function OrderForm({ order, modify }) {
+function OrderFormTemplate({ order, modify }) {
   const [ordererInfo, setOrdererInfo] = useState({
-    ordererName: '',
-    ordererEmail: '',
-    ordererPhone: '',
-    ordererAddress: '',
+    ordererName: initialOrdererInfo.userName || '',
+    ordererEmail: initialOrdererInfo.email || '',
+    ordererPhone: initialOrdererInfo.phone || '',
+    ordererAddress: initialOrdererInfo.address || '',
   });
   const navigate = useNavigate();
 

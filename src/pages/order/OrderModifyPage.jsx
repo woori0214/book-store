@@ -1,13 +1,28 @@
 import styled from 'styled-components';
 import PageTitle from '../../components/commons/pageTitle/PageTitle';
 import OrderForm from '../../components/order/OrderForm';
+import { useLocation } from 'react-router-dom';
+import OrderModifyForm from '../../components/order/OrderModifyForm';
 
 function OrderModifyPage() {
+  const location = useLocation();
+  const initialOrderInfo = location.state.initialOrdererInfo;
+
+  const initialOrdererInfo = initialOrderInfo.order;
+  const orderId = initialOrderInfo.orderItemList[0].orderID;
+
+  console.log('initialOrdererInfo', initialOrdererInfo);
+  console.log('orderId', orderId);
+
   return (
     <>
       <PageTitle title="주문 정보 수정" />
       <FormWrapper>
-        <OrderForm modify="true" />
+        <OrderModifyForm
+          modify="true"
+          initialOrdererInfo={initialOrdererInfo}
+          orderId={orderId}
+        />
       </FormWrapper>
     </>
   );

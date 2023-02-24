@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 const instance = axios.create({
-  baseURL: 'http://elice.iptime.org:8080',
+  baseURL: 'http://elice.iptime.org:5500',
 });
 
 instance.interceptors.request.use(
@@ -10,7 +10,7 @@ instance.interceptors.request.use(
     console.log(token);
     try {
       if (token) {
-        config.headers.Authorization = `Bearer ${token}`;
+        config.headers['Authorization'] = `Bearer ${token}`;
       }
 
       return config;

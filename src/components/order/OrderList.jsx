@@ -9,47 +9,46 @@ import axios from 'axios';
 function OrderList({ ordererInfo }) {
   const navigate = useNavigate();
 
-  const getOrderItems = localStorage.getItem('test-1');
+  const getOrderItems = localStorage.getItem('books');
   const orderItemList = JSON.parse(getOrderItems);
 
   const getTotalPrice = localStorage.getItem('totalPrice');
 
-  const handleOrder = () => {
-    const postOrder = async () => {
-      try {
-        const response = await axios.post(
-          'http://elice.iptime.org:8080/order/create',
-          {
-            userName: `${ordererInfo.ordererName}`,
-            email: `${ordererInfo.ordererEmail}`,
-            phone: `${ordererInfo.ordererPhone}`,
-            address: `${ordererInfo.ordererAddress}`,
-            orderItemList,
-            totalPrice: `${getTotalPrice}`,
-            userDbId: '63f43ffc0c47ceb602b27567',
-          }
-        );
+  const handleOrder = async () => {
+    try {
+      const response = await axios.post('http://elice.iptime.org:5500/orders', {
+        userName: `${ordererInfo.ordererName}`,
+        email: `${ordererInfo.ordererEmail}`,
+        phone: `${ordererInfo.ordererPhone}`,
+        address: `${ordererInfo.ordererAddress}`,
+        orderItemList,
+        totalPrice: `${getTotalPrice}`,
+        userID: '63f7c9e661dcba07b90725f2',
+      });
 
-        console.log('resData', response.data.order);
+      console.log('resData', response.data);
 
-        if (!ordererInfo.ordererName) {
-          alert('주문자명을 입력해주세요');
-        } else if (!ordererInfo.ordererEmail) {
-          alert('이메일을 입력해주세요');
-        } else if (!ordererInfo.ordererPhone) {
-          alert('연락처를 입력해주세요');
-        } else if (!ordererInfo.ordererPhone) {
-          alert('배송지를 입력해주세요');
-        } else {
-          navigate('/orderComplete', {
-            state: response.data.order,
-          });
-        }
-      } catch (err) {
-        console.log(err);
+      if (!ordererInfo.ordererName) {
+        alert('주문자명을 입력해주세요');
+      } else if (!ordererInfo.ordererEmail) {
+        alert('이메일을 입력해주세요');
+      } else if (!ordererInfo.ordererPhone) {
+        alert('연락처를 입력해주세요');
+      } else if (!ordererInfo.ordererPhone) {
+        alert('배송지를 입력해주세요');
+      } else {
+        // navigate('/orderComplete', {
+        //   state: response.data.order,
+        // });
+        navigate('/orderComplete', {
+          state: {
+            getOrderData: response.data,
+          },
+        });
       }
-    };
-    postOrder();
+    } catch (err) {
+      console.log(err);
+    }
   };
 
   return (

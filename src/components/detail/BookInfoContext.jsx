@@ -10,7 +10,7 @@ function BookInfoContext() {
   useEffect(() => {
     const fetchBooks = async () => {
       const response = await axios.get(
-        'http://elice.iptime.org:8080/book/read',
+        'http://elice.iptime.org:8080/book/read'
       );
       console.log(response);
       const filteredBook = response.data.filter(book => id === book._id);

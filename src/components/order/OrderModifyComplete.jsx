@@ -1,37 +1,22 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import styled from 'styled-components';
 import { useNavigate, useLocation } from 'react-router-dom';
 import CommonButton from '../commons/button/Button';
 import axios from 'axios';
 import Api from '../../utils/api';
 
-function OrderComplete({ completeMessage, orderComplete, modifyComplete }) {
+function OrderModifyComplete({ completeMessage }) {
   const navigate = useNavigate();
   const location = useLocation();
-  const getOrderData = location.state?.getOrderData;
-  console.log('getOrderData', getOrderData);
+  const getModifyInfo = location.state?.getModifyInfo;
+  console.log('getModifyInfo', getModifyInfo);
 
-  const orderData = {
-    주문번호: `${getOrderData.orderItem[0].orderID}`,
-    주문자명: `${getOrderData.order.userName}`,
-    배송지: `${getOrderData.order.address}`,
-    연락처: `${getOrderData.order.phone}`,
-    이메일: `${getOrderData.order.email}`,
-  };
-
-  const handleLookUp = async () => {
-    const userId = getOrderData.order.userID;
-    const response = await Api.get(`/users/orders`, {
-      params: {
-        userID: userId,
-      },
-    });
-
-    navigate('/orderLookUp', {
-      state: {
-        getOrderCompleteData: response.data,
-      },
-    });
+  const modifyData = {
+    주문번호: `${getModifyInfo.orderItemList[0].orderID}`,
+    주문자명: `${getModifyInfo.order.userName}`,
+    배송지: `${getModifyInfo.order.address}`,
+    연락처: `${getModifyInfo.order.phone}`,
+    이메일: `${getModifyInfo.order.email}`,
   };
 
   const handleMain = () => {
@@ -44,7 +29,7 @@ function OrderComplete({ completeMessage, orderComplete, modifyComplete }) {
       <CompleteMessage>{completeMessage}이 완료되었습니다.</CompleteMessage>
       <OrderInfoBox>
         <OrderInfoContainer>
-          {Object.entries(orderData).map(([key, value]) => (
+          {Object.entries(modifyData).map(([key, value]) => (
             <OrderInfo key={key}>
               <OrderInfoName>{key}</OrderInfoName>
               <OrderInfoValue>{value}</OrderInfoValue>
@@ -54,17 +39,9 @@ function OrderComplete({ completeMessage, orderComplete, modifyComplete }) {
       </OrderInfoBox>
       <ButtonWrapper>
         <CommonButton
-          buttonTitle="주문 내역 확인"
-          borderColor="#9E8CEC"
-          width="239px"
-          margin="47px 0 0 0"
-          borderRadius="20px"
-          onClick={handleLookUp}
-        />
-        <CommonButton
           buttonTitle="메인페이지로 이동"
           width="239px"
-          margin="47px 0 0 68px"
+          margin="47px 0 0 0"
           borderRadius="20px"
           onClick={handleMain}
         />
@@ -133,9 +110,10 @@ const OrderInfoValue = styled.p`
 `;
 
 const ButtonWrapper = styled.div`
-  display: flex;
-  width: 546px;
+  /* position: absolute; */
+  width: 239px;
   margin: 0 auto;
+  /* right: 0; */
 `;
 
-export default OrderComplete;
+export default OrderModifyComplete;

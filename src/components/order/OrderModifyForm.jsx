@@ -5,13 +5,14 @@ import CommonButton from '../commons/button/Button';
 import OrderTemplate from './OrderTemplate';
 import OrderList from './OrderList';
 import axios from 'axios';
+import Api from '../../utils/api';
 
-function OrderForm({ order, modify }) {
+function OrderModifyForm({ order, modify, initialOrdererInfo, orderId }) {
   const [ordererInfo, setOrdererInfo] = useState({
-    ordererName: '',
-    ordererEmail: '',
-    ordererPhone: '',
-    ordererAddress: '',
+    ordererName: initialOrdererInfo.userName,
+    ordererEmail: initialOrdererInfo.email,
+    ordererPhone: initialOrdererInfo.phone,
+    ordererAddress: initialOrdererInfo.address,
   });
   const navigate = useNavigate();
 
@@ -21,6 +22,48 @@ function OrderForm({ order, modify }) {
     newOrderInfo[name] = value;
     setOrdererInfo(newOrderInfo);
     console.log(ordererInfo);
+  };
+
+  const handleModifyComplete = async () => {
+    try {
+      const response = await axios.put(
+        'http://elice.iptime.org:5500/orders',
+        {
+          userName: `${ordererInfo.ordererName}`,
+          email: `${ordererInfo.ordererEmail}`,
+          phone: `${ordererInfo.ordererPhone}`,
+          address: `${ordererInfo.ordererAddress}`,
+        },
+        {
+          params: {
+            orderID: orderId,
+          },
+        }
+      );
+
+      const getResponse = await Api.get(`/orders/${orderId}`);
+
+      console.log('resData', response);
+      console.log('getResponse', getResponse.data.result[0]);
+
+      if (!ordererInfo.ordererName) {
+        alert('주문자명을 입력해주세요');
+      } else if (!ordererInfo.ordererEmail) {
+        alert('이메일을 입력해주세요');
+      } else if (!ordererInfo.ordererPhone) {
+        alert('연락처를 입력해주세요');
+      } else if (!ordererInfo.ordererPhone) {
+        alert('배송지를 입력해주세요');
+      } else {
+        navigate('/orderModifyComplete', {
+          state: {
+            getModifyInfo: getResponse.data.result[0],
+          },
+        });
+      }
+    } catch (err) {
+      console.log(err);
+    }
   };
 
   return (
@@ -135,4 +178,4 @@ const Input = styled.input`
   }
 `;
 
-export default OrderForm;
+export default OrderModifyForm;

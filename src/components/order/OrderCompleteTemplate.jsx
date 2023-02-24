@@ -2,54 +2,29 @@ import React from 'react';
 import styled from 'styled-components';
 import { useNavigate, useLocation } from 'react-router-dom';
 import CommonButton from '../commons/button/Button';
-import axios from 'axios';
 import Api from '../../utils/api';
+import OrderComplete from './OrderComplete';
 
-function OrderComplete({ completeMessage, orderComplete, modifyComplete }) {
-  const navigate = useNavigate();
-  const location = useLocation();
-  const getOrderData = location.state?.getOrderData;
-  console.log('getOrderData', getOrderData);
-
-  const orderData = {
-    주문번호: `${getOrderData.orderItem[0].orderID}`,
-    주문자명: `${getOrderData.order.userName}`,
-    배송지: `${getOrderData.order.address}`,
-    연락처: `${getOrderData.order.phone}`,
-    이메일: `${getOrderData.order.email}`,
-  };
-
-  const handleLookUp = async () => {
-    const userId = getOrderData.order.userID;
-    const response = await Api.get(`/users/orders`, {
-      params: {
-        userID: userId,
-      },
-    });
-
-    navigate('/orderLookUp', {
-      state: {
-        getOrderCompleteData: response.data,
-      },
-    });
-  };
-
-  const handleMain = () => {
-    navigate('/');
-  };
-
+function OrderCompleteTemplate({
+  completeMessage,
+  orderComplete,
+  modifyComplete,
+}) {
   return (
     <Wrapper>
       <CompleteImage src="/images/Check.png" alt="완료 이미지" />
       <CompleteMessage>{completeMessage}이 완료되었습니다.</CompleteMessage>
       <OrderInfoBox>
         <OrderInfoContainer>
-          {Object.entries(orderData).map(([key, value]) => (
-            <OrderInfo key={key}>
-              <OrderInfoName>{key}</OrderInfoName>
-              <OrderInfoValue>{value}</OrderInfoValue>
-            </OrderInfo>
-          ))}
+          {orderComplete && <OrderComplete />}
+
+          {modifyComplete &&
+            Object.entries(modifyData1).map(([key, value]) => (
+              <OrderInfo key={key}>
+                <OrderInfoName>{key}</OrderInfoName>
+                <OrderInfoValue>{value}</OrderInfoValue>
+              </OrderInfo>
+            ))}
         </OrderInfoContainer>
       </OrderInfoBox>
       <ButtonWrapper>
@@ -138,4 +113,4 @@ const ButtonWrapper = styled.div`
   margin: 0 auto;
 `;
 
-export default OrderComplete;
+export default OrderCompleteTemplate;
