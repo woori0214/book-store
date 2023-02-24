@@ -4,14 +4,14 @@ import { useNavigate } from 'react-router-dom';
 import OrderTemplate from './OrderTemplate';
 import CommonButton from '../commons/button/Button';
 import Api from '../../utils/api';
+import calculateBookPrice from 'utils/calculatePrice';
 
 function OrderList({ ordererInfo }) {
   const navigate = useNavigate();
 
-  const getOrderItems = localStorage.getItem('books');
-  const orderItemList = JSON.parse(getOrderItems);
-
-  const getTotalPrice = localStorage.getItem('totalPrice');
+  const orderItemList = JSON.parse(localStorage.getItem('books'));
+  const totalPrice = calculateBookPrice(orderItemList);
+  // const getTotalPrice = localStorage.getItem('totalPrice');
 
   const handleOrder = async () => {
     try {
@@ -21,7 +21,7 @@ function OrderList({ ordererInfo }) {
         phone: `${ordererInfo.ordererPhone}`,
         address: `${ordererInfo.ordererAddress}`,
         orderItemList,
-        totalPrice: `${getTotalPrice}`,
+        totalPrice,
         userID: '63f7c9e661dcba07b90725f2',
       });
 
@@ -39,6 +39,7 @@ function OrderList({ ordererInfo }) {
         // navigate('/orderComplete', {
         //   state: response.data.order,
         // });
+        console.log('!!!', response.data);
         navigate('/orderComplete', {
           state: {
             getOrderData: response.data,
@@ -71,7 +72,7 @@ function OrderList({ ordererInfo }) {
         ))}
       </OrderListWrapper>
       <OrderBottomWrapper>
-        <TotalPrice>{`주문 총액 : ${getTotalPrice} 원`}</TotalPrice>
+        <TotalPrice>{`주문 총액 : ${totalPrice} 원`}</TotalPrice>
         <CommonButton
           buttonTitle="주문하기"
           height="59px"
