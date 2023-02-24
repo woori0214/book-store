@@ -10,6 +10,7 @@ function Button({
   margin,
   onClick,
   type,
+  isDisabled,
 }) {
   return (
     <ButtonContainer
@@ -20,6 +21,7 @@ function Button({
       borderRadius={borderRadius}
       margin={margin}
       onClick={onClick}
+      disabled={isDisabled}
     >
       {buttonTitle}
     </ButtonContainer>

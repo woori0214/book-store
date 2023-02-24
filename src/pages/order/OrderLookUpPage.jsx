@@ -4,6 +4,7 @@ import { useNavigate, useLocation } from 'react-router-dom';
 import PageTitle from '../../components/commons/pageTitle/PageTitle';
 import CommonButton from '../../components/commons/button/Button';
 import Api from '../../utils/api';
+import { format } from 'date-fns';
 
 function OrderLookUpPage() {
   const navigate = useNavigate();
@@ -103,11 +104,22 @@ function OrderLookUpPage() {
             {orderInfo.map((obj, index) => {
               return (
                 <div key={index} className="row">
-                  {Object.entries(obj).map(([key, value]) => (
-                    <div key={key} className="item">
-                      {value}
-                    </div>
-                  ))}
+                  {Object.entries(obj).map(([key, value]) => {
+                    return (
+                      // 날짜 표기
+                      // <div key={key} className="item">
+                      //   {key === 'orderDate'
+                      //     ? format(new Date(value), 'yyyy-MM-dd')
+                      //     : value}
+                      // </div>
+                      // 시간까지 표기
+                      <div key={key} className="item">
+                        {key === 'orderDate'
+                          ? format(new Date(value), 'yyyy-MM-dd hh:mm:ss')
+                          : value}
+                      </div>
+                    );
+                  })}
                   <div className="item">
                     <CommonButton
                       buttonTitle="취소"
@@ -116,7 +128,12 @@ function OrderLookUpPage() {
                       borderRadius="20px"
                       borderColor="#9E8CEC"
                       onClick={() => handleCancel(obj)}
+                      isDisabled={
+                        obj.orderStatus === '주문 완료' &&
+                        obj.orderStatus === '주문 취소'
+                      }
                     />
+
                     <CommonButton
                       buttonTitle="수정"
                       width="68px"
@@ -124,6 +141,10 @@ function OrderLookUpPage() {
                       borderRadius="20px"
                       margin=" 0 0 0 14px"
                       onClick={() => handleModify(obj)}
+                      isDisabled={
+                        obj.orderStatus === '주문 완료' &&
+                        obj.orderStatus === '주문 취소'
+                      }
                     />
                   </div>
                 </div>
