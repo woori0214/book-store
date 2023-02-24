@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import styled from 'styled-components';
 import PageTitle from '../components/commons/pageTitle/PageTitle';
 import Button from '../components/commons/button/Button';
+import InputBox from '../components/commons/inputBox/InputBox';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 
@@ -13,7 +14,7 @@ function LoginPage() {
   });
 
   // 아이디 입력
-  const handleIdChange = e => {
+  const handleEmailChange = e => {
     const newUser = JSON.parse(JSON.stringify(user));
 
     newUser.email = e.target.value;
@@ -85,24 +86,20 @@ function LoginPage() {
       <PageTitle title="로그인" />
       <LoginForm onSubmit={handleSubmit}>
         <div>
-          <LoginInputBox>
-            <LoginLabel htmlFor="email">이메일</LoginLabel>
-            <LoginInput
-              id="email"
-              type="text"
-              value={user.email}
-              onChange={handleIdChange}
-            />
-          </LoginInputBox>
-          <LoginInputBox>
-            <LoginLabel htmlFor="password">비밀번호</LoginLabel>
-            <LoginInput
-              id="password"
-              type="password"
-              value={user.password}
-              onChange={handlePasswordChange}
-            />
-          </LoginInputBox>
+          <InputBox
+            inputValue="이메일"
+            id="email"
+            type="text"
+            value={user.email}
+            onChange={handleEmailChange}
+          />
+          <InputBox
+            inputValue="비밀번호"
+            id="password"
+            type="password"
+            value={user.password}
+            onChange={handlePasswordChange}
+          />
         </div>
         <Button
           buttonTitle="로그인"
@@ -133,31 +130,6 @@ const LoginForm = styled.form`
   width: 400px;
   margin: 80px auto 0 auto;
   text-align: center;
-`;
-
-const LoginInputBox = styled.div`
-  position: relative;
-  width: 400px;
-  height: 62px;
-  margin-bottom: 15px;
-  border: 1px solid #ddd;
-  border-radius: 6px;
-`;
-
-const LoginLabel = styled.label`
-  position: absolute;
-  top: 14px;
-  left: 14px;
-  font-size: 11px;
-  opacity: 0.5;
-  line-height: 13px;
-`;
-
-const LoginInput = styled.input`
-  width: 100%;
-  height: 62px;
-  padding: 31px 20px 14px 20px;
-  border: 1px solid #ddd;
 `;
 
 const ButtonListContainer = styled.ul`

@@ -3,12 +3,13 @@ import styled from 'styled-components';
 import PageTitle from '../components/commons/pageTitle/PageTitle';
 import Button from '../components/commons/button/Button';
 import { useNavigate } from 'react-router-dom';
+import axios from 'axios';
 
 function SignUpPage() {
   const navigate = useNavigate();
-  const [userId, setUserId] = useState('');
+  const [email, setEmail] = useState('');
 
-  const [warningId, setWarningId] = useState({
+  const [warningEmail, setWarningEmail] = useState({
     visible: true,
     message: '',
   });
@@ -30,8 +31,8 @@ function SignUpPage() {
     message: '',
   });
 
-  const [phoneNumber, setPhoneNumber] = useState('');
-  const [warningPhoneNumber, setWarningPhoneNumber] = useState({
+  const [phone, setPhone] = useState('');
+  const [warningPhone, setWarningPhone] = useState({
     visible: true,
     message: '',
   });
@@ -47,28 +48,35 @@ function SignUpPage() {
     navigate('/login');
   };
 
-  // 아이디 로직
+  // 이메일 로직
   const handleIdInputBlur = () => {
-    const newWarning = JSON.parse(JSON.stringify(warningId));
+    const newWarning = JSON.parse(JSON.stringify(warningEmail));
 
-    if (userId.length === 0) {
+    if (email.length === 0) {
       newWarning.visible = true;
       newWarning.message = '필수 정보입니다.';
 
-      return setWarningId(newWarning);
+      return setWarningEmail(newWarning);
     }
 
-    if (userId.length <= 5 || userId.match(new RegExp(/[^0-9a-z]/)) !== null) {
+    if (
+      email.length <= 5 ||
+      !email.match(
+        new RegExp(
+          /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i
+        )
+      )
+    ) {
       newWarning.visible = true;
-      newWarning.message = '5~20자의 영문 소문자, 숫자와 만 사용 가능합니다';
+      newWarning.message = '5~30자의 이메일 형식으로 입력해주세요.';
 
-      return setWarningId(newWarning);
+      return setWarningEmail(newWarning);
     }
 
     // 서버와 api 통신으로 해당 id의 중복을 검사
 
     newWarning.visible = false;
-    setWarningId(newWarning);
+    setWarningEmail(newWarning);
   };
 
   // 비밀번호 로직
@@ -133,30 +141,30 @@ function SignUpPage() {
   };
 
   // 전화번호 로직
-  const handlePhoneNumberInputBlur = () => {
-    const newWarning = JSON.parse(JSON.stringify(warningPhoneNumber));
+  const handlePhoneInputBlur = () => {
+    const newWarning = JSON.parse(JSON.stringify(warningPhone));
 
-    if (phoneNumber.length === 0) {
+    if (phone.length === 0) {
       newWarning.visible = true;
       newWarning.message = '필수 정보입니다.';
 
-      return setWarningPhoneNumber(newWarning);
+      return setWarningPhone(newWarning);
     }
 
     if (
-      phoneNumber.match(
-        new RegExp(/^01([0|1|6|7|8|9])-?([0-9]{3,4})-?([0-9]{4})$/),
+      phone.match(
+        new RegExp(/^01([0|1|6|7|8|9])-?([0-9]{3,4})-?([0-9]{4})$/)
       ) === null
     ) {
       newWarning.visible = true;
       newWarning.message =
         '010-0000-0000 이나 010-000-0000 형식으로 입력해주세요.';
 
-      return setWarningPhoneNumber(newWarning);
+      return setWarningPhone(newWarning);
     }
 
     newWarning.visible = false;
-    setWarningPhoneNumber(newWarning);
+    setWarningPhone(newWarning);
   };
 
   // 주소 로직
@@ -174,21 +182,39 @@ function SignUpPage() {
     setWarningAddress(newWarning);
   };
 
-  const handleSignUp = () => {
+  const handleSignUp = async () => {
+    const baseURL = 'http://elice.iptime.org:5500';
     if (
-      warningId.visible ||
+      warningEmail.visible ||
       warningName.visible ||
       warningAddress.visible ||
       warningPassword.visible ||
       warningPasswordConfirm.visible ||
-      warningPhoneNumber.visible
+      warningPhone.visible
     ) {
       return alert('모든 정보를 정상적으로 입력해주세요.');
     }
 
     // 서버통신
+    const body = {
+      name,
+      email,
+      password,
+      phone,
+      address,
+    };
 
-    alert('회원가입이 정상적으로 완료 되었습니다.');
+    await axios
+      .post(`${baseURL}/users`, body)
+      .then(response => {
+        alert('회원가입이 정상적으로 완료 되었습니다.');
+        navigate('/login');
+        console.log(response);
+      })
+      .catch(error => {
+        console.log(error);
+        alert('이미 가입한 회원 입니다.');
+      });
   };
 
   return (
@@ -197,17 +223,17 @@ function SignUpPage() {
       <SignUpContainer>
         <SignUpListContainer>
           <SignUpList>
-            <SignUpLabel htmlFor="id">아이디</SignUpLabel>
+            <SignUpLabel htmlFor="id">이메일</SignUpLabel>
             <SignUpInput
               type="text"
               id="id"
-              maxLength="20"
-              value={userId}
-              onChange={e => setUserId(e.target.value)}
+              maxLength="30"
+              value={email}
+              onChange={e => setEmail(e.target.value)}
               onBlur={handleIdInputBlur}
             />
-            {warningId.visible && (
-              <WarningMessage>{warningId.message}</WarningMessage>
+            {warningEmail.visible && (
+              <WarningMessage>{warningEmail.message}</WarningMessage>
             )}
           </SignUpList>
           <SignUpList>
@@ -251,16 +277,16 @@ function SignUpPage() {
             )}
           </SignUpList>
           <SignUpList>
-            <SignUpLabel htmlFor="phoneNumber">휴대폰 번호</SignUpLabel>
-            <SignUpInputPhoneNumber
+            <SignUpLabel htmlFor="phone">휴대폰 번호</SignUpLabel>
+            <SignUpInputPhone
               type="text"
-              id="phoneNumber"
-              value={phoneNumber}
-              onChange={e => setPhoneNumber(e.target.value)}
-              onBlur={handlePhoneNumberInputBlur}
+              id="phone"
+              value={phone}
+              onChange={e => setPhone(e.target.value)}
+              onBlur={handlePhoneInputBlur}
             />
-            {warningPhoneNumber.visible && (
-              <WarningMessage>{warningPhoneNumber.message}</WarningMessage>
+            {warningPhone.visible && (
+              <WarningMessage>{warningPhone.message}</WarningMessage>
             )}
           </SignUpList>
           <SignUpList>
@@ -344,7 +370,7 @@ const SignUpInputName = styled(SignUpInput)`
   flex-basis: 30%;
 `;
 
-const SignUpInputPhoneNumber = styled(SignUpInput)`
+const SignUpInputPhone = styled(SignUpInput)`
   flex-basis: 30%;
 `;
 
