@@ -198,7 +198,7 @@ function SignUpPage() {
     // 서버통신
     const body = {
       name,
-      userDbId: email,
+      email,
       password,
       phone: phoneNumber,
       address,
@@ -209,6 +209,7 @@ function SignUpPage() {
       .then(response => {
         alert('회원가입이 정상적으로 완료 되었습니다.');
         navigate('/login');
+        console.log(response);
       })
       .catch(error => {
         console.log(error);
