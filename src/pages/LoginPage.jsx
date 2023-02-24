@@ -32,7 +32,7 @@ function LoginPage() {
   const handleSubmit = async e => {
     e.preventDefault();
 
-    const baseURL = 'http://elice.iptime.org:8080';
+    const baseURL = 'http://elice.iptime.org:5500';
 
     if (!user.email) {
       alert('아이디를 입력 해주세요.');
@@ -60,7 +60,7 @@ function LoginPage() {
     }
 
     await axios
-      .post(`${baseURL}/auth`, user)
+      .post(`${baseURL}/login`, user)
       .then(response => {
         const accessToken = response.data;
         localStorage.setItem('Auth', accessToken);

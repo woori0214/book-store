@@ -48,7 +48,7 @@ function SignUpPage() {
     navigate('/login');
   };
 
-  // 아이디 로직
+  // 이메일 로직
   const handleIdInputBlur = () => {
     const newWarning = JSON.parse(JSON.stringify(warningEmail));
 
@@ -61,14 +61,14 @@ function SignUpPage() {
 
     if (
       email.length <= 5 ||
-      email.match(
+      !email.match(
         new RegExp(
           /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i
         )
-      ) !== null
+      )
     ) {
       newWarning.visible = true;
-      newWarning.message = '5~20자의 영문 소문자, 숫자와 만 사용 가능합니다';
+      newWarning.message = '5~30자의 이메일 형식으로 입력해주세요.';
 
       return setWarningEmail(newWarning);
     }
@@ -185,7 +185,7 @@ function SignUpPage() {
   const handleSignUp = async () => {
     const baseURL = 'http://elice.iptime.org:5500';
     if (
-      warningId.visible ||
+      warningEmail.visible ||
       warningName.visible ||
       warningAddress.visible ||
       warningPassword.visible ||
@@ -205,7 +205,7 @@ function SignUpPage() {
     };
 
     await axios
-      .post(`${baseURL}/user/create`, body)
+      .post(`${baseURL}/users`, body)
       .then(response => {
         alert('회원가입이 정상적으로 완료 되었습니다.');
         navigate('/login');
