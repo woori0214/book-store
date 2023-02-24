@@ -24,4 +24,16 @@ instance.interceptors.request.use(
   }
 );
 
+instance.interceptors.response.use(
+  response => response,
+  error => {
+    if (error?.response?.status === 401) {
+      localStorage.removeItem('Auth');
+      // 인증되지 않은 유저의 경우 로그인 페이지로 리다이렉트 처리
+      location.href = '/login';
+    }
+    return Promise.reject(error);
+  }
+);
+
 export default instance;
