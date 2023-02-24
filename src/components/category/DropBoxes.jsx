@@ -1,9 +1,19 @@
 import React from 'react';
 import styled from 'styled-components';
 
+export default function DropBoxes() {
+  return (
+    <Select style={{ right: '100px' }}>
+      <option value="update">최신순</option>
+      <option value="recommend">추천순</option>
+      <option value="lowerPrice">낮은가격순</option>
+      <option value="higherPrice">높은가격순</option>
+    </Select>
+  );
+}
+
 const Choice = [
   { value: 'update', name: '최신순' },
-
   { value: 'recommend', name: '추천순' },
   { value: 'lowerPrice', name: '낮은가격순' },
   { value: 'higherPrice', name: '높은가격순' },
@@ -20,10 +30,6 @@ const SelectBox = props => {
     </select>
   );
 };
-
-export default function DropBoxes() {
-  return <SelectBox options={Choice}></SelectBox>;
-}
 
 const Select = styled.select`
   margin: 0;
