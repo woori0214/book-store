@@ -4,12 +4,13 @@ const instance = axios.create({
   baseURL: 'http://elice.iptime.org:8080'
 });
 
+const excludeTokenUrl = ['/login', '/signUp'];
+
 instance.interceptors.request.use(
   (config) => {
     const token = localStorage.getItem('Auth');
-    console.log(token);
     try {
-      if (token) {
+      if (!excludeTokenUrl(config.url) && token) {
         config.headers['Authorization'] = `Bearer ${token}`;
       }
 
