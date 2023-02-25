@@ -1,7 +1,5 @@
 import React from 'react';
-import styled from 'styled-components';
 import { useNavigate, useLocation } from 'react-router-dom';
-import Api from '../../utils/api';
 import OrderCompleteTemplate from './OrderCompleteTemplate';
 
 function OrderComplete({ completeMessage, order }) {
@@ -20,13 +18,6 @@ function OrderComplete({ completeMessage, order }) {
 
   const handleLookUp = async () => {
     const userId = orderData.order.userID;
-    // const response = await Api.get(`/users/orders`, {
-    //   params: {
-    //     userID: userId
-    //   }
-    // });
-    // console.log(response);
-
     navigate('/orderLookUp', {
       state: {
         orderCompleteUserId: userId

@@ -36,9 +36,6 @@ function OrderList({ ordererInfo }) {
       } else if (!ordererInfo.ordererPhone) {
         alert('배송지를 입력해주세요');
       } else {
-        // navigate('/orderComplete', {
-        //   state: response.data.order,
-        // });
         navigate('/orderComplete', {
           state: {
             orderData: response.data

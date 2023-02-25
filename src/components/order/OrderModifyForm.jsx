@@ -90,43 +90,4 @@ const Wrapper = styled.div`
   margin-right: auto;
 `;
 
-const FormWrapper = styled.form`
-  margin: 31px 0 0 34px;
-  box-sizing: border-box;
-  width: 1220px;
-  height: 370px;
-  border-radius: 15px;
-  background-color: #edeafc;
-  border: 4px solid #edeafc;
-`;
-
-const FormInput = styled.div`
-  &:first-child {
-    margin: 50px 0 0 36px;
-  }
-  margin: 31px 0 0 36px;
-`;
-
-const InputTitle = styled.span`
-  font-family: 'NotoSansKR-Bold';
-  font-weight: 700;
-  font-size: 20px;
-  line-height: 29px;
-`;
-
-const Star = styled.span`
-  color: red;
-  margin-right: 10px;
-`;
-
-const Input = styled.input`
-  margin-left: 38px;
-  width: 1021px;
-  height: 42px;
-  border-radius: 5px;
-  &::placeholder {
-    padding-left: 15px;
-  }
-`;
-
 export default OrderModifyForm;

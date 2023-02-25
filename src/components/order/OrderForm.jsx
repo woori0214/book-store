@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
-import CommonButton from '../commons/button/Button';
 import OrderTemplate from './OrderTemplate';
 import OrderList from './OrderList';
 import OrderFormTemplate from './OrderFormTemplate';
