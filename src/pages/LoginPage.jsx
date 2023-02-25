@@ -10,11 +10,11 @@ function LoginPage() {
   const navigate = useNavigate();
   const [user, setUser] = useState({
     email: '',
-    password: '',
+    password: ''
   });
 
   // 아이디 입력
-  const handleEmailChange = e => {
+  const handleEmailChange = (e) => {
     const newUser = JSON.parse(JSON.stringify(user));
 
     newUser.email = e.target.value;
@@ -22,7 +22,7 @@ function LoginPage() {
   };
 
   // 비밀번호 입력
-  const handlePasswordChange = e => {
+  const handlePasswordChange = (e) => {
     const newUser = JSON.parse(JSON.stringify(user));
 
     newUser.password = e.target.value;
@@ -30,7 +30,7 @@ function LoginPage() {
   };
 
   // 로그인 버튼 클릭시
-  const handleSubmit = async e => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
 
     const baseURL = 'http://elice.iptime.org:5500';
@@ -41,16 +41,12 @@ function LoginPage() {
     }
 
     if (
-      !user.email.match(
-        new RegExp(
-          /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i
-        )
-      )
+      !user.email.match(new RegExp(/^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i))
     ) {
       alert('이메일 형식에 맞게 입력해주세요.');
       setUser({
         email: '',
-        password: '',
+        password: ''
       });
       return;
     }
@@ -62,13 +58,13 @@ function LoginPage() {
 
     await axios
       .post(`${baseURL}/auth`, user)
-      .then(response => {
+      .then((response) => {
         const accessToken = response.data;
         localStorage.setItem('Auth', accessToken);
 
         navigate('/');
       })
-      .catch(error => {
+      .catch((error) => {
         // console.log(error);
       });
   };
@@ -79,20 +75,16 @@ function LoginPage() {
   };
 
   // 비회원 주문조회 버튼 클릭
-  // const handleSearchOrderInfo = () => { };
+  const handleSearchOrderInfo = () => {
+    navigate('/nonUserLogin');
+  };
 
   return (
     <LoginContainer>
       <PageTitle title="로그인" />
       <LoginForm onSubmit={handleSubmit}>
         <div>
-          <InputBox
-            inputValue="이메일"
-            id="email"
-            type="text"
-            value={user.email}
-            onChange={handleEmailChange}
-          />
+          <InputBox inputValue="이메일" id="email" type="text" value={user.email} onChange={handleEmailChange} />
           <InputBox
             inputValue="비밀번호"
             id="password"
@@ -101,19 +93,13 @@ function LoginPage() {
             onChange={handlePasswordChange}
           />
         </div>
-        <Button
-          buttonTitle="로그인"
-          width="400px"
-          margin="40px 0"
-          borderRadius="25px"
-          type="submit"
-        />
+        <Button buttonTitle="로그인" width="400px" margin="40px 0" borderRadius="25px" type="submit" />
       </LoginForm>
       <ButtonListContainer>
         <ButtonList onClick={handleSignUpClick}>회원가입</ButtonList>
         <ButtonList>아이디 찾기</ButtonList>
         <ButtonList>비밀번호 찾기</ButtonList>
-        <ButtonList>비회원 주문조회</ButtonList>
+        <ButtonList onClick={handleSearchOrderInfo}>비회원 주문조회</ButtonList>
       </ButtonListContainer>
     </LoginContainer>
   );
