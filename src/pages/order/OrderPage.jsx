@@ -7,7 +7,7 @@ function OrderPage() {
   return (
     <>
       <PageTitle title="주문하기" />
-      <OrderForm order="true" />
+      <OrderForm />
     </>
   );
 }

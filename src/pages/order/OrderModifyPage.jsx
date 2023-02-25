@@ -1,6 +1,5 @@
 import styled from 'styled-components';
 import PageTitle from '../../components/commons/pageTitle/PageTitle';
-import OrderForm from '../../components/order/OrderForm';
 import { useLocation } from 'react-router-dom';
 import OrderModifyForm from '../../components/order/OrderModifyForm';
 
@@ -18,11 +17,7 @@ function OrderModifyPage() {
     <>
       <PageTitle title="주문 정보 수정" />
       <FormWrapper>
-        <OrderModifyForm
-          modify="true"
-          initialOrdererInfo={initialOrdererInfo}
-          orderId={orderId}
-        />
+        <OrderModifyForm initialOrdererInfo={initialOrdererInfo} orderId={orderId} />
       </FormWrapper>
     </>
   );
