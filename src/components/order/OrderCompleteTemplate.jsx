@@ -1,9 +1,8 @@
 import React from 'react';
 import styled from 'styled-components';
 import CommonButton from '../commons/button/Button';
-import OrderComplete from './OrderComplete';
 
-function OrderCompleteTemplate({ completeMessage, orderComplete, modifyComplete }) {
+function OrderCompleteTemplate({ completeMessage, orderInfo, handleLookUp, order }) {
   const handleMain = () => {
     navigate('/');
   };
@@ -14,44 +13,30 @@ function OrderCompleteTemplate({ completeMessage, orderComplete, modifyComplete 
       <CompleteMessage>{completeMessage}이 완료되었습니다.</CompleteMessage>
       <OrderInfoBox>
         <OrderInfoContainer>
-          {orderComplete && <OrderComplete />}
-
-          {modifyComplete &&
-            Object.entries(modifyData1).map(([key, value]) => (
-              <OrderInfo key={key}>
-                <OrderInfoName>{key}</OrderInfoName>
-                <OrderInfoValue>{value}</OrderInfoValue>
-              </OrderInfo>
-            ))}
+          {Object.entries(orderInfo).map(([key, value]) => (
+            <OrderInfo key={key}>
+              <OrderInfoName>{key}</OrderInfoName>
+              <OrderInfoValue>{value}</OrderInfoValue>
+            </OrderInfo>
+          ))}
         </OrderInfoContainer>
       </OrderInfoBox>
       <ButtonWrapper>
-        <CommonButton
-          buttonTitle="주문 내역 확인"
-          borderColor="#9E8CEC"
-          width="239px"
-          margin="47px 0 0 0"
-          borderRadius="20px"
-          onClick={async () => {
-            const userId = orderData.order.userID;
-            const response = await Api.get(`/users/orders`, {
-              params: {
-                userID: userId
-              }
-            });
-            console.log('res', response);
-
-            // navigate('/orderLookUp', {
-            //   state: {
-            //     orderCompleteData: response.data
-            //   }
-            // });
-          }}
-        />
+        {/* 마이페이지 구현 완료 시 주문내역 확인 버튼 삭제 */}
+        {order && (
+          <CommonButton
+            buttonTitle="주문 내역 확인"
+            borderColor="#9E8CEC"
+            width="239px"
+            margin="47px 0 0 0"
+            borderRadius="20px"
+            onClick={handleLookUp}
+          />
+        )}
         <CommonButton
           buttonTitle="메인페이지로 이동"
           width="239px"
-          margin="47px 0 0 68px"
+          margin={order === 'true' ? '47px 0 0 68px' : '47px auto'}
           borderRadius="20px"
           onClick={handleMain}
         />

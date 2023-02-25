@@ -1,8 +1,7 @@
 import OrderComplete from '../../components/order/OrderComplete';
-import OrderTemplate from '../../components/order/OrderTemplate';
 
 function OrderCompletePage() {
-  return <OrderComplete completeMessage="주문" orderComplete="true" />;
+  return <OrderComplete completeMessage="주문" order="true" />;
 }
 
 export default OrderCompletePage;
