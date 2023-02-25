@@ -133,6 +133,7 @@ const OrderInfoTable = styled.div`
   overflow-y: auto;
 `;
 
+// 스크롤이 생김에 따라 표가 이상해짐 -> 시간 되면 pagination 고려
 const OrderInfoLabelSection = styled.div`
   display: flex;
   width: 100%;
