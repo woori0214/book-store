@@ -11,11 +11,11 @@ function BookInfoContext() {
     const fetchBooks = async () => {
       const response = await Api.get('http://elice.iptime.org:5500/books', {
         params: {
-          bookID: '63f6c9925b3f904343f3350c',
-        },
+          bookID: '63f6c9925b3f904343f3350c'
+        }
       });
       console.log(response);
-      const filteredBook = response.data.filter(book => id === book._id);
+      const filteredBook = response.data.filter((book) => id === book._id);
       setFoundBook(filteredBook);
     };
     fetchBooks();
@@ -30,15 +30,6 @@ function BookInfoContext() {
             <DescriptionTd bold>{foundBook?.[0]?.title}</DescriptionTd>
             <DescriptionTd>{`${foundBook?.[0]?.author} | ${foundBook?.[0]?.publisher}  |  ${foundBook?.[0]?.publishedDate}`}</DescriptionTd>
           </tr>
-
-          {/* {Object.entries(bookInfo).map(([key, value, index]) => (
-          <DescriptionTbody key={index}>
-            <tr key={index}>
-              <DescriptionTd key={key}>{value}</DescriptionTd>
-              <DescriptionTd key={value}>{foundBook?.[0]?.[key]}</DescriptionTd>
-            </tr>
-          </DescriptionTbody>
-        ))} */}
 
           <tr>
             <DescriptionTd>상태</DescriptionTd>
@@ -90,10 +81,9 @@ const DescriptionTd = styled.td`
   &:first-child {
     width: 178px;
     text-align: center;
-    font-family: ${props =>
-      props.bold ? 'NotoSansKR-Bold' : 'NotoSansKR-Regular'};
+    font-family: ${(props) => (props.bold ? 'NotoSansKR-Bold' : 'NotoSansKR-Regular')};
     font-size: 30px;
-    line-height: ${props => (props.bold ? '41px' : '43px')};
+    line-height: ${(props) => (props.bold ? '41px' : '43px')};
   }
   margin-left: 28px;
   border-bottom: 1px solid #b5b5b5;
