@@ -1,11 +1,11 @@
 import axios from 'axios';
 
 const instance = axios.create({
-  baseURL: 'http://elice.iptime.org:8080',
+  baseURL: 'http://elice.iptime.org:8080'
 });
 
 instance.interceptors.request.use(
-  config => {
+  (config) => {
     const token = localStorage.getItem('Auth');
     console.log(token);
     try {
@@ -19,7 +19,19 @@ instance.interceptors.request.use(
     }
     return config;
   },
-  error => {
+  (error) => {
+    return Promise.reject(error);
+  }
+);
+
+instance.interceptors.response.use(
+  (response) => response,
+  (error) => {
+    if (error?.response?.status === 401) {
+      localStorage.removeItem('Auth');
+      // 인증되지 않은 유저의 경우 로그인 페이지로 리다이렉트 처리
+      location.href = '/login';
+    }
     return Promise.reject(error);
   }
 );

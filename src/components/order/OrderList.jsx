@@ -3,13 +3,13 @@ import styled from 'styled-components';
 import { useNavigate } from 'react-router-dom';
 import OrderTemplate from './OrderTemplate';
 import CommonButton from '../commons/button/Button';
-// import api from '../../utils/api';
+import api from '../../utils/api';
 import axios from 'axios';
 
 function OrderList({ ordererInfo }) {
   const navigate = useNavigate();
 
-  const getOrderItems = localStorage.getItem('test-1');
+  const getOrderItems = localStorage.getItem('books');
   const orderItemList = JSON.parse(getOrderItems);
 
   const getTotalPrice = localStorage.getItem('totalPrice');
@@ -17,8 +17,8 @@ function OrderList({ ordererInfo }) {
   const handleOrder = () => {
     const postOrder = async () => {
       try {
-        const response = await axios.post(
-          'http://elice.iptime.org:8080/order/create',
+        const response = await api.post(
+          '/users',
           {
             userName: `${ordererInfo.ordererName}`,
             email: `${ordererInfo.ordererEmail}`,
