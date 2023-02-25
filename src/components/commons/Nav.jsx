@@ -1,39 +1,62 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import { NavLink } from 'react-router-dom';
-import cart from '../commons/navBarShoppingCart.png';
-import myElice from '../commons/navBarMyElice.png';
-import logo from '../commons/logo.png';
+import axios from 'axios';
 // 중복 스타일적용
 
 export default function Nav() {
+  const [category, setCategory] = useState();
+  const [loading, setLoading] = useState(false);
+
+  useEffect(() => {
+    async function getData() {
+      const res = await axios
+        .get('http://localhost:8080/categories')
+        .then(res => {
+          console.log(res);
+          setCategory(res.data);
+          setLoading(true);
+        })
+        .catch(error => {
+          console.log('실패');
+        });
+    }
+    getData();
+  }, []);
+
   return (
     <NavBarClass>
       <div>
         <LogoStyle to="/">
-          <img src={logo} alt="" />
+          <img src={process.env.PUBLIC_URL + '/images/logo.png'} alt="" />
         </LogoStyle>
       </div>
 
       <MiddleNavBar>
-        <MiddleSpan>
-          <Category to="/category/1">자기개발서적</Category>
-        </MiddleSpan>
-        <MiddleSpan>
-          <Category to="/category/2">소설책</Category>
-        </MiddleSpan>
-        <MiddleSpan>
-          <Category to="/category/3">만화책</Category>
-        </MiddleSpan>
-        <MiddleSpan>
-          <Category to="/category/4">아동책</Category>
-        </MiddleSpan>
+        {loading ? (
+          category.map((categoryTitle, index) => (
+            // const categoryId = "/category/"+categoryTitle._id
+            <MiddleSpan key={'category' + index}>
+              <Category
+                to={'/category/' + categoryTitle._id}
+                key={categoryTitle._id}
+              >
+                {categoryTitle.category}
+              </Category>
+            </MiddleSpan>
+          ))
+        ) : (
+          <h1>Category Loading...!</h1>
+        )}
       </MiddleNavBar>
 
       <EndClass>
         <EndDiv>
           <CartNavBar to="/">
-            <IconSize src={cart} alt="cart" />
+            <IconSize
+              src={process.env.PUBLIC_URL + '/images/navBarShoppingCart.png'}
+              alt="cart"
+            />
           </CartNavBar>
         </EndDiv>
         <EndDiv>
@@ -41,7 +64,11 @@ export default function Nav() {
         </EndDiv>
         <EndDiv>
           <MyElice to="/">
-            <MyEliceSize src={myElice} alt="mypage" id="mypage" />
+            <MyEliceSize
+              src={process.env.PUBLIC_URL + '/images/navBarMyElice.png'}
+              alt="mypage"
+              id="mypage"
+            />
           </MyElice>
         </EndDiv>
       </EndClass>

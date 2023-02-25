@@ -12,14 +12,13 @@ export default function BookList(props) {
     async function getData() {
       const res = await axios.get('http://localhost:8080/book/', {
         params: {
-          category: categoryId,
+          category: categoryID,
           page,
         },
       });
       // console.log(res.displayPage);
       setBookList(res.data);
       setLoading(true);
-      console.log(bookList);
     }
     getData();
   }, [categoryId, page]);

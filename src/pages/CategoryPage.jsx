@@ -18,16 +18,23 @@ export default function CategoryPage() {
     setPage(nextPage);
   };
 
-  // 함수 내에서 async await함수를 만들어서 호출하는 것이다.
+  // Title과 Description id받아오기
   useEffect(() => {
     async function getData() {
-      const res = await axios.get('http://localhost:8080/category', {
-        params: {
-          id,
-        },
-      });
-      setTitle(res.data[0].title);
-      setDescription(res.data[0].description);
+      const res = await axios
+        .get('http://localhost:8080/categories', {
+          params: {
+            id,
+          },
+        })
+        .then(res => {
+          console.log(res.data);
+          setTitle(res.data.category);
+          setDescription(res.data.description);
+        })
+        .catch(error => {
+          console.log('실패');
+        });
     }
     getData();
   });
