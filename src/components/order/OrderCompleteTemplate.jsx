@@ -3,11 +3,11 @@ import styled from 'styled-components';
 import CommonButton from '../commons/button/Button';
 import OrderComplete from './OrderComplete';
 
-function OrderCompleteTemplate({
-  completeMessage,
-  orderComplete,
-  modifyComplete,
-}) {
+function OrderCompleteTemplate({ completeMessage, orderComplete, modifyComplete }) {
+  const handleMain = () => {
+    navigate('/');
+  };
+
   return (
     <Wrapper>
       <CompleteImage src="/images/Check.png" alt="완료 이미지" />
@@ -32,7 +32,21 @@ function OrderCompleteTemplate({
           width="239px"
           margin="47px 0 0 0"
           borderRadius="20px"
-          onClick={handleLookUp}
+          onClick={async () => {
+            const userId = orderData.order.userID;
+            const response = await Api.get(`/users/orders`, {
+              params: {
+                userID: userId
+              }
+            });
+            console.log('res', response);
+
+            // navigate('/orderLookUp', {
+            //   state: {
+            //     orderCompleteData: response.data
+            //   }
+            // });
+          }}
         />
         <CommonButton
           buttonTitle="메인페이지로 이동"

@@ -4,6 +4,7 @@ import { useNavigate, useLocation } from 'react-router-dom';
 import PageTitle from '../../components/commons/pageTitle/PageTitle';
 import CommonButton from '../../components/commons/button/Button';
 import Api from '../../utils/api';
+import { format } from 'date-fns';
 
 function OrderLookUpPage() {
   const navigate = useNavigate();
@@ -24,43 +25,6 @@ function OrderLookUpPage() {
   });
   console.log('orderInfo', orderInfo);
 
-  // const orderInfo = [
-  //   {
-  //     orderDate: ``,
-  //     orderNumber: '22222222',
-  //     orderItem: '탈무드 외 1개 상품',
-  //     orderPrice: '15,300원',
-  //     orderStatus: '배송 준비중',
-  //   },
-  //   {
-  //     orderDate: '2023-02-14',
-  //     orderNumber: '22222222',
-  //     orderItem: '탈무드 외 1개 상품',
-  //     orderPrice: '15,300원',
-  //     orderStatus: '배송 준비중',
-  //   },
-  //   {
-  //     orderDate: '2023-02-14',
-  //     orderNumber: '33333333',
-  //     orderItem: '탈무드 외 1개 상품',
-  //     orderPrice: '15,300원',
-  //     orderStatus: '배송 준비중',
-  //   },
-  //   {
-  //     orderDate: '2023-02-14',
-  //     orderNumber: '44444444',
-  //     orderItem: '탈무드 외 1개 상품',
-  //     orderPrice: '15,300원',
-  //     orderStatus: '배송 준비중',
-  //   },
-  //   {
-  //     orderDate: '2023-02-14',
-  //     orderNumber: '55555555',
-  //     orderItem: '탈무드 외 1개 상품',
-  //     orderPrice: '15,300원',
-  //     orderStatus: '배송 준비중',
-  //   },
-  // ];
   const handleModify = async (obj) => {
     const objOrderNumber = obj.orderNumber;
     const response = await Api.get(`/orders/${objOrderNumber}`);
@@ -103,11 +67,13 @@ function OrderLookUpPage() {
             {orderInfo.map((obj, index) => {
               return (
                 <div key={index} className="row">
-                  {Object.entries(obj).map(([key, value]) => (
-                    <div key={key} className="item">
-                      {value}
-                    </div>
-                  ))}
+                  {Object.entries(obj).map(([key, value]) => {
+                    return (
+                      <div key={key} className="item">
+                        {key === 'orderDate' ? format(new Date(value), 'yyyy-MM-dd hh:mm:ss') : value}
+                      </div>
+                    );
+                  })}
                   <div className="item">
                     <CommonButton
                       buttonTitle="취소"
@@ -116,6 +82,7 @@ function OrderLookUpPage() {
                       borderRadius="20px"
                       borderColor="#9E8CEC"
                       onClick={() => handleCancel(obj)}
+                      isDisabled={obj.orderStatus === ('주문 취소' || '배송 중' || '배송 완료')}
                     />
                     <CommonButton
                       buttonTitle="수정"
@@ -124,6 +91,7 @@ function OrderLookUpPage() {
                       borderRadius="20px"
                       margin=" 0 0 0 14px"
                       onClick={() => handleModify(obj)}
+                      isDisabled={obj.orderStatus === ('주문 취소' || '배송 중' || '배송 완료')}
                     />
                   </div>
                 </div>
@@ -139,7 +107,7 @@ function OrderLookUpPage() {
 const OrderInfoTable = styled.div`
   display: flex;
   flex-direction: column;
-  width: 1219px;
+  width: 1270px;
   min-height: auto;
   max-height: 525px;
   margin: 84px auto 0;
@@ -169,10 +137,10 @@ const OrderInfoLabelSection = styled.div`
     border-left: 1px solid #d0c5fe;
     &:first-child {
       border-left: none;
-      min-width: 194px;
+      min-width: 160px;
     }
     &:nth-child(2) {
-      min-width: 251px;
+      min-width: 315px;
     }
     &:nth-child(3) {
       min-width: 243px;
@@ -209,10 +177,10 @@ const OrderInfoDataSection = styled.div`
 
       &:first-child {
         border-left: none;
-        min-width: 194px;
+        min-width: 160px;
       }
       &:nth-child(2) {
-        min-width: 251px;
+        min-width: 315px;
       }
       &:nth-child(3) {
         min-width: 243px;

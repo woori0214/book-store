@@ -1,16 +1,7 @@
 import React from 'react';
 import { ButtonContainer } from './Button.styled';
 
-function Button({
-  buttonTitle,
-  width,
-  height,
-  borderColor,
-  borderRadius,
-  margin,
-  onClick,
-  type,
-}) {
+function Button({ buttonTitle, width, height, borderColor, borderRadius, margin, onClick, type, isDisabled }) {
   return (
     <ButtonContainer
       type={type}
@@ -20,6 +11,7 @@ function Button({
       borderRadius={borderRadius}
       margin={margin}
       onClick={onClick}
+      disabled={isDisabled}
     >
       {buttonTitle}
     </ButtonContainer>
