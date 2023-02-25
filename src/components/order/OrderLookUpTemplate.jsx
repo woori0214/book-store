@@ -9,6 +9,7 @@ import Api from 'utils/api';
 function OrderLookUpTemplate({ title, orderInfo }) {
   const navigate = useNavigate();
   console.log('orderInfo', orderInfo);
+
   const handleModify = async (obj) => {
     const objOrderNumber = obj.orderNumber;
     const response = await Api.get(`/orders/${objOrderNumber}`);
@@ -23,13 +24,20 @@ function OrderLookUpTemplate({ title, orderInfo }) {
 
   const handleCancel = async (obj) => {
     if (window.confirm('주문을 취소하시겠습니까?')) {
-      const response = await Api.delete('/orders/', {
-        params: {
-          orderID: obj.orderNumber
+      const response = await Api.put(
+        '/orders',
+        {
+          status: '취소'
+        },
+        {
+          params: {
+            orderID: obj.orderNumber
+          }
         }
-      });
+      );
       console.log(response);
       console.log('취소되었습니다');
+      window.location.reload();
     }
   };
   return (
@@ -66,7 +74,9 @@ function OrderLookUpTemplate({ title, orderInfo }) {
                         borderRadius="20px"
                         borderColor="#9E8CEC"
                         onClick={() => handleCancel(obj)}
-                        isDisabled={obj.orderStatus === ('주문 취소' || '배송 중' || '배송 완료')}
+                        isDisabled={
+                          obj.orderStatus === '취소' || obj.orderStatus === '배송중' || obj.orderStatus === '배송완료'
+                        }
                       />
                       <CommonButton
                         buttonTitle="수정"
@@ -75,7 +85,9 @@ function OrderLookUpTemplate({ title, orderInfo }) {
                         borderRadius="20px"
                         margin=" 0 0 0 14px"
                         onClick={() => handleModify(obj)}
-                        isDisabled={obj.orderStatus === ('주문 취소' || '배송 중' || '배송 완료')}
+                        isDisabled={
+                          obj.orderStatus === '취소' || obj.orderStatus === '배송중' || obj.orderStatus === '배송완료'
+                        }
                       />
                     </div>
                   </div>

@@ -20,15 +20,16 @@ function OrderComplete({ completeMessage, order }) {
 
   const handleLookUp = async () => {
     const userId = orderData.order.userID;
-    const response = await Api.get(`/users/orders`, {
-      params: {
-        userID: userId
-      }
-    });
+    // const response = await Api.get(`/users/orders`, {
+    //   params: {
+    //     userID: userId
+    //   }
+    // });
+    // console.log(response);
 
     navigate('/orderLookUp', {
       state: {
-        orderCompleteData: response.data
+        orderCompleteUserId: userId
       }
     });
   };
