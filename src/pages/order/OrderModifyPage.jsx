@@ -1,7 +1,7 @@
 import styled from 'styled-components';
-import PageTitle from '../../components/commons/pageTitle/PageTitle';
+import PageTitle from 'components/commons/pageTitle/PageTitle';
 import { useLocation } from 'react-router-dom';
-import OrderModifyForm from '../../components/order/OrderModifyForm';
+import OrderModifyForm from 'components/order/OrderModifyForm';
 
 function OrderModifyPage() {
   const location = useLocation();

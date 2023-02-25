@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
-import PageTitle from '../components/commons/pageTitle/PageTitle';
-import Button from '../components/commons/button/Button';
-import InputBox from '../components/commons/inputBox/InputBox';
+import PageTitle from 'components/commons/pageTitle/PageTitle';
+import Button from 'components/commons/button/Button';
+import InputBox from 'components/commons/inputBox/InputBox';
 import { useNavigate } from 'react-router-dom';
-import Api from '../utils/api';
+import Api from 'utils/api';
 
 function NonUserLoginPage() {
   const navigate = useNavigate();

@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
 import { useNavigate } from 'react-router-dom';
-import CommonButton from '../commons/button/Button';
+import CommonButton from 'components/commons/button/Button';
 import OrderTemplate from './OrderTemplate';
-import Api from '../../utils/api';
+import Api from 'utils/api';
 import OrderFormTemplate from './OrderFormTemplate';
 
 function OrderModifyForm({ initialOrdererInfo, orderId }) {

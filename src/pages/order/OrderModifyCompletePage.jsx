@@ -1,4 +1,4 @@
-import OrderModifyComplete from '../../components/order/OrderModifyComplete';
+import OrderModifyComplete from 'components/order/OrderModifyComplete';
 
 function OrderModifyCompletePage() {
   return <OrderModifyComplete completeMessage="정보 수정" />;

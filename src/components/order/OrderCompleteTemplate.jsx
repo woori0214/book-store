@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import CommonButton from '../commons/button/Button';
+import CommonButton from 'components/commons/button/Button';
 import { useNavigate } from 'react-router-dom';
 
 function OrderCompleteTemplate({ completeMessage, orderInfo, handleLookUp, order }) {

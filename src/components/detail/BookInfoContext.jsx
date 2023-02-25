@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import Api from '../../utils/api';
+import Api from 'utils/api';
 import { useParams } from 'react-router-dom';
 import styled from 'styled-components';
 
