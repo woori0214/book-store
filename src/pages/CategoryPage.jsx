@@ -14,7 +14,7 @@ export default function CategoryPage() {
   const [description, setDescription] = useState('loading..');
   const [page, setPage] = useState(1);
 
-  const changePage = nextPage => {
+  const changePage = (nextPage) => {
     setPage(nextPage);
   };
 
@@ -24,15 +24,15 @@ export default function CategoryPage() {
       const res = await axios
         .get('http://localhost:8080/categories', {
           params: {
-            id,
-          },
+            id
+          }
         })
-        .then(res => {
+        .then((res) => {
           console.log(res.data);
           setTitle(res.data.category);
           setDescription(res.data.description);
         })
-        .catch(error => {
+        .catch((error) => {
           console.log('실패');
         });
     }
@@ -53,7 +53,7 @@ export default function CategoryPage() {
         <MainTitle>{title}</MainTitle>
         <pre
           style={{
-            marginLeft: '4%',
+            marginLeft: '4%'
           }}
         >
           {description}

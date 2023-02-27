@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
-import { NavLink } from 'react-router-dom';
+import { NavLink, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 // 중복 스타일적용
 
 export default function Nav() {
+  const navigate = useNavigate();
   const [category, setCategory] = useState();
   const [loading, setLoading] = useState(false);
 
@@ -12,12 +13,12 @@ export default function Nav() {
     async function getData() {
       const res = await axios
         .get('http://localhost:8080/categories')
-        .then(res => {
+        .then((res) => {
           console.log(res);
           setCategory(res.data);
           setLoading(true);
         })
-        .catch(error => {
+        .catch((error) => {
           console.log('실패');
         });
     }
@@ -33,41 +34,44 @@ export default function Nav() {
       </div>
 
       <MiddleNavBar>
-        {loading ? (
-          category.map((categoryTitle, index) => (
-            <MiddleSpan key={'category' + index}>
-              <Category
-                to={'/category/' + categoryTitle._id}
-                key={categoryTitle._id}
-              >
-                {categoryTitle.category}
-              </Category>
-            </MiddleSpan>
-          ))
-        ) : (
-          <h1>Category Loading...!</h1>
-        )}
+        {loading
+          ? category.map((categoryTitle, index) => (
+              // const categoryId = "/category/"+categoryTitle._id
+              <MiddleSpan key={'category' + index}>
+                <Category to={'/category/' + categoryTitle._id} key={categoryTitle._id}>
+                  {categoryTitle.category}
+                </Category>
+              </MiddleSpan>
+            ))
+          : ''}
       </MiddleNavBar>
 
       <EndClass>
-        <EndDiv>
+        <EndDiv onClick={() => navigate('/shoppingCart')}>
           <CartNavBar to="/">
-            <IconSize
-              src={process.env.PUBLIC_URL + '/images/navBarShoppingCart.png'}
-              alt="cart"
-            />
+            <IconSize src={process.env.PUBLIC_URL + '/images/navBarShoppingCart.png'} alt="cart" />
           </CartNavBar>
         </EndDiv>
         <EndDiv>
-          <LoginButton type="button">로그인</LoginButton>
+          {!localStorage.getItem('Auth') ? (
+            <LoginButton type="button" onClick={() => navigate('/login')}>
+              로그인
+            </LoginButton>
+          ) : (
+            <LoginButton
+              type="button"
+              onClick={() => {
+                localStorage.removeItem('Auth');
+                navigate('/');
+              }}
+            >
+              로그아웃
+            </LoginButton>
+          )}
         </EndDiv>
         <EndDiv>
           <MyElice to="/">
-            <MyEliceSize
-              src={process.env.PUBLIC_URL + '/images/navBarMyElice.png'}
-              alt="mypage"
-              id="mypage"
-            />
+            <MyEliceSize src={process.env.PUBLIC_URL + '/images/navBarMyElice.png'} alt="mypage" id="mypage" />
           </MyElice>
         </EndDiv>
       </EndClass>

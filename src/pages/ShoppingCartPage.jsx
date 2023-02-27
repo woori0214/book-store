@@ -3,6 +3,39 @@ import styled from 'styled-components';
 import CartItem from '../components/shoppingCart/CartItem';
 import CartAcount from '../components/shoppingCart/CartAccount';
 import PageTitle from '../components/commons/pageTitle/PageTitle';
+import Nav from 'components/commons/Nav';
+import Footer from 'components/commons/Footer';
+
+const data = [
+  {
+    id: 1,
+    title: '탈무드',
+    author: '이동민(옮긴이)',
+    publisher: '인디북(인디아이)',
+    publicationDate: '2001년 5월',
+    quantity: 1,
+    imageURL: 'images/탈무드.png',
+    rating: '상',
+    stock: '1부',
+    price: 5400,
+    salePrice: 5400
+  },
+  {
+    id: 2,
+    title: '탈무드2',
+    author: '이동민(옮긴이)2',
+    publisher: '인디북(인디아이)2',
+    publicationDate: '2001년 5월2',
+    quantity: 1,
+    imageURL: 'images/book2.jpg',
+    rating: '중',
+    stock: '1부',
+    price: 6000,
+    salePrice: 6000
+  }
+];
+
+localStorage.setItem('books', JSON.stringify(data));
 
 const getInitailValue = () => {
   const basketItems = localStorage.getItem('books');
@@ -13,22 +46,12 @@ function ShoppingCartPage() {
   // 장바구니에 추가한 책들의 데이터
   const [books, setBooks] = useState(getInitailValue());
 
-  // 책 갯수의 변경에 따른 총 가격 계산 로직
-  const totalAmount = useMemo(
-    () =>
-      books.reduce((sum, curr) => {
-        if (curr.salePrice === curr.price) {
-          return sum + curr.quantity * curr.price;
-        }
-        return sum + curr.quantity * curr.salePrice;
-      }, 0),
-    [books],
-  );
+  const totalAmount = useMemo(() => books.reduce((sum, curr) => sum + curr.quantity * curr.price, 0), [books]);
 
   // 삭제 버튼 클릭시 로직
-  const handleDelete = id => {
+  const handleDelete = (id) => {
     const newBooks = JSON.parse(JSON.stringify(books));
-    const filterBook = newBooks.filter(book => book.id !== id);
+    const filterBook = newBooks.filter((book) => book.id !== id);
 
     localStorage.removeItem('books');
 
@@ -46,8 +69,8 @@ function ShoppingCartPage() {
   };
 
   // 마이너스 버튼 클릭시 로직
-  const handleMinus = id => {
-    const findBookIndex = books.findIndex(book => book.id === id);
+  const handleMinus = (id) => {
+    const findBookIndex = books.findIndex((book) => book.id === id);
     const newBooks = JSON.parse(JSON.stringify(books));
     newBooks[findBookIndex].quantity -= 1;
 
@@ -62,8 +85,8 @@ function ShoppingCartPage() {
   };
 
   // 플러스 버튼 클릭시 로직
-  const handlePlus = id => {
-    const findBookIndex = books.findIndex(book => book.id === id);
+  const handlePlus = (id) => {
+    const findBookIndex = books.findIndex((book) => book.id === id);
     const newBooks = JSON.parse(JSON.stringify(books));
     newBooks[findBookIndex].quantity += 1;
 
@@ -73,8 +96,12 @@ function ShoppingCartPage() {
     setBooks(newBooks);
   };
 
+  // 장바구니에 아무것도 포함하지 않았을 경우 랜더링 화면
+  console.log(books);
+
   return (
     <>
+      <Nav />
       <PageTitle title="장바구니" />
       {books.length === 0 ? (
         <EmptyCart>장바구니에 물건을 추가해주세요.</EmptyCart>
@@ -87,30 +114,38 @@ function ShoppingCartPage() {
               </Button>
             </CartHeader>
             <CartList>
-              {books.map(book => (
-                <CartItem
-                  key={book.id}
-                  book={book}
-                  onDelete={handleDelete}
-                  onMinus={handleMinus}
-                  onPlus={handlePlus}
-                />
+              {books.map((book) => (
+                <CartItem key={book.id} book={book} onDelete={handleDelete} onMinus={handleMinus} onPlus={handlePlus} />
               ))}
             </CartList>
           </CartContent>
           <CartAcount totalAmount={totalAmount} />
         </CartWrapper>
       )}
+      <Footer />
     </>
   );
 }
 
 export default ShoppingCartPage;
 
+const CartTitle = styled.h2`
+  height: 200px;
+
+  font-family: 'Noto Sans KR';
+  font-style: normal;
+  font-weight: 700;
+  font-size: 44px;
+  line-height: 200px;
+  text-align: center;
+
+  text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+`;
+
 const CartWrapper = styled.div`
   display: flex;
   width: 60%;
-  margin: 60px auto;
+  margin: auto;
 `;
 
 const CartContent = styled.div`
@@ -129,7 +164,6 @@ const CartList = styled.div`
 `;
 
 const EmptyCart = styled.div`
-  margin-top: 60px;
   height: 300px;
   font-family: 'Noto Sans KR';
   font-style: normal;

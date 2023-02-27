@@ -1,13 +1,24 @@
 import React from 'react';
 import styled from 'styled-components';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
 import CommonButton from '../commons/button/Button';
+import axios from 'axios';
 
 function OrderComplete({ completeMessage }) {
   const navigate = useNavigate();
+  const { state } = useLocation();
+  console.log('state', state);
 
   const handleLookUp = () => {
-    navigate('/orderLookUp');
+    const getUserOrderList = async () => {
+      const userId = state.userDbId;
+      const response = await axios.get(`http://elice.iptime.org:8080/order/read/${userId}`);
+      console.log(response);
+      navigate('/orderLookUp', {
+        state: response.data.result.result
+      });
+    };
+    getUserOrderList();
   };
 
   const handleMain = () => {
@@ -15,11 +26,11 @@ function OrderComplete({ completeMessage }) {
   };
 
   const orderData = {
-    주문번호: '203513564231',
-    주문자명: '홍길동',
-    배송지: '서울특별시 강남구',
-    연락처: '010-1111-2222',
-    이메일: 'abc@test.com',
+    주문번호: `${state.orderId}`,
+    주문자명: `${state.userName}`,
+    배송지: `${state.address}`,
+    연락처: `${state.phone}`,
+    이메일: `${state.email}`
   };
 
   return (
