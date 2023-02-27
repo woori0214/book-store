@@ -4,6 +4,8 @@ import PageTitle from '../components/commons/pageTitle/PageTitle';
 import Button from '../components/commons/button/Button';
 import InputBox from '../components/commons/inputBox/InputBox';
 import { useNavigate } from 'react-router-dom';
+import Nav from 'components/commons/Nav';
+import Footer from 'components/commons/Footer';
 import axios from 'axios';
 
 function LoginPage() {
@@ -78,28 +80,32 @@ function LoginPage() {
   // const handleSearchOrderInfo = () => { };
 
   return (
-    <LoginContainer>
-      <PageTitle title="로그인" />
-      <LoginForm onSubmit={handleSubmit}>
-        <div>
-          <InputBox inputValue="이메일" id="email" type="text" value={user.email} onChange={handleEmailChange} />
-          <InputBox
-            inputValue="비밀번호"
-            id="password"
-            type="password"
-            value={user.password}
-            onChange={handlePasswordChange}
-          />
-        </div>
-        <Button buttonTitle="로그인" width="400px" margin="40px 0" borderRadius="25px" type="submit" />
-      </LoginForm>
-      <ButtonListContainer>
-        <ButtonList onClick={handleSignUpClick}>회원가입</ButtonList>
-        <ButtonList>아이디 찾기</ButtonList>
-        <ButtonList>비밀번호 찾기</ButtonList>
-        <ButtonList>비회원 주문조회</ButtonList>
-      </ButtonListContainer>
-    </LoginContainer>
+    <>
+      <Nav />
+      <LoginContainer>
+        <PageTitle title="로그인" />
+        <LoginForm onSubmit={handleSubmit}>
+          <div>
+            <InputBox inputValue="이메일" id="email" type="text" value={user.email} onChange={handleEmailChange} />
+            <InputBox
+              inputValue="비밀번호"
+              id="password"
+              type="password"
+              value={user.password}
+              onChange={handlePasswordChange}
+            />
+          </div>
+          <Button buttonTitle="로그인" width="400px" margin="40px 0" borderRadius="25px" type="submit" />
+        </LoginForm>
+        <ButtonListContainer>
+          <ButtonList onClick={handleSignUpClick}>회원가입</ButtonList>
+          <ButtonList>아이디 찾기</ButtonList>
+          <ButtonList>비밀번호 찾기</ButtonList>
+          <ButtonList>비회원 주문조회</ButtonList>
+        </ButtonListContainer>
+      </LoginContainer>
+      <Footer />
+    </>
   );
 }
 
@@ -107,7 +113,7 @@ export default LoginPage;
 
 const LoginContainer = styled.div`
   width: 60%;
-  margin: auto;
+  margin: 0 auto 80px auto;
 `;
 
 const LoginForm = styled.form`
