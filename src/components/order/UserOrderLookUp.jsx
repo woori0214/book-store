@@ -25,29 +25,17 @@ function UserOrderLookUp() {
   }, []);
 
   if (!isLoading) {
-    if (orderCompleteData.length > 1) {
-      const orderInfo = orderCompleteData.map((obj) => {
-        const orderItemCount = obj.orderItemList.length - 1;
-        return {
-          orderDate: obj.order.createdAt,
-          orderNumber: obj.orderItemList[0].orderID,
-          orderItem: `${obj.orderItemList[0].bookTitle} 외 ${orderItemCount}개`,
-          orderPrice: `${obj.order.totalPrice} 원`,
-          orderStatus: obj.order.status
-        };
-      });
-      return <OrderLookUpTemplate title="주문 / 배송 조회" orderInfo={orderInfo} />;
-    } else {
-      const orderItemCount = orderCompleteData.orderItemList.length - 1;
-      const orderInfo = {
-        orderDate: orderCompleteData.order.createdAt,
-        orderNumber: orderCompleteData.orderItemList[0].orderID,
-        orderItem: `${orderCompleteData.orderItemList[0].bookTitle} 외 ${orderItemCount}개`,
-        orderPrice: `${orderCompleteData.order.totalPrice} 원`,
-        orderStatus: orderCompleteData.order.status
+    const orderInfo = orderCompleteData.map((obj) => {
+      const orderItemCount = obj.orderItemList.length - 1;
+      return {
+        orderDate: obj.order.createdAt,
+        orderNumber: obj.orderItemList[0].orderID,
+        orderItem: `${obj.orderItemList[0].bookTitle} 외 ${orderItemCount}개`,
+        orderPrice: `${obj.order.totalPrice} 원`,
+        orderStatus: obj.order.status
       };
-      return <OrderLookUpTemplate title="주문 / 배송 조회" orderInfo={orderInfo} />;
-    }
+    });
+    return <OrderLookUpTemplate title="주문 / 배송 조회" orderInfo={orderInfo} />;
   }
 }
 

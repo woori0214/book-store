@@ -16,11 +16,10 @@ function NonUserLoginPage() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const response = await Api.get(`/orders/${orderId}`);
-    console.log(response.data.result[0]);
+
     navigate('/nonUserOrderLookUp', {
       state: {
-        nonUserOrderInfo: response.data.result[0]
+        nonUserOrderId: orderId
       }
     });
   };

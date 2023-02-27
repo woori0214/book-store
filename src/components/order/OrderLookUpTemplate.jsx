@@ -1,13 +1,18 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
 import PageTitle from 'components/commons/pageTitle/PageTitle';
 import CommonButton from 'components/commons/button/Button';
 import { format } from 'date-fns';
 import { useNavigate } from 'react-router-dom';
 import Api from 'utils/api';
+import Pagination from './Pagination';
 
 function OrderLookUpTemplate({ title, orderInfo }) {
   const navigate = useNavigate();
+  const [page, setPage] = useState(1);
+  const limit = 5;
+  const offset = (page - 1) * limit;
+
   console.log('orderInfo', orderInfo);
 
   const handleModify = async (obj) => {
@@ -55,78 +60,47 @@ function OrderLookUpTemplate({ title, orderInfo }) {
         {/* DB연동 후 key값 orderId로 바꿀 예정 (index 사용 x) */}
         <OrderInfoDataSection>
           <>
-            {orderInfo.length > 1 ? (
-              orderInfo.map((obj, index) => {
-                return (
-                  <div key={index} className="row">
-                    {Object.entries(obj).map(([key, value]) => {
-                      return (
-                        <div key={key} className="item">
-                          {key === 'orderDate' ? format(new Date(value), 'yyyy-MM-dd hh:mm:ss') : value}
-                        </div>
-                      );
-                    })}
-                    <div className="item">
-                      <CommonButton
-                        buttonTitle="취소"
-                        width="68px"
-                        height="35px"
-                        borderRadius="20px"
-                        borderColor="#9E8CEC"
-                        onClick={() => handleCancel(obj)}
-                        isDisabled={
-                          obj.orderStatus === '취소' || obj.orderStatus === '배송중' || obj.orderStatus === '배송완료'
-                        }
-                      />
-                      <CommonButton
-                        buttonTitle="수정"
-                        width="68px"
-                        height="35px"
-                        borderRadius="20px"
-                        margin=" 0 0 0 14px"
-                        onClick={() => handleModify(obj)}
-                        isDisabled={
-                          obj.orderStatus === '취소' || obj.orderStatus === '배송중' || obj.orderStatus === '배송완료'
-                        }
-                      />
-                    </div>
+            {orderInfo.slice(offset, offset + limit).map((obj, index) => {
+              return (
+                <div key={index} className="row">
+                  {Object.entries(obj).map(([key, value]) => {
+                    return (
+                      <div key={key} className="item">
+                        {key === 'orderDate' ? format(new Date(value), 'yyyy-MM-dd hh:mm:ss') : value}
+                      </div>
+                    );
+                  })}
+                  <div className="item">
+                    <CommonButton
+                      buttonTitle="취소"
+                      width="68px"
+                      height="35px"
+                      borderRadius="20px"
+                      borderColor="#9E8CEC"
+                      onClick={() => handleCancel(obj)}
+                      isDisabled={
+                        obj.orderStatus === '취소' || obj.orderStatus === '배송중' || obj.orderStatus === '배송완료'
+                      }
+                    />
+                    <CommonButton
+                      buttonTitle="수정"
+                      width="68px"
+                      height="35px"
+                      borderRadius="20px"
+                      margin=" 0 0 0 8px"
+                      onClick={() => handleModify(obj)}
+                      isDisabled={
+                        obj.orderStatus === '취소' || obj.orderStatus === '배송중' || obj.orderStatus === '배송완료'
+                      }
+                    />
                   </div>
-                );
-              })
-            ) : (
-              <div className="row">
-                {Object.entries(orderInfo).map(([key, value]) => {
-                  return (
-                    <div key={key} className="item">
-                      {key === 'orderDate' ? format(new Date(value), 'yyyy-MM-dd hh:mm:ss') : value}
-                    </div>
-                  );
-                })}
-                <div className="item">
-                  <CommonButton
-                    buttonTitle="취소"
-                    width="68px"
-                    height="35px"
-                    borderRadius="20px"
-                    borderColor="#9E8CEC"
-                    onClick={() => handleCancel(orderInfo)}
-                    isDisabled={orderInfo.orderStatus === ('주문 취소' || '배송 중' || '배송 완료')}
-                  />
-                  <CommonButton
-                    buttonTitle="수정"
-                    width="68px"
-                    height="35px"
-                    borderRadius="20px"
-                    margin=" 0 0 0 14px"
-                    onClick={() => handleModify(orderInfo)}
-                    isDisabled={orderInfo.orderStatus === ('주문 취소' || '배송 중' || '배송 완료')}
-                  />
                 </div>
-              </div>
-            )}
+              );
+            })}
           </>
         </OrderInfoDataSection>
       </OrderInfoTable>
+      <Pagination totalItemCount={orderInfo.length} limit={limit} page={page} setPage={setPage} />
     </>
   );
 }
@@ -134,18 +108,16 @@ function OrderLookUpTemplate({ title, orderInfo }) {
 const OrderInfoTable = styled.div`
   display: flex;
   flex-direction: column;
-  width: 1270px;
-  min-height: auto;
-  max-height: 525px;
+  max-width: 1300px;
+  width: 70%;
+  height: auto;
   margin: 84px auto 0;
   border-collapse: collapse;
   box-sizing: border-box;
   border: 1px solid #d0c5fe;
-  overflow-x: hidden;
-  overflow-y: auto;
+  overflow: hidden;
 `;
 
-// 스크롤이 생김에 따라 표가 이상해짐 -> 시간 되면 pagination 고려
 const OrderInfoLabelSection = styled.div`
   display: flex;
   width: 100%;
@@ -165,22 +137,22 @@ const OrderInfoLabelSection = styled.div`
     border-left: 1px solid #d0c5fe;
     &:first-child {
       border-left: none;
-      min-width: 178px;
+      width: 12%;
     }
     &:nth-child(2) {
-      min-width: 315px;
+      width: 25%;
     }
     &:nth-child(3) {
-      min-width: 243px;
+      width: 22%;
     }
     &:nth-child(4) {
-      min-width: 167px;
+      width: 13%;
     }
     &:nth-child(5) {
-      min-width: 174px;
+      width: 13%;
     }
     &:nth-child(6) {
-      min-width: 190px;
+      width: 15%;
     }
   }
 `;
@@ -197,6 +169,7 @@ const OrderInfoDataSection = styled.div`
     min-height: 89px;
 
     .item {
+      overflow: hidden;
       display: flex;
       text-align: center;
       justify-content: center;
@@ -205,22 +178,22 @@ const OrderInfoDataSection = styled.div`
 
       &:first-child {
         border-left: none;
-        min-width: 160px;
+        width: 12%;
       }
       &:nth-child(2) {
-        min-width: 315px;
+        width: 25%;
       }
       &:nth-child(3) {
-        min-width: 243px;
+        width: 22%;
       }
       &:nth-child(4) {
-        min-width: 166px;
+        width: 13%;
       }
       &:nth-child(5) {
-        min-width: 175px;
+        width: 13%;
       }
       &:nth-child(6) {
-        min-width: 190px;
+        width: 15%;
       }
     }
     border-bottom: 1px solid #d0c5fe;
