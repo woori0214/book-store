@@ -1,12 +1,8 @@
-import React, { useEffect, useMemo, useState } from 'react';
+import React, { useMemo, useState } from 'react';
 import styled from 'styled-components';
 import CartItem from '../components/shoppingCart/CartItem';
 import CartAcount from '../components/shoppingCart/CartAccount';
 import PageTitle from '../components/commons/pageTitle/PageTitle';
-import Api from 'utils/api';
-
-axios.get('afsldfjlasd');
-Api.get('');
 
 const data = [
   {
