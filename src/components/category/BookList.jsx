@@ -10,7 +10,7 @@ export default function BookList(props) {
 
   useEffect(() => {
     async function getData() {
-      const res = await axios.get('http://localhost:8080/book/', {
+      const res = await axios.get('http://localhost:8080/book', {
         params: {
           category: categoryID,
           page,
