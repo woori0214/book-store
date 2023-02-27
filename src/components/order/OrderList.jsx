@@ -17,18 +17,15 @@ function OrderList({ ordererInfo }) {
   const handleOrder = () => {
     const postOrder = async () => {
       try {
-        const response = await api.post(
-          '/users',
-          {
-            userName: `${ordererInfo.ordererName}`,
-            email: `${ordererInfo.ordererEmail}`,
-            phone: `${ordererInfo.ordererPhone}`,
-            address: `${ordererInfo.ordererAddress}`,
-            orderItemList,
-            totalPrice: `${getTotalPrice}`,
-            userDbId: '63f43ffc0c47ceb602b27567',
-          }
-        );
+        const response = await api.post('/users', {
+          userName: `${ordererInfo.ordererName}`,
+          email: `${ordererInfo.ordererEmail}`,
+          phone: `${ordererInfo.ordererPhone}`,
+          address: `${ordererInfo.ordererAddress}`,
+          orderItemList,
+          totalPrice: `${getTotalPrice}`,
+          userDbId: '63f43ffc0c47ceb602b27567'
+        });
 
         console.log('resData', response.data.order);
 
@@ -42,7 +39,7 @@ function OrderList({ ordererInfo }) {
           alert('배송지를 입력해주세요');
         } else {
           navigate('/orderComplete', {
-            state: response.data.order,
+            state: response.data.order
           });
         }
       } catch (err) {
@@ -56,14 +53,9 @@ function OrderList({ ordererInfo }) {
     <Wrapper>
       <OrderTemplate templateTitle="주문상품" />
       <OrderListWrapper>
-        {orderItemList.map(item => (
+        {orderItemList.map((item) => (
           <OrderItem key={item.id}>
-            <OrderItemImage
-              src={`${item.imageURL}`}
-              alt="도서 이미지"
-              width="100px"
-              height=" 100px"
-            />
+            <OrderItemImage src={`${item.imageURL}`} alt="도서 이미지" width="100px" height=" 100px" />
             <div>
               <OrderItemInfo>{item.title}</OrderItemInfo>
               <OrderItemInfo>{`수량: ${item.stock}`}</OrderItemInfo>

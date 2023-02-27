@@ -10,11 +10,11 @@ function OrderForm({ order, modify }) {
     ordererName: '',
     ordererEmail: '',
     ordererPhone: '',
-    ordererAddress: '',
+    ordererAddress: ''
   });
   const navigate = useNavigate();
 
-  const handleChange = e => {
+  const handleChange = (e) => {
     const { name, value } = e.target;
     const newOrderInfo = { ...ordererInfo };
     newOrderInfo[name] = value;

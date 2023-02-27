@@ -12,12 +12,12 @@ export default function Nav() {
     async function getData() {
       const res = await axios
         .get('http://localhost:8080/categories')
-        .then(res => {
+        .then((res) => {
           console.log(res);
           setCategory(res.data);
           setLoading(true);
         })
-        .catch(error => {
+        .catch((error) => {
           console.log('실패');
         });
     }
@@ -37,10 +37,7 @@ export default function Nav() {
           category.map((categoryTitle, index) => (
             // const categoryId = "/category/"+categoryTitle._id
             <MiddleSpan key={'category' + index}>
-              <Category
-                to={'/category/' + categoryTitle._id}
-                key={categoryTitle._id}
-              >
+              <Category to={'/category/' + categoryTitle._id} key={categoryTitle._id}>
                 {categoryTitle.category}
               </Category>
             </MiddleSpan>
@@ -53,10 +50,7 @@ export default function Nav() {
       <EndClass>
         <EndDiv>
           <CartNavBar to="/">
-            <IconSize
-              src={process.env.PUBLIC_URL + '/images/navBarShoppingCart.png'}
-              alt="cart"
-            />
+            <IconSize src={process.env.PUBLIC_URL + '/images/navBarShoppingCart.png'} alt="cart" />
           </CartNavBar>
         </EndDiv>
         <EndDiv>
@@ -64,11 +58,7 @@ export default function Nav() {
         </EndDiv>
         <EndDiv>
           <MyElice to="/">
-            <MyEliceSize
-              src={process.env.PUBLIC_URL + '/images/navBarMyElice.png'}
-              alt="mypage"
-              id="mypage"
-            />
+            <MyEliceSize src={process.env.PUBLIC_URL + '/images/navBarMyElice.png'} alt="mypage" id="mypage" />
           </MyElice>
         </EndDiv>
       </EndClass>

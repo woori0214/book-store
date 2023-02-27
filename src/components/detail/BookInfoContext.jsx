@@ -9,11 +9,9 @@ function BookInfoContext() {
 
   useEffect(() => {
     const fetchBooks = async () => {
-      const response = await axios.get(
-        'http://elice.iptime.org:8080/book/read',
-      );
+      const response = await axios.get('http://elice.iptime.org:8080/book/read');
       console.log(response);
-      const filteredBook = response.data.filter(book => id === book._id);
+      const filteredBook = response.data.filter((book) => id === book._id);
       setFoundBook(filteredBook);
     };
     fetchBooks();
@@ -88,10 +86,9 @@ const DescriptionTd = styled.td`
   &:first-child {
     width: 178px;
     text-align: center;
-    font-family: ${props =>
-      props.bold ? 'NotoSansKR-Bold' : 'NotoSansKR-Regular'};
+    font-family: ${(props) => (props.bold ? 'NotoSansKR-Bold' : 'NotoSansKR-Regular')};
     font-size: 30px;
-    line-height: ${props => (props.bold ? '41px' : '43px')};
+    line-height: ${(props) => (props.bold ? '41px' : '43px')};
   }
   margin-left: 28px;
   border-bottom: 1px solid #b5b5b5;

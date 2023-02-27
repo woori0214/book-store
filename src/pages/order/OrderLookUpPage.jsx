@@ -16,42 +16,42 @@ function OrderLookUpPage() {
       orderId: `${state.orderId}`,
       orderItem: '탈무드 외 1개 상품',
       totalPrice: `${state.totalPrice}원`,
-      orderStatus: `${state.status}`,
+      orderStatus: `${state.status}`
     },
     {
       orderDate: '2023-02-14',
       orderNumber: '22222222',
       orderItem: '탈무드 외 1개 상품',
       orderPrice: '15,300원',
-      orderStatus: '배송 준비중',
+      orderStatus: '배송 준비중'
     },
     {
       orderDate: '2023-02-14',
       orderNumber: '33333333',
       orderItem: '탈무드 외 1개 상품',
       orderPrice: '15,300원',
-      orderStatus: '배송 준비중',
+      orderStatus: '배송 준비중'
     },
     {
       orderDate: '2023-02-14',
       orderNumber: '44444444',
       orderItem: '탈무드 외 1개 상품',
       orderPrice: '15,300원',
-      orderStatus: '배송 준비중',
+      orderStatus: '배송 준비중'
     },
     {
       orderDate: '2023-02-14',
       orderNumber: '55555555',
       orderItem: '탈무드 외 1개 상품',
       orderPrice: '15,300원',
-      orderStatus: '배송 준비중',
-    },
+      orderStatus: '배송 준비중'
+    }
   ];
   const handleModify = () => {
     navigate('/orderModify');
   };
 
-  const handleCancel = obj => {
+  const handleCancel = (obj) => {
     if (window.confirm('주문을 취소하시겠습니까?')) {
       console.log('취소되었습니다');
     }

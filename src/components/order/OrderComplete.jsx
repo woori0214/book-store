@@ -12,12 +12,10 @@ function OrderComplete({ completeMessage }) {
   const handleLookUp = () => {
     const getUserOrderList = async () => {
       const userId = state.userDbId;
-      const response = await axios.get(
-        `http://elice.iptime.org:8080/order/read/${userId}`,
-      );
+      const response = await axios.get(`http://elice.iptime.org:8080/order/read/${userId}`);
       console.log(response);
       navigate('/orderLookUp', {
-        state: response.data.result.result,
+        state: response.data.result.result
       });
     };
     getUserOrderList();
@@ -32,7 +30,7 @@ function OrderComplete({ completeMessage }) {
     주문자명: `${state.userName}`,
     배송지: `${state.address}`,
     연락처: `${state.phone}`,
-    이메일: `${state.email}`,
+    이메일: `${state.email}`
   };
 
   return (

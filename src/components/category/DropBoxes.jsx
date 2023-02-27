@@ -16,13 +16,13 @@ const Choice = [
   { value: 'update', name: '최신순' },
   { value: 'recommend', name: '추천순' },
   { value: 'lowerPrice', name: '낮은가격순' },
-  { value: 'higherPrice', name: '높은가격순' },
+  { value: 'higherPrice', name: '높은가격순' }
 ];
 
-const SelectBox = props => {
+const SelectBox = (props) => {
   return (
     <select>
-      {props.select.map(option => (
+      {props.select.map((option) => (
         <option key={option.value} value={option.value}>
           {option.name}
         </option>
