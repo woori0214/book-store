@@ -63,7 +63,7 @@ export default function CategoryPage() {
         </div>
         <BookList categoryId={id} page={page} />
       </TitleDescription>
-      <PagenationList changePage={changePage} page={page} />
+      <PagenationList changePage={changePage} page={page} category={id} />
       <Footer />
     </div>
   );

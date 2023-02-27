@@ -6,12 +6,12 @@ export default function BookData(props) {
 
   return (
     <BookSpan>
-      <BookImg src={book.imgsrc} alt="" />
-      <BookName>{book.name}</BookName>
-      <BookPrice>{book.price}</BookPrice>
+      <BookImg src={book.imageUrl} alt="" />
+      <BookName>{book.title}</BookName>
+      <BookPrice>{book.salePrice}</BookPrice>
       <BookStock>
         재고
-        {book.stock}
+        {book.score}
       </BookStock>
     </BookSpan>
   );

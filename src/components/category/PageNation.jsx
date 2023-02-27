@@ -1,19 +1,31 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import Pagination from 'react-js-pagination';
 import styled from 'styled-components';
+import axios from 'axios';
 
 export default function PageList(props) {
-  const { changePage, page } = props;
-  // const handlePage = (nextPage) => {
-  //   setPage(nextPage);
-  // };
+  const { changePage, page, category } = props;
+  const [maxBooks, setMaxBooks] = useState(1);
+  const perPage = 4;
+
+  useEffect(() => {
+    async function getData() {
+      const res = await axios.get('http://localhost:8080/books/countBookByCategory', {
+        params: {
+          category
+        }
+      });
+      setMaxBooks(res.data);
+    }
+    getData();
+  }, [page, category]);
   return (
     <PaginationBox>
       <Pagination
         activePage={page}
         onChange={changePage}
-        itemsCountPerPage={4} // 한 페이지랑 보여줄 아이템 갯수
-        totalItemsCount={32} // 총 아이템 갯수
+        itemsCountPerPage={perPage} // 한 페이지랑 보여줄 아이템 갯수
+        totalItemsCount={maxBooks} // 총 아이템 갯수
         pageRangeDisplayed={3} // paginator의 페이지 범위
       />
     </PaginationBox>

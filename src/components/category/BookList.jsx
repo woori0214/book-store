@@ -7,16 +7,18 @@ export default function BookList(props) {
   const [bookList, setBookList] = useState('');
   const [loading, setLoading] = useState(false);
   const { categoryId, page } = props;
+  const perPage = 4;
 
   useEffect(() => {
     async function getData() {
-      const res = await axios.get('http://localhost:8080/book', {
+      const res = await axios.get('http://localhost:8080/books/readBookByCategory', {
         params: {
-          category: categoryID,
-          page
+          category: categoryId,
+          page,
+          perPage
         }
       });
-      // console.log(res.displayPage);
+      console.log(res.data);
       setBookList(res.data);
       setLoading(true);
     }
@@ -26,7 +28,7 @@ export default function BookList(props) {
   return (
     <BookDataList>
       {loading ? (
-        bookList.map((book, index) => <BookDataStyle book={bookList[index]} key={book.id} />)
+        bookList.map((book, index) => <BookDataStyle book={bookList[index]} key={book._id} />)
       ) : (
         <h1>Book Loading...!</h1>
       )}
