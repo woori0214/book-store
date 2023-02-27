@@ -1,39 +1,62 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import { NavLink } from 'react-router-dom';
-import cart from './img/shopping-cart.png';
-import myElice from './img/myElice.png';
-import logo from './img/logo.png';
+import axios from 'axios';
 // 중복 스타일적용
 
 export default function Nav() {
+  const [category, setCategory] = useState();
+  const [loading, setLoading] = useState(false);
+
+  useEffect(() => {
+    async function getData() {
+      const res = await axios
+        .get('http://localhost:8080/categories')
+        .then(res => {
+          console.log(res);
+          setCategory(res.data);
+          setLoading(true);
+        })
+        .catch(error => {
+          console.log('실패');
+        });
+    }
+    getData();
+  }, []);
+
   return (
     <NavBarClass>
       <div>
         <LogoStyle to="/">
-          <img src={logo} alt="" />
+          <img src={process.env.PUBLIC_URL + '/images/logo.png'} alt="" />
         </LogoStyle>
       </div>
 
       <MiddleNavBar>
-        <MiddleSpan>
-          <Category to="/category/1">자기개발서적</Category>
-        </MiddleSpan>
-        <MiddleSpan>
-          <Category to="/category/2">소설책</Category>
-        </MiddleSpan>
-        <MiddleSpan>
-          <Category to="/category/3">만화책</Category>
-        </MiddleSpan>
-        <MiddleSpan>
-          <Category to="/category/4">아동책</Category>
-        </MiddleSpan>
+        {loading ? (
+          category.map((categoryTitle, index) => (
+            // const categoryId = "/category/"+categoryTitle._id
+            <MiddleSpan key={'category' + index}>
+              <Category
+                to={'/category/' + categoryTitle._id}
+                key={categoryTitle._id}
+              >
+                {categoryTitle.category}
+              </Category>
+            </MiddleSpan>
+          ))
+        ) : (
+          <h1>Category Loading...!</h1>
+        )}
       </MiddleNavBar>
 
       <EndClass>
         <EndDiv>
           <CartNavBar to="/">
-            <IconSize src={cart} alt="cart" />
+            <IconSize
+              src={process.env.PUBLIC_URL + '/images/navBarShoppingCart.png'}
+              alt="cart"
+            />
           </CartNavBar>
         </EndDiv>
         <EndDiv>
@@ -41,7 +64,11 @@ export default function Nav() {
         </EndDiv>
         <EndDiv>
           <MyElice to="/">
-            <MyEliceSize src={myElice} alt="mypage" id="mypage" />
+            <MyEliceSize
+              src={process.env.PUBLIC_URL + '/images/navBarMyElice.png'}
+              alt="mypage"
+              id="mypage"
+            />
           </MyElice>
         </EndDiv>
       </EndClass>
@@ -55,21 +82,20 @@ const NavBarClass = styled.div`
   margin-top: 1.5%;
   background-color: #ffffff;
   border-radius: 4px;
-  // width: 100%;
-  // height: 10%;
   border-bottom: 2px solid #b5b5b5;
 `;
 
 const LogoStyle = styled(NavLink)`
   padding-left: 20%;
 `;
+
 const Category = styled(NavLink)`
-  color: black;
+  font-size: 1.5em;
+  padding-left: 30px;
+  padding-right: 30px;
   border-radius: 18px;
-  padding: 10%;
-  // width: 100%;
-  // padding-left: 30px;
-  // padding-right: 30px;
+  padding: 5%;
+  color: black;
   &.active {
     background-color: #9e8cec;
     color: white;
@@ -94,6 +120,7 @@ const MiddleNavBar = styled.div`
 const MiddleSpan = styled.div`
   width: 100%;
   padding: 2%;
+  text-align: center;
 `;
 
 const EndClass = styled.div`
@@ -102,6 +129,7 @@ const EndClass = styled.div`
   width: 15%;
   height: 100%;
 `;
+
 const EndDiv = styled.div`
   display: iline-block;
   justify-content: center;
@@ -113,6 +141,7 @@ const CartNavBar = styled(NavLink)`
   width: 100%;
   height: 100%;
 `;
+
 const LoginButton = styled.button`
   background-color: #edeafc;
   border-radius: 18px;
@@ -122,6 +151,7 @@ const MyElice = styled(NavLink)`
   width: 100%;
   height: 100%;
 `;
+
 const IconSize = styled.img`
   width: 2vw;
   height: 3.5vh;
