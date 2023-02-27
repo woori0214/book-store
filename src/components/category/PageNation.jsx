@@ -1,5 +1,6 @@
 import React from 'react';
 import Pagination from 'react-js-pagination';
+import './Paging.css';
 
 export default function PageList(props) {
   const { changePage, page } = props;

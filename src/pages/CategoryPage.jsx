@@ -4,9 +4,9 @@ import { useParams } from 'react-router-dom';
 import axios from 'axios';
 import Nav from '../components/commons/Nav';
 import BookList from '../components/category/BookList';
-import PageList from '../components/category/PageNation';
-import './Paging.css';
+import PagenationList from '../components/category/PageNation';
 import DropBox from '../components/category/DropBoxes';
+import Footer from '../components/commons/Footer';
 
 export default function CategoryPage() {
   const { id } = useParams();
@@ -63,7 +63,8 @@ export default function CategoryPage() {
         </div>
         <BookList categoryId={id} page={page} />
       </TitleDescription>
-      <PageList changePage={changePage} page={page} />
+      <PagenationList changePage={changePage} page={page} />
+      <Footer />
     </div>
   );
 }

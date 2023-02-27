@@ -35,7 +35,6 @@ export default function Nav() {
       <MiddleNavBar>
         {loading ? (
           category.map((categoryTitle, index) => (
-            // const categoryId = "/category/"+categoryTitle._id
             <MiddleSpan key={'category' + index}>
               <Category
                 to={'/category/' + categoryTitle._id}
