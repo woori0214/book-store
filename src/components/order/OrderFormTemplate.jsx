@@ -53,40 +53,43 @@ function OrderFormTemplate({ handleChange, ordererInfo }) {
 }
 
 const FormWrapper = styled.form`
-  margin: 31px 0 0 34px;
+  margin: 1.5rem 0 0 1.2rem;
   box-sizing: border-box;
-  width: 1220px;
-  height: 370px;
+  width: 100%;
+  max-width: 1000px;
+  height: auto;
+  max-height: 370px;
   border-radius: 15px;
   background-color: #edeafc;
   border: 4px solid #edeafc;
 `;
 
 const FormInput = styled.div`
-  &:first-child {
-    margin: 50px 0 0 36px;
+  margin: 1rem 0 0 2rem;
+  &:last-child {
+    margin-bottom: 1rem;
   }
-  margin: 31px 0 0 36px;
 `;
 
 const InputTitle = styled.span`
   font-family: 'NotoSansKR-Bold';
-  font-weight: 700;
-  font-size: 20px;
-  line-height: 29px;
+  font-size: 1.1rem;
+  line-height: 27px;
 `;
 
 const Star = styled.span`
   color: red;
-  margin-right: 10px;
+  margin-right: 1rem;
 `;
 
 const Input = styled.input`
-  margin-left: 38px;
-  width: 1021px;
-  height: 42px;
+  margin-left: 1.5rem;
+  width: 85%;
+  max-width: 1021px;
+  max-height: 42px;
+  height: 1.8rem;
   border-radius: 5px;
-  padding-left: 15px;
+  padding-left: 1rem;
 `;
 
 export default OrderFormTemplate;

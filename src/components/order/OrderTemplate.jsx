@@ -6,12 +6,14 @@ function OrderTemplate({ templateTitle }) {
 }
 
 const TemplateTitle = styled.div`
-  width: 100px;
-  height: 38px;
+  width: 6rem;
+  max-width: 90px;
+  height: 2.1rem;
+  max-height: 38px;
   border: 2px solid #6e54e2;
   border-radius: 30px;
   font-family: 'NotoSansKR-Medium';
-  font-size: 18px;
+  font-size: 1.1rem;
   line-height: 26px;
   display: flex;
   align-items: center;

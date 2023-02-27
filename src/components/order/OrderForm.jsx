@@ -31,10 +31,9 @@ function OrderForm() {
 
 const Wrapper = styled.div`
   position: relative;
-  width: 1254px;
-  margin-top: 34px;
-  margin-left: auto;
-  margin-right: auto;
+  width: 90%;
+  max-width: 1020px;
+  margin: 3% auto 0;
 `;
 
 export default OrderForm;

@@ -66,9 +66,11 @@ function OrderList({ ordererInfo }) {
         <TotalPrice>{`주문 총액 : ${totalPrice} 원`}</TotalPrice>
         <CommonButton
           buttonTitle="주문하기"
-          height="59px"
-          borderRadius="20px"
-          margin="36px 0 0 37px"
+          width="15%"
+          minWidth="120px"
+          height="3rem"
+          borderRadius="10px"
+          margin="1.7rem 0 0 2rem"
           onClick={handleOrder}
         />
       </OrderBottomWrapper>
@@ -77,18 +79,18 @@ function OrderList({ ordererInfo }) {
 }
 
 const Wrapper = styled.div`
-  position: relative;
-  width: 1254px;
-  margin-top: 60px;
-  margin-left: auto;
-  margin-right: auto;
+  position: absolute;
+  width: 100%;
+  margin: 2.5rem auto 0;
 `;
 
 const OrderListWrapper = styled.div`
-  margin: 31px 0 0 34px;
+  margin: 1.5rem 0 0 1.2rem;
   box-sizing: border-box;
-  width: 1220px;
-  height: 370px;
+  width: 100%;
+  max-width: 1000px;
+  height: auto;
+  max-height: 370px;
   border-radius: 15px;
   background-color: white;
   border: 4px solid #edeafc;
@@ -97,39 +99,45 @@ const OrderListWrapper = styled.div`
 
 const OrderItem = styled.div`
   display: flex;
-  margin: 57px 0 0 37px;
+  margin: 1.6% 0 0 2rem;
+  &:last-child {
+    margin-bottom: 1.6%;
+  }
 `;
 
 const OrderItemImage = styled.img`
-  width: 100px;
-  height: 100px;
+  width: 8%;
+  height: 1%;
+  min-width: 50px;
+  max-width: 100px;
+  max-height: 100px;
 `;
 
 const OrderItemInfo = styled.p`
   &:first-child {
-    margin: 10px 0 0 27px;
     font-family: 'NotoSansKR-Bold';
-    font-weight: 700;
+    margin-top: 0.9rem;
   }
-  margin: 5px 0 0 27px;
+  margin: 0.8rem 0 0 2rem;
   font-family: 'NotoSansKR-Medium';
-  font-size: 16px;
-  line-height: 23px;
+  font-size: 1rem;
+  line-height: 0.8rem;
 `;
 
 const OrderBottomWrapper = styled.div`
-  position: relative;
+  position: absolute;
+  width: 100%;
   display: flex;
 `;
 
 const TotalPrice = styled.p`
-  margin: 47px 0 0 821px;
-  width: 244px;
+  margin: 2rem 0 0 0;
+  width: 85%;
   font-family: 'NotoSansKR-Bold';
-  font-weight: 700;
-  font-size: 25px;
+  font-size: 1.4rem;
   line-height: 36px;
   color: #6e54e2;
+  text-align: end;
 `;
 
 export default OrderList;
