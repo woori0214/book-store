@@ -72,10 +72,10 @@ function OrderModifyForm({ initialOrdererInfo, orderId }) {
       <CommonButton
         buttonTitle="수정 완료"
         borderColor="#9E8CEC"
-        width="200px"
-        height="59px"
-        borderRadius="20px"
-        margin="49px 0 0 1048px"
+        width="120px"
+        height="50px"
+        borderRadius="15px"
+        margin="2.5rem auto 0"
         onClick={handleModifyComplete}
       />
     </Wrapper>
@@ -84,10 +84,14 @@ function OrderModifyForm({ initialOrdererInfo, orderId }) {
 
 const Wrapper = styled.div`
   position: relative;
-  width: 1254px;
-  margin-top: 34px;
-  margin-left: auto;
-  margin-right: auto;
+  width: 90%;
+  min-width: 453px;
+  max-width: 918px;
+  margin: 2rem auto 0;
+  > button {
+    position: absolute;
+    right: 0;
+  }
 `;
 
 export default OrderModifyForm;

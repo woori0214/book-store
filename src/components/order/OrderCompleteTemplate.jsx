@@ -9,6 +9,7 @@ function OrderCompleteTemplate({ completeMessage, orderInfo, handleLookUp, order
   const handleMain = () => {
     navigate('/');
   };
+  console.log('orderInfo', orderInfo);
 
   return (
     <Wrapper>
@@ -28,21 +29,21 @@ function OrderCompleteTemplate({ completeMessage, orderInfo, handleLookUp, order
       </OrderInfoBox>
       <ButtonWrapper>
         {/* 마이페이지 구현 완료 시 주문내역 확인 버튼 삭제 */}
-        {/* {order && (
+        {order && (
           <CommonButton
             buttonTitle="주문 내역 확인"
             borderColor="#9E8CEC"
-            width="239px"
+            width="190px"
             margin="47px 0 0 0"
             borderRadius="20px"
             onClick={handleLookUp}
           />
-        )} */}
+        )}
         <CommonButton
           buttonTitle="메인페이지로 이동"
           width="190px"
-          margin="47px auto"
-          // margin={order === 'true' ? '47px 0 0 68px' : '47px auto'}
+          // margin="47px auto"
+          margin={order === 'true' ? '47px 0 0 68px' : '47px auto'}
           borderRadius="20px"
           onClick={handleMain}
         />
@@ -123,6 +124,7 @@ const OrderInfoValue = styled.p`
 
 const ButtonWrapper = styled.div`
   display: flex;
+  justify-content: center;
 `;
 
 export default OrderCompleteTemplate;
