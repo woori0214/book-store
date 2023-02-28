@@ -69,6 +69,7 @@ const CompleteTitleBox = styled.div`
 const CompleteImage = styled.img`
   margin: 4.5rem auto 0;
   width: 10%;
+  min-width: 60px;
   max-width: 90px;
 `;
 
