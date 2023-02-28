@@ -4,9 +4,9 @@ export const ButtonContainer = styled.button`
   box-sizing: border-box;
   width: ${(props) => props.width || '163px'};
   min-width: ${(props) => props.minWidth || null};
-  max-width: ${(props) => props.maxWidth || '163px'};
+  max-width: ${(props) => props.maxWidth || null};
   height: ${(props) => props.height || '64px'};
-  max-height: ${(props) => props.maxHeight || '64px'};
+  max-height: ${(props) => props.maxHeight || null};
   border: 2px solid;
   border-color: ${(props) => props.borderColor || '#6e54e2'};
   box-shadow: 0px 4px 2px rgba(0, 0, 0, 0.25);

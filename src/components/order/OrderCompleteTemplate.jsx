@@ -12,8 +12,10 @@ function OrderCompleteTemplate({ completeMessage, orderInfo, handleLookUp, order
 
   return (
     <Wrapper>
-      <CompleteImage src="/images/Check.png" alt="완료 이미지" />
-      <CompleteMessage>{completeMessage}이 완료되었습니다.</CompleteMessage>
+      <CompleteTitleBox>
+        <CompleteImage src="/images/Check.png" alt="완료 이미지" />
+        <CompleteMessage>{completeMessage}이 완료되었습니다.</CompleteMessage>
+      </CompleteTitleBox>
       <OrderInfoBox>
         <OrderInfoContainer>
           {Object.entries(orderInfo).map(([key, value]) => (
@@ -26,7 +28,7 @@ function OrderCompleteTemplate({ completeMessage, orderInfo, handleLookUp, order
       </OrderInfoBox>
       <ButtonWrapper>
         {/* 마이페이지 구현 완료 시 주문내역 확인 버튼 삭제 */}
-        {order && (
+        {/* {order && (
           <CommonButton
             buttonTitle="주문 내역 확인"
             borderColor="#9E8CEC"
@@ -35,11 +37,12 @@ function OrderCompleteTemplate({ completeMessage, orderInfo, handleLookUp, order
             borderRadius="20px"
             onClick={handleLookUp}
           />
-        )}
+        )} */}
         <CommonButton
           buttonTitle="메인페이지로 이동"
-          width="239px"
-          margin={order === 'true' ? '47px 0 0 68px' : '47px auto'}
+          width="190px"
+          margin="47px auto"
+          // margin={order === 'true' ? '47px 0 0 68px' : '47px auto'}
           borderRadius="20px"
           onClick={handleMain}
         />
@@ -50,67 +53,76 @@ function OrderCompleteTemplate({ completeMessage, orderInfo, handleLookUp, order
 
 const Wrapper = styled.div`
   position: relative;
-  width: 1219px;
+  width: 90%;
+  min-width: 453px;
+  max-width: 1219px;
   margin: 0 auto;
 `;
+
+const CompleteTitleBox = styled.div`
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+`;
+
 const CompleteImage = styled.img`
-  margin: 81px 0 0 555px;
+  margin: 4.5rem auto 0;
+  width: 10%;
+  max-width: 90px;
 `;
 
 const CompleteMessage = styled.h2`
   font-family: 'NotoSansKR-Bold';
-  font-weight: 700;
-  font-size: 44px;
-  line-height: 64px;
+  font-size: 2.4rem;
+  line-height: 4rem;
   color: #6e54e2;
-  margin: 24px 0 0 377px;
+  margin: 1.3rem auto 0;
 `;
 
 const OrderInfoBox = styled.div`
-  position: relative;
+  display: table;
   box-sizing: border-box;
-  width: 1219px;
-  height: 469px;
+  width: 100%;
+  max-width: 900px;
+  min-height: 370px;
+  max-height: 469px;
   background-color: #edeafc;
-  margin-top: 63px;
+  margin: 3rem auto 0;
   border-radius: 15px;
 `;
 
 const OrderInfoContainer = styled.div`
-  position: absolute;
+  display: table-cell;
+  vertical-align: middle;
 `;
 
 const OrderInfo = styled.div`
-  &:first-child {
-    margin: 57px 0 0 99px;
+  &:last-child {
+    margin-bottom: 0;
   }
-  margin: 35px 0 0 99px;
+  margin-bottom: 2%;
   display: flex;
-  height: 43px;
   align-items: center;
 `;
 
 const OrderInfoName = styled.p`
   font-family: 'NotoSansKR-Bold';
-  font-weight: 700;
-  font-size: 30px;
-  width: 130px;
+  font-size: 1.75rem;
+  width: 30%;
   text-align: center;
-  line-height: 43px;
+  line-height: 2.7rem;
   color: #6e54e2;
 `;
 
 const OrderInfoValue = styled.p`
   font-family: 'NotoSansKR-Medium';
-  font-size: 25px;
-  line-height: 36px;
-  padding-left: 53px;
+  width: 70%;
+  font-size: 1.44rem;
+  line-height: 2.5rem;
 `;
 
 const ButtonWrapper = styled.div`
   display: flex;
-  width: 546px;
-  margin: 0 auto;
 `;
 
 export default OrderCompleteTemplate;
