@@ -6,7 +6,7 @@ import BookData from './BookData';
 export default function BookList(props) {
   const [bookList, setBookList] = useState('');
   const [loading, setLoading] = useState(false);
-  const { categoryId, page } = props;
+  const { categoryId, page, sortedPage } = props;
   const perPage = 4;
 
   useEffect(() => {
@@ -15,7 +15,8 @@ export default function BookList(props) {
         params: {
           category: categoryId,
           page,
-          perPage
+          perPage,
+          sortedBy: sortedPage
         }
       });
       console.log(res.data);
@@ -23,7 +24,7 @@ export default function BookList(props) {
       setLoading(true);
     }
     getData();
-  }, [categoryId, page]);
+  }, [categoryId, page, sortedPage]);
 
   return (
     <BookDataList>

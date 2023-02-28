@@ -13,6 +13,11 @@ export default function CategoryPage() {
   const [title, setTitle] = useState('loading..');
   const [description, setDescription] = useState('loading..');
   const [page, setPage] = useState(1);
+  const [sortedPage, setSortedPage] = useState(0);
+
+  const changeSortedPage = (nextSort) => {
+    setSortedPage(nextSort.target.value);
+  };
 
   const changePage = (nextPage) => {
     setPage(nextPage);
@@ -42,7 +47,13 @@ export default function CategoryPage() {
   // 페이지 초기화
   useEffect(() => {
     setPage(1);
+    // setSortedPage(0);
   }, [id]);
+
+  useEffect(() => {
+    console.log(sortedPage);
+    setPage(1);
+  }, [sortedPage]);
 
   // 추천순, 재고순 클릭시 페이지초기화를 같이 해줘야한다.
 
@@ -59,9 +70,9 @@ export default function CategoryPage() {
           {description}
         </pre>
         <div style={{ width: '100%', marginLeft: '85%' }}>
-          <DropBox />
+          <DropBox changeSortedPage={changeSortedPage} sortedPage={sortedPage} />
         </div>
-        <BookList categoryId={id} page={page} />
+        <BookList categoryId={id} page={page} sortedPage={sortedPage} />
       </TitleDescription>
       <PagenationList changePage={changePage} page={page} category={id} />
       <Footer />

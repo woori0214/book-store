@@ -1,35 +1,19 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import styled from 'styled-components';
 
-export default function DropBoxes() {
+export default function DropBoxes(props) {
+  const { changeSortedPage, sortedPage } = props;
+  useEffect(() => {}, []);
+
   return (
-    <Select style={{ right: '100px' }}>
-      <option value="update">최신순</option>
-      <option value="recommend">추천순</option>
-      <option value="lowerPrice">낮은가격순</option>
-      <option value="higherPrice">높은가격순</option>
+    <Select style={{ right: '100px' }} onChange={changeSortedPage} value={sortedPage}>
+      <option value="0">최신순</option>
+      <option value="1">추천순</option>
+      <option value="2">낮은가격순</option>
+      <option value="3">높은가격순</option>
     </Select>
   );
 }
-
-const Choice = [
-  { value: 'update', name: '최신순' },
-  { value: 'recommend', name: '추천순' },
-  { value: 'lowerPrice', name: '낮은가격순' },
-  { value: 'higherPrice', name: '높은가격순' }
-];
-
-const SelectBox = (props) => {
-  return (
-    <select>
-      {props.select.map((option) => (
-        <option key={option.value} value={option.value}>
-          {option.name}
-        </option>
-      ))}
-    </select>
-  );
-};
 
 const Select = styled.select`
   margin: 0;
