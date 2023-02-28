@@ -90,6 +90,8 @@ function OrderList({ ordererInfo }) {
           width="15%"
           minWidth="120px"
           height="3rem"
+          fontSize="1.4rem"
+          lineHeight="36px"
           borderRadius="10px"
           margin="1.7rem 0 0 2rem"
           onClick={handleOrder}

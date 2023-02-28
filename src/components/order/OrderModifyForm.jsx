@@ -74,6 +74,8 @@ function OrderModifyForm({ initialOrdererInfo, orderId }) {
         borderColor="#9E8CEC"
         width="120px"
         height="50px"
+        fontSize="1.3rem"
+        lineHeight="2.5rem"
         borderRadius="15px"
         margin="2.5rem auto 0"
         onClick={handleModifyComplete}
