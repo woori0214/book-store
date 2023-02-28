@@ -13,8 +13,8 @@ export const ButtonContainer = styled.button`
   border-radius: ${(props) => props.borderRadius || '30px'};
   background: #ffffff;
   font-family: 'NotoSansKR-Regular';
-  font-size: 20px;
-  line-height: 29px;
+  font-size: ${(props) => props.fontSize || '30px'};
+  line-height: ${(props) => props.lineHeight || '29px'};
   margin: ${(props) => props.margin || '0'};
   cursor: pointer;
 `;

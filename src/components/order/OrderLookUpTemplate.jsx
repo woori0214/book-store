@@ -48,160 +48,142 @@ function OrderLookUpTemplate({ title, orderInfo }) {
   return (
     <>
       <PageTitle title={title} />
-      <OrderInfoTable>
-        <OrderInfoLabelSection>
-          <div className="item">주문 일자</div>
-          <div className="item">주문 번호</div>
-          <div className="item">상품 정보</div>
-          <div className="item">주문 총액</div>
-          <div className="item">주문 처리 상태</div>
-          <div className="item">주문 취소 / 수정</div>
-        </OrderInfoLabelSection>
-        {/* DB연동 후 key값 orderId로 바꿀 예정 (index 사용 x) */}
-        <OrderInfoDataSection>
-          <>
-            {orderInfo.slice(offset, offset + limit).map((obj, index) => {
-              return (
-                <div key={index} className="row">
-                  {Object.entries(obj).map(([key, value]) => {
-                    return (
-                      <div key={key} className="item">
-                        {key === 'orderDate' ? format(new Date(value), 'yyyy-MM-dd hh:mm:ss') : value}
-                      </div>
-                    );
-                  })}
-                  <div className="item">
-                    <CommonButton
-                      buttonTitle="취소"
-                      width="68px"
-                      height="35px"
-                      borderRadius="20px"
-                      borderColor="#9E8CEC"
-                      onClick={() => handleCancel(obj)}
-                      isDisabled={
-                        obj.orderStatus === '취소' || obj.orderStatus === '배송중' || obj.orderStatus === '배송완료'
-                      }
-                    />
-                    <CommonButton
-                      buttonTitle="수정"
-                      width="68px"
-                      height="35px"
-                      borderRadius="20px"
-                      margin=" 0 0 0 8px"
-                      onClick={() => handleModify(obj)}
-                      isDisabled={
-                        obj.orderStatus === '취소' || obj.orderStatus === '배송중' || obj.orderStatus === '배송완료'
-                      }
-                    />
-                  </div>
-                </div>
-              );
-            })}
-          </>
-        </OrderInfoDataSection>
-      </OrderInfoTable>
-      <Pagination totalItemCount={orderInfo.length} limit={limit} page={page} setPage={setPage} />
+      {orderInfo.length === 0 ? (
+        <EmptyOrder>주문 내역이 없습니다.</EmptyOrder>
+      ) : (
+        <>
+          <OrderInfoTable>
+            <thead>
+              <OrderInfoLabelSection>
+                <OrderInfoTh>주문 일자</OrderInfoTh>
+                <OrderInfoTh>주문 번호</OrderInfoTh>
+                <OrderInfoTh>상품 정보</OrderInfoTh>
+                <OrderInfoTh>주문 총액</OrderInfoTh>
+                <OrderInfoTh>주문 처리 상태</OrderInfoTh>
+                <OrderInfoTh>주문 취소 / 수정</OrderInfoTh>
+              </OrderInfoLabelSection>
+            </thead>
+            <tbody>
+              <>
+                {orderInfo.slice(offset, offset + limit).map((obj) => {
+                  return (
+                    <OrderInfoTr key={obj.orderNumber}>
+                      {Object.entries(obj).map(([key, value]) => {
+                        return (
+                          <OrderInfoTd key={key}>
+                            {key === 'orderDate' ? format(new Date(value), 'yyyy-MM-dd hh:mm:ss') : value}
+                          </OrderInfoTd>
+                        );
+                      })}
+                      <OrderInfoTd>
+                        <CommonButton
+                          buttonTitle="취소"
+                          fontSize="0.8rem"
+                          width="46px"
+                          height="26px"
+                          lineHeight="14px"
+                          borderRadius="10px"
+                          borderColor="#9E8CEC"
+                          onClick={() => handleCancel(obj)}
+                          isDisabled={
+                            obj.orderStatus === '취소' || obj.orderStatus === '배송중' || obj.orderStatus === '배송완료'
+                          }
+                        />
+                        <CommonButton
+                          buttonTitle="수정"
+                          fontSize="0.8rem"
+                          width="46px"
+                          height="26px"
+                          lineHeight="14px"
+                          borderRadius="10px"
+                          margin=" 0 0 0 8px"
+                          onClick={() => handleModify(obj)}
+                          isDisabled={
+                            obj.orderStatus === '취소' || obj.orderStatus === '배송중' || obj.orderStatus === '배송완료'
+                          }
+                        />
+                      </OrderInfoTd>
+                    </OrderInfoTr>
+                  );
+                })}
+              </>
+            </tbody>
+          </OrderInfoTable>
+          <Pagination totalItemCount={orderInfo.length} limit={limit} page={page} setPage={setPage} />
+        </>
+      )}
     </>
   );
 }
 
-const OrderInfoTable = styled.div`
-  display: flex;
-  flex-direction: column;
-  max-width: 1300px;
-  width: 70%;
-  height: auto;
-  margin: 84px auto 0;
-  border-collapse: collapse;
-  box-sizing: border-box;
+const EmptyOrder = styled.div`
+  height: 300px;
+  font-family: 'NotoSansKR';
+  font-size: 30px;
+  line-height: 200px;
+  text-align: center;
+`;
+
+const OrderInfoTable = styled.table`
+  width: 80%;
+  max-width: 800px;
+  margin: 40px auto 50px;
   border: 1px solid #d0c5fe;
   overflow: hidden;
 `;
 
-const OrderInfoLabelSection = styled.div`
-  display: flex;
+const OrderInfoLabelSection = styled.tr`
   width: 100%;
-  height: 77px;
+  height: 50px;
+  align-items: center;
+  border: 1px solid #d0c5fe;
   font-family: 'NotoSansKR-Medium';
-  background-color: #edeafc;
-  font-size: 23px;
-  line-height: 33px;
-  border-bottom: 1px solid #d0c5fe;
-  box-sizing: border-box;
-
-  .item {
-    display: flex;
-    height: inherit;
-    justify-content: center;
-    align-items: center;
-    border-left: 1px solid #d0c5fe;
-    &:first-child {
-      border-left: none;
-      width: 12%;
-    }
-    &:nth-child(2) {
-      width: 25%;
-    }
-    &:nth-child(3) {
-      width: 22%;
-    }
-    &:nth-child(4) {
-      width: 13%;
-    }
-    &:nth-child(5) {
-      width: 13%;
-    }
-    &:nth-child(6) {
-      width: 15%;
-    }
+  font-size: 1rem;
+  line-height: 2rem;
+  &:first-child {
+    background-color: #edeafc;
   }
 `;
-const OrderInfoDataSection = styled.div`
-  display: flex;
-  flex-direction: column;
-  font-family: 'NotoSansKR-Regular';
-  font-size: 22px;
-  line-height: 32px;
-  width: 100%;
-  .row {
-    display: flex;
-    width: 100%;
-    min-height: 89px;
 
-    .item {
-      overflow: hidden;
-      display: flex;
-      text-align: center;
-      justify-content: center;
-      align-items: center;
-      border-left: 1px solid #d0c5fe;
-
-      &:first-child {
-        border-left: none;
-        width: 12%;
-      }
-      &:nth-child(2) {
-        width: 25%;
-      }
-      &:nth-child(3) {
-        width: 22%;
-      }
-      &:nth-child(4) {
-        width: 13%;
-      }
-      &:nth-child(5) {
-        width: 13%;
-      }
-      &:nth-child(6) {
-        width: 15%;
-      }
-    }
-    border-bottom: 1px solid #d0c5fe;
-
-    &:last-child {
-      border-bottom: none;
-    }
+const OrderInfoTh = styled.th`
+  border: 1px solid #d0c5fe;
+  font-family: 'NotoSansKR-bold';
+  text-align: center;
+  vertical-align: middle;
+  line-height: 130%;
+  &:first-child {
+    width: 12%;
   }
+  &:nth-child(2) {
+    width: 21%;
+  }
+  &:nth-child(3) {
+    width: 17%;
+  }
+  &:nth-child(4) {
+    width: 12%;
+  }
+  &:nth-child(5) {
+    width: 13%;
+  }
+  &:nth-child(6) {
+    width: 15%;
+  }
+`;
+
+const OrderInfoTr = styled.tr`
+  border: 1px solid #d0c5fe;
+  height: 50px;
+`;
+
+const OrderInfoTd = styled.td`
+  border: 1px solid #d0c5fe;
+  height: 40px;
+  vertical-align: middle;
+  text-align: center;
+  font-family: 'NotoSansKR-Medium';
+  font-size: 0.8rem;
+  line-height: 1rem;
 `;
 
 export default OrderLookUpTemplate;

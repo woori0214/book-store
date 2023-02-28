@@ -31,7 +31,7 @@ const Nav = styled.nav`
   display: flex;
   justify-content: center;
   align-items: center;
-  margin-top: 50px;
+  margin-top: 1rem;
   gap: 4px;
 `;
 
@@ -39,7 +39,7 @@ const Button = styled.button`
   box-sizing: border-box;
   border: 1px solid #9e8cec;
   border-radius: 3px;
-  padding: 10px;
+  padding: 0.5rem;
   margin: 0;
   background: white;
   color: black;
@@ -67,7 +67,6 @@ const Button = styled.button`
 
   &[aria-current] {
     color: white;
-    /* background: rgb(170, 170, 170); */
     background: #d4caff;
     cursor: revert;
   }

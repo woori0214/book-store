@@ -13,7 +13,9 @@ function Button({
   isDisabled,
   maxWidth,
   minWidth,
-  maxHeight
+  maxHeight,
+  fontSize,
+  lineHeight
 }) {
   return (
     <ButtonContainer
@@ -28,6 +30,8 @@ function Button({
       margin={margin}
       onClick={onClick}
       disabled={isDisabled}
+      fontSize={fontSize}
+      lineHeight={lineHeight}
     >
       {buttonTitle}
     </ButtonContainer>
