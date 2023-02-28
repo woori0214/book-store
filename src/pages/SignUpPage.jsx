@@ -11,36 +11,36 @@ function SignUpPage() {
 
   const [warningEmail, setWarningEmail] = useState({
     visible: true,
-    message: '',
+    message: ''
   });
 
   const [password, setPassword] = useState('');
   const [passwordConfirm, setPasswordConfirm] = useState('');
   const [warningPassword, setWarningPassword] = useState({
     visible: true,
-    message: '',
+    message: ''
   });
   const [warningPasswordConfirm, setWarningPasswordConfirm] = useState({
     visible: true,
-    message: '',
+    message: ''
   });
 
   const [name, setName] = useState('');
   const [warningName, setWarningName] = useState({
     visible: true,
-    message: '',
+    message: ''
   });
 
   const [phone, setPhone] = useState('');
   const [warningPhone, setWarningPhone] = useState({
     visible: true,
-    message: '',
+    message: ''
   });
 
   const [address, setAddress] = useState('');
   const [warningAddress, setWarningAddress] = useState({
     visible: true,
-    message: '',
+    message: ''
   });
 
   // 취소 버튼 클릭시
@@ -61,11 +61,7 @@ function SignUpPage() {
 
     if (
       email.length <= 5 ||
-      !email.match(
-        new RegExp(
-          /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i
-        )
-      )
+      !email.match(new RegExp(/^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i))
     ) {
       newWarning.visible = true;
       newWarning.message = '5~30자의 이메일 형식으로 입력해주세요.';
@@ -89,13 +85,9 @@ function SignUpPage() {
 
       return setWarningPassword(newWarning);
     }
-    if (
-      password.length <= 8 ||
-      password.match(new RegExp(/[^0-9a-zA-Z?!]/)) !== null
-    ) {
+    if (password.length <= 8 || password.match(new RegExp(/[^0-9a-zA-Z?!]/)) !== null) {
       newWarning.visible = true;
-      newWarning.message =
-        '8~16자의 영문 소문자, 숫자와 ?!기호만 사용 가능합니다';
+      newWarning.message = '8~16자의 영문 소문자, 숫자와 ?!기호만 사용 가능합니다';
 
       return setWarningPassword(newWarning);
     }
@@ -151,14 +143,9 @@ function SignUpPage() {
       return setWarningPhone(newWarning);
     }
 
-    if (
-      phone.match(
-        new RegExp(/^01([0|1|6|7|8|9])-?([0-9]{3,4})-?([0-9]{4})$/)
-      ) === null
-    ) {
+    if (phone.match(new RegExp(/^01([0|1|6|7|8|9])-?([0-9]{3,4})-?([0-9]{4})$/)) === null) {
       newWarning.visible = true;
-      newWarning.message =
-        '010-0000-0000 이나 010-000-0000 형식으로 입력해주세요.';
+      newWarning.message = '010-0000-0000 이나 010-000-0000 형식으로 입력해주세요.';
 
       return setWarningPhone(newWarning);
     }
@@ -201,17 +188,17 @@ function SignUpPage() {
       email,
       password,
       phone,
-      address,
+      address
     };
 
     await axios
       .post(`${baseURL}/users`, body)
-      .then(response => {
+      .then((response) => {
         alert('회원가입이 정상적으로 완료 되었습니다.');
         navigate('/login');
         console.log(response);
       })
-      .catch(error => {
+      .catch((error) => {
         console.log(error);
         alert('이미 가입한 회원 입니다.');
       });
@@ -229,12 +216,10 @@ function SignUpPage() {
               id="id"
               maxLength="30"
               value={email}
-              onChange={e => setEmail(e.target.value)}
+              onChange={(e) => setEmail(e.target.value)}
               onBlur={handleIdInputBlur}
             />
-            {warningEmail.visible && (
-              <WarningMessage>{warningEmail.message}</WarningMessage>
-            )}
+            {warningEmail.visible && <WarningMessage>{warningEmail.message}</WarningMessage>}
           </SignUpList>
           <SignUpList>
             <SignUpLabel htmlFor="password">비밀번호</SignUpLabel>
@@ -243,12 +228,10 @@ function SignUpPage() {
               id="password"
               maxLength="16"
               value={password}
-              onChange={e => setPassword(e.target.value)}
+              onChange={(e) => setPassword(e.target.value)}
               onBlur={handlePasswordInputBlur}
             />
-            {warningPassword.visible && (
-              <WarningMessage>{warningPassword.message}</WarningMessage>
-            )}
+            {warningPassword.visible && <WarningMessage>{warningPassword.message}</WarningMessage>}
           </SignUpList>
           <SignUpList>
             <SignUpLabel htmlFor="confirmPassword">비밀번호 확인</SignUpLabel>
@@ -256,12 +239,10 @@ function SignUpPage() {
               type="password"
               id="confirmPassword"
               value={passwordConfirm}
-              onChange={e => setPasswordConfirm(e.target.value)}
+              onChange={(e) => setPasswordConfirm(e.target.value)}
               onBlur={handlePasswordConfirmInputBlur}
             />
-            {warningPasswordConfirm.visible && (
-              <WarningMessage>{warningPasswordConfirm.message}</WarningMessage>
-            )}
+            {warningPasswordConfirm.visible && <WarningMessage>{warningPasswordConfirm.message}</WarningMessage>}
           </SignUpList>
           <SignUpList>
             <SignUpLabel htmlFor="name">이름</SignUpLabel>
@@ -269,12 +250,10 @@ function SignUpPage() {
               type="text"
               id="name"
               value={name}
-              onChange={e => setName(e.target.value)}
+              onChange={(e) => setName(e.target.value)}
               onBlur={handleNameInputBlur}
             />
-            {warningName.visible && (
-              <WarningMessage>{warningName.message}</WarningMessage>
-            )}
+            {warningName.visible && <WarningMessage>{warningName.message}</WarningMessage>}
           </SignUpList>
           <SignUpList>
             <SignUpLabel htmlFor="phone">휴대폰 번호</SignUpLabel>
@@ -282,12 +261,10 @@ function SignUpPage() {
               type="text"
               id="phone"
               value={phone}
-              onChange={e => setPhone(e.target.value)}
+              onChange={(e) => setPhone(e.target.value)}
               onBlur={handlePhoneInputBlur}
             />
-            {warningPhone.visible && (
-              <WarningMessage>{warningPhone.message}</WarningMessage>
-            )}
+            {warningPhone.visible && <WarningMessage>{warningPhone.message}</WarningMessage>}
           </SignUpList>
           <SignUpList>
             <SignUpLabel htmlFor="address">주소</SignUpLabel>
@@ -295,26 +272,14 @@ function SignUpPage() {
               type="text"
               id="address"
               value={address}
-              onChange={e => setAddress(e.target.value)}
+              onChange={(e) => setAddress(e.target.value)}
               onBlur={handleAddressInputBlur}
             />
-            {warningAddress.visible && (
-              <WarningMessage>{warningAddress.message}</WarningMessage>
-            )}
+            {warningAddress.visible && <WarningMessage>{warningAddress.message}</WarningMessage>}
           </SignUpList>
         </SignUpListContainer>
-        <Button
-          type="submit"
-          buttonTitle="취소"
-          margin="0 60px"
-          onClick={handleCancel}
-        />
-        <Button
-          type="button"
-          buttonTitle="가입하기"
-          margin="0 60px"
-          onClick={handleSignUp}
-        />
+        <Button type="submit" buttonTitle="취소" margin="0 60px" onClick={handleCancel} />
+        <Button type="button" buttonTitle="가입하기" margin="0 60px" onClick={handleSignUp} />
       </SignUpContainer>
     </>
   );

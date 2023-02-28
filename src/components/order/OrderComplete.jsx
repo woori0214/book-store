@@ -9,11 +9,11 @@ function OrderComplete({ completeMessage, order }) {
   console.log('orderData', orderData);
 
   const orderInfo = {
-    주문번호: `${orderData.orderItem[0].orderID}`,
-    주문자명: `${orderData.order.userName}`,
-    배송지: `${orderData.order.address}`,
-    연락처: `${orderData.order.phone}`,
-    이메일: `${orderData.order.email}`
+    주문번호: orderData.orderItem[0].orderID,
+    주문자명: orderData.order.userName,
+    배송지: orderData.order.address,
+    연락처: orderData.order.phone,
+    이메일: orderData.order.email
   };
 
   const handleLookUp = async () => {

@@ -14,36 +14,57 @@ function OrderList({ ordererInfo }) {
   const totalPrice = calculatePrice(orderItemList);
 
   const handleOrder = async () => {
-    try {
-      const response = await Api.post('/orders', {
-        userName: `${ordererInfo.ordererName}`,
-        email: `${ordererInfo.ordererEmail}`,
-        phone: `${ordererInfo.ordererPhone}`,
-        address: `${ordererInfo.ordererAddress}`,
-        orderItemList,
-        totalPrice,
-        userID: '63f7c9e661dcba07b90725f2'
-      });
+    if (!ordererInfo.ordererName) {
+      alert('주문자명을 입력해주세요');
+    } else if (!ordererInfo.ordererEmail) {
+      alert('이메일을 입력해주세요');
+    } else if (!ordererInfo.ordererPhone) {
+      alert('연락처를 입력해주세요');
+    } else if (!ordererInfo.ordererPhone) {
+      alert('배송지를 입력해주세요');
+    } else {
+      try {
+        const isUser = localStorage.getItem('Auth');
+        console.log('isUser', isUser);
+        console.log('isUserCheck', isUser !== null);
+        if (isUser !== null) {
+          const response = await Api.post('/orders', {
+            userName: `${ordererInfo.ordererName}`,
+            email: `${ordererInfo.ordererEmail}`,
+            phone: `${ordererInfo.ordererPhone}`,
+            address: `${ordererInfo.ordererAddress}`,
+            orderItemList,
+            totalPrice
+          });
 
-      console.log('resData', response);
+          console.log('resData', response);
 
-      if (!ordererInfo.ordererName) {
-        alert('주문자명을 입력해주세요');
-      } else if (!ordererInfo.ordererEmail) {
-        alert('이메일을 입력해주세요');
-      } else if (!ordererInfo.ordererPhone) {
-        alert('연락처를 입력해주세요');
-      } else if (!ordererInfo.ordererPhone) {
-        alert('배송지를 입력해주세요');
-      } else {
-        navigate('/orderComplete', {
-          state: {
-            orderData: response.data
-          }
-        });
+          navigate('/orderComplete', {
+            state: {
+              orderData: response.data
+            }
+          });
+        } else {
+          const response = await Api.post('/orders/nomemberorder', {
+            userName: `${ordererInfo.ordererName}`,
+            email: `${ordererInfo.ordererEmail}`,
+            phone: `${ordererInfo.ordererPhone}`,
+            address: `${ordererInfo.ordererAddress}`,
+            orderItemList,
+            totalPrice
+          });
+
+          console.log('nonUserResData', response);
+
+          navigate('/orderComplete', {
+            state: {
+              orderData: response.data
+            }
+          });
+        }
+      } catch (err) {
+        console.log(err);
       }
-    } catch (err) {
-      console.log(err);
     }
   };
 

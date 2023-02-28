@@ -1,11 +1,11 @@
 import axios from 'axios';
 
 const instance = axios.create({
-  baseURL: 'http://elice.iptime.org:5500',
+  baseURL: 'http://elice.iptime.org:5500'
 });
 
 instance.interceptors.request.use(
-  config => {
+  (config) => {
     const token = localStorage.getItem('Auth');
     console.log(token);
     try {
@@ -19,7 +19,7 @@ instance.interceptors.request.use(
     }
     return config;
   },
-  error => {
+  (error) => {
     return Promise.reject(error);
   }
 );

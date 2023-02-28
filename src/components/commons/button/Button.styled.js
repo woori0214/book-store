@@ -3,7 +3,7 @@ import styled from 'styled-components';
 export const ButtonContainer = styled.button`
   box-sizing: border-box;
   width: ${(props) => props.width || '163px'};
-  min-width: ${(props) => props.minWidth || '163px'};
+  min-width: ${(props) => props.minWidth || null};
   max-width: ${(props) => props.maxWidth || '163px'};
   height: ${(props) => props.height || '64px'};
   max-height: ${(props) => props.maxHeight || '64px'};

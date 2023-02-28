@@ -71,7 +71,7 @@ const FormInput = styled.div`
   }
 `;
 
-const InputTitle = styled.span`
+const InputTitle = styled.label`
   font-family: 'NotoSansKR-Bold';
   font-size: 1.1rem;
   line-height: 27px;
