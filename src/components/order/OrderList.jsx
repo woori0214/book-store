@@ -75,11 +75,11 @@ function OrderList({ ordererInfo }) {
         {orderItemList.map((item) => (
           <OrderItem key={item.id}>
             <OrderItemImage src={`${item.imageURL}`} alt="도서 이미지" width="100px" height=" 100px" />
-            <div>
+            <OrderItemInfoBox>
               <OrderItemInfo>{item.title}</OrderItemInfo>
               <OrderItemInfo>{`수량: ${item.stock}`}</OrderItemInfo>
               <OrderItemInfo>{`${item.price} 원`}</OrderItemInfo>
-            </div>
+            </OrderItemInfoBox>
           </OrderItem>
         ))}
       </OrderListWrapper>
@@ -102,6 +102,7 @@ function OrderList({ ordererInfo }) {
 const Wrapper = styled.div`
   position: absolute;
   width: 100%;
+  max-width: 900px;
   margin: 2.5rem auto 0;
 `;
 
@@ -111,18 +112,20 @@ const OrderListWrapper = styled.div`
   width: 100%;
   max-width: 1000px;
   height: auto;
-  max-height: 370px;
+  max-height: 235px;
   border-radius: 15px;
   background-color: white;
   border: 4px solid #edeafc;
   overflow: auto;
+  display: flex;
+  flex-direction: column;
 `;
 
 const OrderItem = styled.div`
   display: flex;
-  margin: 1.6% 0 0 2rem;
+  margin: 1.1% 0 0 2rem;
   &:last-child {
-    margin-bottom: 1.6%;
+    margin-bottom: 1.1%;
   }
 `;
 
@@ -134,15 +137,25 @@ const OrderItemImage = styled.img`
   max-height: 100px;
 `;
 
+const OrderItemInfoBox = styled.div`
+  display: flex;
+  flex-direction: column;
+  vertical-align: middle;
+  justify-content: space-evenly;
+`;
+
 const OrderItemInfo = styled.p`
   &:first-child {
     font-family: 'NotoSansKR-Bold';
-    margin-top: 0.9rem;
   }
-  margin: 0.8rem 0 0 2rem;
+  &:last-child {
+    margin-bottom: 0;
+  }
+  vertical-align: middle;
+  margin: 0 0 0 2rem;
   font-family: 'NotoSansKR-Medium';
-  font-size: 1rem;
-  line-height: 0.8rem;
+  font-size: 0.9rem;
+  line-height: 0.6rem;
 `;
 
 const OrderBottomWrapper = styled.div`

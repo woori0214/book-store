@@ -5,7 +5,6 @@ import OrderForm from 'components/order/OrderForm';
 function OrderPage() {
   return (
     <>
-      <PageTitle title="주문하기" />
       <OrderForm />
     </>
   );

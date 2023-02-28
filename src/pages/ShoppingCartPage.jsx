@@ -16,7 +16,7 @@ const data = [
     rating: '상',
     stock: '1부',
     price: 5400,
-    salePrice: 5400,
+    salePrice: 5400
   },
   {
     id: 2,
@@ -29,8 +29,8 @@ const data = [
     rating: '중',
     stock: '1부',
     price: 6000,
-    salePrice: 6000,
-  },
+    salePrice: 6000
+  }
 ];
 
 localStorage.setItem('books', JSON.stringify(data));
@@ -44,15 +44,12 @@ function ShoppingCartPage() {
   // 장바구니에 추가한 책들의 데이터
   const [books, setBooks] = useState(getInitailValue());
 
-  const totalAmount = useMemo(
-    () => books.reduce((sum, curr) => sum + curr.quantity * curr.price, 0),
-    [books]
-  );
+  const totalAmount = useMemo(() => books.reduce((sum, curr) => sum + curr.quantity * curr.price, 0), [books]);
 
   // 삭제 버튼 클릭시 로직
-  const handleDelete = id => {
+  const handleDelete = (id) => {
     const newBooks = JSON.parse(JSON.stringify(books));
-    const filterBook = newBooks.filter(book => book.id !== id);
+    const filterBook = newBooks.filter((book) => book.id !== id);
 
     localStorage.removeItem('books');
 
@@ -70,8 +67,8 @@ function ShoppingCartPage() {
   };
 
   // 마이너스 버튼 클릭시 로직
-  const handleMinus = id => {
-    const findBookIndex = books.findIndex(book => book.id === id);
+  const handleMinus = (id) => {
+    const findBookIndex = books.findIndex((book) => book.id === id);
     const newBooks = JSON.parse(JSON.stringify(books));
     newBooks[findBookIndex].quantity -= 1;
 
@@ -86,8 +83,8 @@ function ShoppingCartPage() {
   };
 
   // 플러스 버튼 클릭시 로직
-  const handlePlus = id => {
-    const findBookIndex = books.findIndex(book => book.id === id);
+  const handlePlus = (id) => {
+    const findBookIndex = books.findIndex((book) => book.id === id);
     const newBooks = JSON.parse(JSON.stringify(books));
     newBooks[findBookIndex].quantity += 1;
 
@@ -114,14 +111,8 @@ function ShoppingCartPage() {
               </Button>
             </CartHeader>
             <CartList>
-              {books.map(book => (
-                <CartItem
-                  key={book.id}
-                  book={book}
-                  onDelete={handleDelete}
-                  onMinus={handleMinus}
-                  onPlus={handlePlus}
-                />
+              {books.map((book) => (
+                <CartItem key={book.id} book={book} onDelete={handleDelete} onMinus={handleMinus} onPlus={handlePlus} />
               ))}
             </CartList>
           </CartContent>

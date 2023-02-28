@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import OrderTemplate from './OrderTemplate';
 import OrderList from './OrderList';
 import OrderFormTemplate from './OrderFormTemplate';
+import PageTitle from 'components/commons/pageTitle/PageTitle';
 
 function OrderForm() {
   const [ordererInfo, setOrdererInfo] = useState({
@@ -21,19 +22,24 @@ function OrderForm() {
   };
 
   return (
-    <Wrapper>
-      <OrderTemplate templateTitle="주문정보" />
-      <OrderFormTemplate handleChange={handleChange} ordererInfo={ordererInfo} />
-      <OrderList ordererInfo={ordererInfo} />
-    </Wrapper>
+    <>
+      <PageTitle title="주문하기" />
+      <Wrapper>
+        <OrderTemplate templateTitle="주문정보" />
+        <OrderFormTemplate handleChange={handleChange} ordererInfo={ordererInfo} />
+
+        <OrderList ordererInfo={ordererInfo} />
+      </Wrapper>
+    </>
   );
 }
 
 const Wrapper = styled.div`
   position: relative;
   width: 90%;
-  max-width: 1020px;
-  margin: 3% auto 0;
+  min-width: 453px;
+  max-width: 920px;
+  margin: 1.5rem auto 0;
 `;
 
 export default OrderForm;
