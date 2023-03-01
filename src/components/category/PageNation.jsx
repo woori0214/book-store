@@ -9,8 +9,9 @@ export default function PageList(props) {
   const perPage = 4;
 
   useEffect(() => {
+    console.log('category', category);
     async function getData() {
-      const res = await axios.get('http://localhost:8080/books/countBookByCategory', {
+      const res = await axios.get('http://elice.iptime.org:8080/books/countBookByCategory', {
         params: {
           category
         }
