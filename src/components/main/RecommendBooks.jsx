@@ -14,7 +14,7 @@ export default function RecommendBooks() {
             alt=""
             style={{
               width: '12vw',
-              height: '27vh',
+              height: '27vh'
             }}
           />
         </BookSpan>
@@ -24,7 +24,7 @@ export default function RecommendBooks() {
             alt=""
             style={{
               width: '12vw',
-              height: '27vh',
+              height: '27vh'
             }}
           />
         </BookSpan>
@@ -34,7 +34,7 @@ export default function RecommendBooks() {
             alt=""
             style={{
               width: '12vw',
-              height: '27vh',
+              height: '27vh'
             }}
           />
         </BookSpan>
@@ -44,7 +44,7 @@ export default function RecommendBooks() {
             alt=""
             style={{
               width: '12vw',
-              height: '27vh',
+              height: '27vh'
             }}
           />
         </BookSpan>

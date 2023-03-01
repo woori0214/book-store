@@ -6,7 +6,7 @@ function PageTitle({ title }) {
 }
 
 PageTitle.defaultProps = {
-  title: '페이지 제목',
+  title: '페이지 제목'
 };
 
 export default PageTitle;
