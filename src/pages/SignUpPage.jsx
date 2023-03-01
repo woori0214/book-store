@@ -3,8 +3,6 @@ import styled from 'styled-components';
 import PageTitle from '../components/commons/pageTitle/PageTitle';
 import Button from '../components/commons/button/Button';
 import { useNavigate } from 'react-router-dom';
-import Nav from 'components/commons/Nav';
-import Footer from 'components/commons/Footer';
 import axios from 'axios';
 
 function SignUpPage() {
@@ -218,7 +216,6 @@ function SignUpPage() {
 
   return (
     <>
-      <Nav />
       <PageTitle title="회원가입" />
       <SignUpContainer>
         <SignUpListContainer>
@@ -301,7 +298,6 @@ function SignUpPage() {
         <Button type="submit" buttonTitle="취소" margin="0 60px" onClick={handleCancel} fontSize="22px" />
         <Button type="button" buttonTitle="가입하기" margin="0 60px" onClick={handleSignUp} fontSize="22px" />
       </SignUpContainer>
-      <Footer />
     </>
   );
 }

@@ -74,11 +74,11 @@ function OrderList({ ordererInfo }) {
       <OrderListWrapper>
         {orderItemList.map((item) => (
           <OrderItem key={item.id}>
-            <OrderItemImage src={`${item.imageURL}`} alt="도서 이미지" width="100px" height=" 100px" />
+            <OrderItemImage src={`${item.imageUrl}`} alt="도서 이미지" width="100px" height=" 100px" />
             <OrderItemInfoBox>
               <OrderItemInfo>{item.title}</OrderItemInfo>
-              <OrderItemInfo>{`수량: ${item.stock}`}</OrderItemInfo>
-              <OrderItemInfo>{`${item.price} 원`}</OrderItemInfo>
+              <OrderItemInfo>{`수량: ${item.quantity}`}</OrderItemInfo>
+              <OrderItemInfo>{`${item.salePrice} 원`}</OrderItemInfo>
             </OrderItemInfoBox>
           </OrderItem>
         ))}

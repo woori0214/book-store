@@ -15,11 +15,14 @@ import AdminPage from './pages/AdminPage';
 import NonUserLoginPage from 'pages/NonUserLoginPage';
 import NonUserOrderLookUpPage from 'pages/order/NonUserOrderLookUpPage';
 import ChangePasswordPage from 'pages/ChangePasswordPage';
+import Nav from 'components/commons/Nav';
+import Footer from 'components/commons/Footer';
 
 function Router() {
   return (
     <div className="routes">
       <BrowserRouter>
+        <Nav />
         <Routes>
           <Route path="/" element={<MainPage />} />
           <Route path="/category/:id" element={<CategoryPage />} />
@@ -39,6 +42,7 @@ function Router() {
 
           {/* <Route path="/admin" element={<AdminPage />} /> */}
         </Routes>
+        <Footer />
       </BrowserRouter>
     </div>
   );

@@ -21,19 +21,21 @@ export default function Footer() {
 }
 
 const FooterBox = styled.div`
-  margin-top: 10%;
+  margin-top: 2rem;
   padding: 2%;
+  bottom: 0;
   background-color: #9e8cec;
   font-size: 1.2em;
   width: 100%;
   height: 20%;
-  position: absolute;
 `;
+
 const Logo = styled.p`
   color: #bcb1ea;
   font-size: 1.4em;
   font-weight: bolder;
 `;
+
 const Box = styled.p`
   color: #ffffff;
 `;

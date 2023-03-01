@@ -3,8 +3,6 @@ import styled from 'styled-components';
 import CartItem from '../components/shoppingCart/CartItem';
 import CartAcount from '../components/shoppingCart/CartAccount';
 import PageTitle from '../components/commons/pageTitle/PageTitle';
-import Nav from 'components/commons/Nav';
-import Footer from 'components/commons/Footer';
 
 const getInitailValue = () => {
   const basketItems = localStorage.getItem('books');
@@ -70,7 +68,6 @@ function ShoppingCartPage() {
 
   return (
     <>
-      <Nav />
       <PageTitle title="장바구니" />
       {books.length === 0 ? (
         <EmptyCart>장바구니에 물건을 추가해주세요.</EmptyCart>
@@ -91,7 +88,6 @@ function ShoppingCartPage() {
           <CartAcount totalAmount={totalAmount} />
         </CartWrapper>
       )}
-      <Footer />
     </>
   );
 }
@@ -115,6 +111,8 @@ const CartWrapper = styled.div`
   display: flex;
   width: 60%;
   margin: auto;
+  height: 100%;
+  min-height: 100vh;
 `;
 
 const CartContent = styled.div`
