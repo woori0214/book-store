@@ -20,7 +20,7 @@ export default function Footer() {
   );
 }
 
-const FooterBox = styled.div`
+const FooterBox = styled.footer`
   margin-top: 2rem;
   padding: 2%;
   bottom: 0;
