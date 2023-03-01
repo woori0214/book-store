@@ -6,36 +6,36 @@ import PageTitle from '../components/commons/pageTitle/PageTitle';
 import Nav from 'components/commons/Nav';
 import Footer from 'components/commons/Footer';
 
-const data = [
-  {
-    id: 1,
-    title: '탈무드',
-    author: '이동민(옮긴이)',
-    publisher: '인디북(인디아이)',
-    publicationDate: '2001년 5월',
-    quantity: 1,
-    imageURL: 'images/탈무드.png',
-    rating: '상',
-    stock: '1부',
-    price: 5400,
-    salePrice: 5400
-  },
-  {
-    id: 2,
-    title: '탈무드2',
-    author: '이동민(옮긴이)2',
-    publisher: '인디북(인디아이)2',
-    publicationDate: '2001년 5월2',
-    quantity: 1,
-    imageURL: 'images/book2.jpg',
-    rating: '중',
-    stock: '1부',
-    price: 6000,
-    salePrice: 6000
-  }
-];
+// const data = [
+//   {
+//     id: 1,
+//     title: '탈무드',
+//     author: '이동민(옮긴이)',
+//     publisher: '인디북(인디아이)',
+//     publicationDate: '2001년 5월',
+//     quantity: 1,
+//     imageURL: 'images/탈무드.png',
+//     rating: '상',
+//     stock: '1부',
+//     price: 5400,
+//     salePrice: 5400
+//   },
+//   {
+//     id: 2,
+//     title: '탈무드2',
+//     author: '이동민(옮긴이)2',
+//     publisher: '인디북(인디아이)2',
+//     publicationDate: '2001년 5월2',
+//     quantity: 1,
+//     imageURL: 'images/book2.jpg',
+//     rating: '중',
+//     stock: '1부',
+//     price: 6000,
+//     salePrice: 6000
+//   }
+// ];
 
-localStorage.setItem('books', JSON.stringify(data));
+// localStorage.setItem('books', JSON.stringify(data));
 
 const getInitailValue = () => {
   const basketItems = localStorage.getItem('books');
