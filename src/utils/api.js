@@ -4,7 +4,7 @@ const instance = axios.create({
   baseURL: 'http://elice.iptime.org:8080'
 });
 
-const excludeTokenUrl = ['/login', '/signUp'];
+const excludeTokenUrl = ['/login', '/signUp', '/nonUserLogin', '/nonUserOrderLookUp'];
 
 instance.interceptors.request.use(
   (config) => {
@@ -32,7 +32,7 @@ instance.interceptors.response.use(
     if (error?.response?.status === 401) {
       localStorage.removeItem('Auth');
       // 인증되지 않은 유저의 경우 로그인 페이지로 리다이렉트 처리
-      location.href = '/login';
+      // location.href = '/login';
     }
     return Promise.reject(error);
   }
