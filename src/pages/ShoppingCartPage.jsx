@@ -20,7 +20,7 @@ function ShoppingCartPage() {
   // 삭제 버튼 클릭시 로직
   const handleDelete = (id) => {
     const newBooks = JSON.parse(JSON.stringify(books));
-    const filterBook = newBooks.filter((book) => book.id !== id);
+    const filterBook = newBooks.filter((book) => book._id !== id);
 
     localStorage.removeItem('books');
 
@@ -39,7 +39,7 @@ function ShoppingCartPage() {
 
   // 마이너스 버튼 클릭시 로직
   const handleMinus = (id) => {
-    const findBookIndex = books.findIndex((book) => book.id === id);
+    const findBookIndex = books.findIndex((book) => book._id === id);
     const newBooks = JSON.parse(JSON.stringify(books));
     newBooks[findBookIndex].quantity -= 1;
 
@@ -55,7 +55,7 @@ function ShoppingCartPage() {
 
   // 플러스 버튼 클릭시 로직
   const handlePlus = (id) => {
-    const findBookIndex = books.findIndex((book) => book.id === id);
+    const findBookIndex = books.findIndex((book) => book._id === id);
     const newBooks = JSON.parse(JSON.stringify(books));
     newBooks[findBookIndex].quantity += 1;
 

@@ -3,18 +3,18 @@ import styled from 'styled-components';
 
 function CartItem({ book, onDelete, onMinus, onPlus }) {
   const onClickDelete = () => {
-    onDelete(book.id);
+    onDelete(book._id);
   };
 
   const onClickMinus = () => {
-    if (book.quantity === 0) {
+    if (book.quantity <= 1) {
       return;
     }
-    onMinus(book.id);
+    onMinus(book._id);
   };
 
   const onClickPlus = () => {
-    onPlus(book.id);
+    onPlus(book._id);
   };
 
   return (

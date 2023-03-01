@@ -40,6 +40,7 @@ function CartAcount({ totalAmount }) {
         margin="40px auto"
         onClick={handleOrderButton}
         type="button"
+        fontSize="18px"
       />
     </PaymentArea>
   );
