@@ -19,7 +19,7 @@ function BookInfo() {
           bookID: id
         }
       }).then((response) => response.data);
-      setFoundBook(response);
+      setFoundBook({ ...response, quantity: 1 });
     };
     fetchBooks();
   }, []);
