@@ -5,7 +5,6 @@ export default function BookData(props) {
   const { book } = props;
   const [bookState, setBookState] = useState('');
   const [stateColor, setStateColor] = useState('white');
-  // const [currentPrice, setCurrentPrice] = useState(book.salePrice);
 
   useEffect(() => {
     if (parseInt(book.score) >= 90) {
@@ -22,10 +21,10 @@ export default function BookData(props) {
       <BookImg src={book.imageUrl} alt="" />
       <BookState color={stateColor}>{bookState}</BookState>
       <BookName>{book.title}</BookName>
-      <div>
+      <BookPriceDiv>
         {bookState == 'SAIL' ? <BookOriginPrice>{book.price}</BookOriginPrice> : ''}
         <BookPrice>{book.salePrice}</BookPrice>
-      </div>
+      </BookPriceDiv>
       <BookStock>
         재고
         {book.quantity}
@@ -70,4 +69,11 @@ const BookSpan = styled.span`
   height: 100%;
   padding-right: 5%;
   text-align: center;
+`;
+
+const BookPriceDiv = styled.div`
+  display: flex;
+  text-item: center;
+  justify-content: center;
+  gap: 10px;
 `;
