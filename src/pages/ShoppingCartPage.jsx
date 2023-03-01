@@ -115,7 +115,7 @@ function ShoppingCartPage() {
             </CartHeader>
             <CartList>
               {books.map((book) => (
-                <CartItem key={book.id} book={book} onDelete={handleDelete} onMinus={handleMinus} onPlus={handlePlus} />
+                <CartItem key={bok.id} book={book} onDelete={handleDelete} onMinus={handleMinus} onPlus={handlePlus} />
               ))}
             </CartList>
           </CartContent>
