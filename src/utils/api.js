@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 const instance = axios.create({
-  baseURL: 'http://elice.iptime.org:5500'
+  baseURL: 'http://elice.iptime.org:8080'
 });
 
 instance.interceptors.request.use(
