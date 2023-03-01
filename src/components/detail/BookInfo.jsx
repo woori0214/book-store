@@ -6,6 +6,7 @@ import BookInfoContext from './BookInfoContext';
 
 function BookInfo() {
   const navigate = useNavigate();
+  console.log(foundBook);
 
   const handleAddCart = () => {
     let booksList = JSON.parse(localStorage.getItem('books'));
@@ -37,8 +38,14 @@ function BookInfo() {
       </Suspense>
 
       <ButtonWrapper>
-        <Button buttonTitle="장바구니 추가" borderColor="#9E8CEC" margin="561px 0 0 816px" onClick={handleAddCart} />
-        <Button buttonTitle="바로 결제하기" margin="561px 0 0 40px" onClick={handleOrder} />
+        <Button
+          buttonTitle="장바구니 추가"
+          borderColor="#9E8CEC"
+          margin="561px 0 0 816px"
+          onClick={handleAddCart}
+          fontSize="18px"
+        />
+        <Button buttonTitle="바로 결제하기" margin="561px 0 0 40px" onClick={handleOrder} fontSize="18px" />
       </ButtonWrapper>
     </Wrapper>
   );

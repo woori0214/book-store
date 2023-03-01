@@ -4,19 +4,13 @@ import { useParams } from 'react-router-dom';
 import styled from 'styled-components';
 
 function BookInfoContext() {
-  const [foundBook, setFoundBook] = useState([]);
+  const [foundBook, setFoundBook] = useState();
   const { id } = useParams();
 
   useEffect(() => {
     const fetchBooks = async () => {
-      const response = await Api.get('http://elice.iptime.org:8080/books', {
-        params: {
-          bookID: '63f6c9925b3f904343f3350c'
-        }
-      });
-      console.log(response);
-      const filteredBook = response.data.filter((book) => id === book._id);
-      setFoundBook(filteredBook);
+      const response = await Api.get(`http://elice.iptime.org:8080/books/${id}`).then((response) => response.data);
+      setFoundBook([response]);
     };
     fetchBooks();
   }, []);

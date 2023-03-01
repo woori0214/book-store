@@ -59,9 +59,10 @@ function LoginPage() {
     await axios
       .post(`${baseURL}/auth`, user)
       .then((response) => {
-        const accessToken = response.data;
+        const accessToken = response.data.token;
+        const role = response.data.userRole;
         localStorage.setItem('Auth', accessToken);
-        console.log(response);
+        localStorage.setItem('Role', role);
 
         navigate('/');
       })
