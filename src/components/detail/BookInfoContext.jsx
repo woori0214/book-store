@@ -48,21 +48,23 @@ function BookInfoContext() {
 
 const BookInfoWrapper = styled.div`
   display: flex;
+  width: 90%;
+  margin: 0 auto;
   position: relative;
 `;
 
 const FoundBookImg = styled.img`
-  width: 326px;
-  height: 462px;
-  margin-top: 85px;
+  width: 30%;
+  height: 435px;
+  margin-top: 5.6rem;
 `;
 
 const DescriptionTable = styled.table`
   box-sizing: border-box;
-  width: 761px;
+  width: 70%;
   height: 414px;
   border-top: 4px solid #353535;
-  margin: 100px 0 0 94px;
+  margin: 5.9rem 0 0 4rem;
   border-collapse: collapse;
 `;
 
@@ -76,10 +78,10 @@ const DescriptionTbody = styled.tbody`
 const DescriptionTd = styled.td`
   vertical-align: middle;
   &:first-child {
-    width: 178px;
+    width: 40%;
     text-align: center;
     font-family: ${(props) => (props.bold ? 'NotoSansKR-Bold' : 'NotoSansKR-Regular')};
-    font-size: 30px;
+    font-size: 25px;
     line-height: ${(props) => (props.bold ? '41px' : '43px')};
   }
   margin-left: 28px;
