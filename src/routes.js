@@ -14,6 +14,7 @@ import OrderModifyCompletePage from './pages/order/OrderModifyCompletePage';
 import AdminPage from './pages/AdminPage';
 import NonUserLoginPage from 'pages/NonUserLoginPage';
 import NonUserOrderLookUpPage from 'pages/order/NonUserOrderLookUpPage';
+import ChangePasswordPage from 'pages/ChangePasswordPage';
 
 function Router() {
   return (
@@ -26,7 +27,7 @@ function Router() {
           <Route path="/detail/:id" element={<DetailPage />} />
           <Route path="/login" element={<LoginPage />} />
           <Route path="/nonUserLogin" element={<NonUserLoginPage />} />
-          {/* <Route path="/myPage" element={<MyPage />} /> */}
+          <Route path="/myPage" element={<MyPage />} />
           <Route path="/signUp" element={<SignUpPage />} />
           <Route path="/order" element={<OrderPage />} />
           <Route path="/orderComplete" element={<OrderCompletePage />} />
@@ -34,6 +35,8 @@ function Router() {
           <Route path="/nonUserOrderLookUp" element={<NonUserOrderLookUpPage />} />
           <Route path="/orderModify" element={<OrderModifyPage />} />
           <Route path="/orderModifyComplete" element={<OrderModifyCompletePage />} />
+          <Route path="/changePassword" element={<ChangePasswordPage />} />
+
           {/* <Route path="/admin" element={<AdminPage />} /> */}
         </Routes>
       </BrowserRouter>
