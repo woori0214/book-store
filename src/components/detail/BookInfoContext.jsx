@@ -34,7 +34,7 @@ function BookInfoContext() {
           </tr>
           <tr>
             <DescriptionTd>재고</DescriptionTd>
-            <DescriptionTd>{`${foundBook?.[0]?.quantity} 부`}</DescriptionTd>
+            <DescriptionTd>{`${foundBook?.[0]?.stock} 부`}</DescriptionTd>
           </tr>
           <tr>
             <DescriptionTd>판매가</DescriptionTd>
