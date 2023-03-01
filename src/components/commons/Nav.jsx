@@ -12,7 +12,7 @@ export default function Nav() {
   useEffect(() => {
     async function getData() {
       const res = await axios
-        .get('http://localhost:8080/categories')
+        .get('http://elice.iptime.org:8080/categories')
         .then((res) => {
           console.log(res);
           setCategory(res.data);
@@ -62,6 +62,7 @@ export default function Nav() {
               type="button"
               onClick={() => {
                 localStorage.removeItem('Auth');
+                localStorage.removeItem('Role');
                 navigate('/');
               }}
             >
