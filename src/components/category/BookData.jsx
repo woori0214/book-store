@@ -1,10 +1,12 @@
 import React, { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 
 export default function BookData(props) {
   const { book } = props;
   const [bookState, setBookState] = useState('');
   const [stateColor, setStateColor] = useState('white');
+  const navigate = useNavigate();
 
   useEffect(() => {
     if (parseInt(book.score) >= 90) {
@@ -16,8 +18,12 @@ export default function BookData(props) {
     }
   }, []);
 
+  const handleBookClick = (e) => {
+    navigate(`/detail/${book._id}`);
+  };
+
   return (
-    <BookSpan>
+    <BookSpan onClick={handleBookClick}>
       <BookImg src={book.imageUrl} alt="" />
       <BookState color={stateColor}>{bookState}</BookState>
       <BookName>{book.title}</BookName>
@@ -69,6 +75,11 @@ const BookSpan = styled.span`
   height: 100%;
   padding-right: 5%;
   text-align: center;
+  cursor: pointer;
+  transition: all 0.6s ease;
+  &:hover {
+    transform: scale(1.1);
+  }
 `;
 
 const BookPriceDiv = styled.div`
