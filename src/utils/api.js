@@ -9,8 +9,9 @@ const excludeTokenUrl = ['/login', '/signUp'];
 instance.interceptors.request.use(
   (config) => {
     const token = localStorage.getItem('Auth');
+
     try {
-      if (!excludeTokenUrl(config.url) && token) {
+      if (!excludeTokenUrl.includes(config.url) && token) {
         config.headers['Authorization'] = `Bearer ${token}`;
       }
 
