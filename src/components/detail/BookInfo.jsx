@@ -1,7 +1,7 @@
 import React, { Suspense } from 'react';
 import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
-import Button from '../commons/button/Button';
+import Button from 'components/commons/button/Button';
 import BookInfoContext from './BookInfoContext';
 
 function BookInfo() {
@@ -11,7 +11,7 @@ function BookInfo() {
     let booksList = JSON.parse(localStorage.getItem('books'));
     if (booksList) {
       if (
-        booksList.some(book => {
+        booksList.some((book) => {
           if (book.id === foundBook[0].id) return true;
         })
       ) {
@@ -37,17 +37,8 @@ function BookInfo() {
       </Suspense>
 
       <ButtonWrapper>
-        <Button
-          buttonTitle="장바구니 추가"
-          borderColor="#9E8CEC"
-          margin="561px 0 0 816px"
-          onClick={handleAddCart}
-        />
-        <Button
-          buttonTitle="바로 결제하기"
-          margin="561px 0 0 40px"
-          onClick={handleOrder}
-        />
+        <Button buttonTitle="장바구니 추가" borderColor="#9E8CEC" margin="561px 0 0 816px" onClick={handleAddCart} />
+        <Button buttonTitle="바로 결제하기" margin="561px 0 0 40px" onClick={handleOrder} />
       </ButtonWrapper>
     </Wrapper>
   );

@@ -12,6 +12,8 @@ import OrderLookUpPage from './pages/order/OrderLookUpPage';
 import OrderModifyPage from './pages/order/OrderModifyPage';
 import OrderModifyCompletePage from './pages/order/OrderModifyCompletePage';
 import AdminPage from './pages/AdminPage';
+import NonUserLoginPage from 'pages/NonUserLoginPage';
+import NonUserOrderLookUpPage from 'pages/order/NonUserOrderLookUpPage';
 
 function Router() {
   return (
@@ -23,14 +25,16 @@ function Router() {
           <Route path="/shoppingCart" element={<ShoppingCartPage />} />
           <Route path="/detail/:id" element={<DetailPage />} />
           <Route path="/login" element={<LoginPage />} />
-          <Route path="/myPage" element={<MyPage />} />
+          <Route path="/nonUserLogin" element={<NonUserLoginPage />} />
+          {/* <Route path="/myPage" element={<MyPage />} /> */}
           <Route path="/signUp" element={<SignUpPage />} />
           <Route path="/order" element={<OrderPage />} />
           <Route path="/orderComplete" element={<OrderCompletePage />} />
           <Route path="/orderLookUp" element={<OrderLookUpPage />} />
+          <Route path="/nonUserOrderLookUp" element={<NonUserOrderLookUpPage />} />
           <Route path="/orderModify" element={<OrderModifyPage />} />
           <Route path="/orderModifyComplete" element={<OrderModifyCompletePage />} />
-          <Route path="/admin" element={<AdminPage />} />
+          {/* <Route path="/admin" element={<AdminPage />} /> */}
         </Routes>
       </BrowserRouter>
     </div>

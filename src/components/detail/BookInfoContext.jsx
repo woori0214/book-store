@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import axios from 'axios';
+import Api from 'utils/api';
 import { useParams } from 'react-router-dom';
 import styled from 'styled-components';
 
@@ -9,7 +9,11 @@ function BookInfoContext() {
 
   useEffect(() => {
     const fetchBooks = async () => {
-      const response = await axios.get('http://elice.iptime.org:8080/book/read');
+      const response = await Api.get('http://elice.iptime.org:8080/books', {
+        params: {
+          bookID: '63f6c9925b3f904343f3350c'
+        }
+      });
       console.log(response);
       const filteredBook = response.data.filter((book) => id === book._id);
       setFoundBook(filteredBook);
@@ -26,15 +30,6 @@ function BookInfoContext() {
             <DescriptionTd bold>{foundBook?.[0]?.title}</DescriptionTd>
             <DescriptionTd>{`${foundBook?.[0]?.author} | ${foundBook?.[0]?.publisher}  |  ${foundBook?.[0]?.publishedDate}`}</DescriptionTd>
           </tr>
-
-          {/* {Object.entries(bookInfo).map(([key, value, index]) => (
-          <DescriptionTbody key={index}>
-            <tr key={index}>
-              <DescriptionTd key={key}>{value}</DescriptionTd>
-              <DescriptionTd key={value}>{foundBook?.[0]?.[key]}</DescriptionTd>
-            </tr>
-          </DescriptionTbody>
-        ))} */}
 
           <tr>
             <DescriptionTd>상태</DescriptionTd>

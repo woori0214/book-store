@@ -2,51 +2,70 @@ import React from 'react';
 import styled from 'styled-components';
 import { useNavigate } from 'react-router-dom';
 import OrderTemplate from './OrderTemplate';
-import CommonButton from '../commons/button/Button';
-import api from '../../utils/api';
-import axios from 'axios';
+import CommonButton from 'components/commons/button/Button';
+import Api from 'utils/api';
+import calculatePrice from 'utils/calculatePrice';
 
 function OrderList({ ordererInfo }) {
   const navigate = useNavigate();
 
-  const getOrderItems = localStorage.getItem('books');
-  const orderItemList = JSON.parse(getOrderItems);
+  const orderItems = localStorage.getItem('books');
+  const orderItemList = JSON.parse(orderItems);
+  const totalPrice = calculatePrice(orderItemList);
 
-  const getTotalPrice = localStorage.getItem('totalPrice');
-
-  const handleOrder = () => {
-    const postOrder = async () => {
+  const handleOrder = async () => {
+    if (!ordererInfo.ordererName) {
+      alert('주문자명을 입력해주세요');
+    } else if (!ordererInfo.ordererEmail) {
+      alert('이메일을 입력해주세요');
+    } else if (!ordererInfo.ordererPhone) {
+      alert('연락처를 입력해주세요');
+    } else if (!ordererInfo.ordererPhone) {
+      alert('배송지를 입력해주세요');
+    } else {
       try {
-        const response = await api.post('/users', {
-          userName: `${ordererInfo.ordererName}`,
-          email: `${ordererInfo.ordererEmail}`,
-          phone: `${ordererInfo.ordererPhone}`,
-          address: `${ordererInfo.ordererAddress}`,
-          orderItemList,
-          totalPrice: `${getTotalPrice}`,
-          userDbId: '63f43ffc0c47ceb602b27567'
-        });
+        const isUser = localStorage.getItem('Auth');
+        console.log('isUser', isUser);
+        console.log('isUserCheck', isUser !== null);
+        if (isUser !== null) {
+          const response = await Api.post('/orders', {
+            userName: `${ordererInfo.ordererName}`,
+            email: `${ordererInfo.ordererEmail}`,
+            phone: `${ordererInfo.ordererPhone}`,
+            address: `${ordererInfo.ordererAddress}`,
+            orderItemList,
+            totalPrice
+          });
 
-        console.log('resData', response.data.order);
+          console.log('resData', response);
 
-        if (!ordererInfo.ordererName) {
-          alert('주문자명을 입력해주세요');
-        } else if (!ordererInfo.ordererEmail) {
-          alert('이메일을 입력해주세요');
-        } else if (!ordererInfo.ordererPhone) {
-          alert('연락처를 입력해주세요');
-        } else if (!ordererInfo.ordererPhone) {
-          alert('배송지를 입력해주세요');
-        } else {
           navigate('/orderComplete', {
-            state: response.data.order
+            state: {
+              orderData: response.data
+            }
+          });
+        } else {
+          const response = await Api.post('/orders/nomemberorder', {
+            userName: `${ordererInfo.ordererName}`,
+            email: `${ordererInfo.ordererEmail}`,
+            phone: `${ordererInfo.ordererPhone}`,
+            address: `${ordererInfo.ordererAddress}`,
+            orderItemList,
+            totalPrice
+          });
+
+          console.log('nonUserResData', response);
+
+          navigate('/orderComplete', {
+            state: {
+              orderData: response.data
+            }
           });
         }
       } catch (err) {
         console.log(err);
       }
-    };
-    postOrder();
+    }
   };
 
   return (
@@ -56,21 +75,25 @@ function OrderList({ ordererInfo }) {
         {orderItemList.map((item) => (
           <OrderItem key={item.id}>
             <OrderItemImage src={`${item.imageURL}`} alt="도서 이미지" width="100px" height=" 100px" />
-            <div>
+            <OrderItemInfoBox>
               <OrderItemInfo>{item.title}</OrderItemInfo>
               <OrderItemInfo>{`수량: ${item.stock}`}</OrderItemInfo>
               <OrderItemInfo>{`${item.price} 원`}</OrderItemInfo>
-            </div>
+            </OrderItemInfoBox>
           </OrderItem>
         ))}
       </OrderListWrapper>
       <OrderBottomWrapper>
-        <TotalPrice>{`주문 총액 : ${getTotalPrice} 원`}</TotalPrice>
+        <TotalPrice>{`주문 총액 : ${totalPrice} 원`}</TotalPrice>
         <CommonButton
           buttonTitle="주문하기"
-          height="59px"
-          borderRadius="20px"
-          margin="36px 0 0 37px"
+          width="15%"
+          minWidth="120px"
+          height="3rem"
+          fontSize="1.4rem"
+          lineHeight="36px"
+          borderRadius="10px"
+          margin="1.7rem 0 0 2rem"
           onClick={handleOrder}
         />
       </OrderBottomWrapper>
@@ -79,59 +102,78 @@ function OrderList({ ordererInfo }) {
 }
 
 const Wrapper = styled.div`
-  position: relative;
-  width: 1254px;
-  margin-top: 60px;
-  margin-left: auto;
-  margin-right: auto;
+  position: absolute;
+  width: 100%;
+  max-width: 900px;
+  margin: 2.5rem auto 0;
 `;
 
 const OrderListWrapper = styled.div`
-  margin: 31px 0 0 34px;
+  margin: 1.5rem 0 0 1.2rem;
   box-sizing: border-box;
-  width: 1220px;
-  height: 370px;
+  width: 100%;
+  max-width: 1000px;
+  height: auto;
+  max-height: 235px;
   border-radius: 15px;
   background-color: white;
   border: 4px solid #edeafc;
   overflow: auto;
+  display: flex;
+  flex-direction: column;
 `;
 
 const OrderItem = styled.div`
   display: flex;
-  margin: 57px 0 0 37px;
+  margin: 1.1% 0 0 2rem;
+  &:last-child {
+    margin-bottom: 1.1%;
+  }
 `;
 
 const OrderItemImage = styled.img`
-  width: 100px;
-  height: 100px;
+  width: 8%;
+  height: 1%;
+  min-width: 50px;
+  max-width: 100px;
+  max-height: 100px;
+`;
+
+const OrderItemInfoBox = styled.div`
+  display: flex;
+  flex-direction: column;
+  vertical-align: middle;
+  justify-content: space-evenly;
 `;
 
 const OrderItemInfo = styled.p`
   &:first-child {
-    margin: 10px 0 0 27px;
     font-family: 'NotoSansKR-Bold';
-    font-weight: 700;
   }
-  margin: 5px 0 0 27px;
+  &:last-child {
+    margin-bottom: 0;
+  }
+  vertical-align: middle;
+  margin: 0 0 0 2rem;
   font-family: 'NotoSansKR-Medium';
-  font-size: 16px;
-  line-height: 23px;
+  font-size: 0.9rem;
+  line-height: 0.6rem;
 `;
 
 const OrderBottomWrapper = styled.div`
-  position: relative;
+  position: absolute;
+  width: 100%;
   display: flex;
 `;
 
 const TotalPrice = styled.p`
-  margin: 47px 0 0 821px;
-  width: 244px;
+  margin: 2rem 0 0 0;
+  width: 85%;
   font-family: 'NotoSansKR-Bold';
-  font-weight: 700;
-  font-size: 25px;
+  font-size: 1.4rem;
   line-height: 36px;
   color: #6e54e2;
+  text-align: end;
 `;
 
 export default OrderList;

@@ -27,6 +27,34 @@
       "stock": 5
     }
   ],
+  "books": [
+    {
+      "id": 1,
+      "title": "탈무드",
+      "author": "이동민(옮긴이)",
+      "publisher": "인디북(인디아이)",
+      "publicationDate": "2001년 5월 2일",
+      "imageURL": "/탈무드.png",
+      "condition": "상",
+      "quantity": 1,
+      "price": 5400,
+      "salePrice": 5400,
+      "stock": 5
+    },
+    {
+      "id": 2,
+      "title": "탈무드2",
+      "author": "이동민(옮긴이)2",
+      "publisher": "인디북(인디아이)2",
+      "publicationDate": "2001년 5월 2일",
+      "imageURL": "/탈무드.png",
+      "condition": "중",
+      "quantity": 1,
+      "price": 5400,
+      "salePrice": 5400,
+      "stock": 5
+    }
+  ],
   "orders": [
     {
       "id": "63f472abe53141a5bc348715",
@@ -747,3 +775,9 @@
     }
   ]
 }
+=========
+  "profile": {
+    "name": "typicode"
+  }
+}
+>>>>>>>>> Temporary merge branch 2
