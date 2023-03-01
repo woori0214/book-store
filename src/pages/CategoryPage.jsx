@@ -27,7 +27,7 @@ export default function CategoryPage() {
   useEffect(() => {
     async function getData() {
       const res = await axios
-        .get('http://localhost:8080/categories', {
+        .get('http://elice.iptime.org:8080/categories', {
           params: {
             id
           }
