@@ -39,17 +39,10 @@ function ChangePassword() {
         } else if (changePassword.newPassword !== changePassword.newPasswordConfirm) {
           alert('새 비밀번호가 일치하지 않습니다!');
         } else {
-          const response = await Api.put(
-            '/users/mydetail/password',
-            // userData.name,
-            // userData.email,
-            // userData.address,
-            // userData.phone,
-            {
-              currentPassword: changePassword.currentPassword,
-              newPassword: changePassword.newPassword
-            }
-          );
+          const response = await Api.put('/users/mydetail/password', {
+            currentPassword: changePassword.currentPassword,
+            newPassword: changePassword.newPassword
+          });
           console.log('response', response);
           if (response.data.Error === 'Your password is incorrect') {
             alert('현재 비밀번호가 일치하지 않습니다!');
