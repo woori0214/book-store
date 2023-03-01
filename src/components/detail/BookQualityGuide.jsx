@@ -61,7 +61,8 @@ function BookQualityGuide() {
 
 const Wrapper = styled.div`
   position: relative;
-  width: 1315px;
+  width: 90%;
+  max-width: 1315px;
   height: 600px;
   margin-top: 171px;
   margin-left: auto;

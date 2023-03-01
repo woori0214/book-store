@@ -45,36 +45,42 @@ function BookInfo() {
   };
 
   return (
-    <Wrapper>
-      <Suspense fallback={'Loading...'}>
-        <BookInfoContext />
-      </Suspense>
+    <>
+      <Wrapper>
+        <BookInfoContainer>
+          <Suspense fallback={'Loading...'}>
+            <BookInfoContext />
+          </Suspense>
+        </BookInfoContainer>
 
-      <ButtonWrapper>
-        <Button
-          buttonTitle="장바구니 추가"
-          borderColor="#9E8CEC"
-          margin="561px 0 0 816px"
-          onClick={handleAddCart}
-          fontSize="18px"
-        />
-        <Button buttonTitle="바로 결제하기" margin="561px 0 0 40px" onClick={handleOrder} fontSize="18px" />
-      </ButtonWrapper>
-    </Wrapper>
+        <ButtonWrapper>
+          <Button buttonTitle="장바구니 추가" borderColor="#9E8CEC" onClick={handleAddCart} fontSize="18px" />
+          <Button buttonTitle="바로 결제하기" onClick={handleOrder} fontSize="18px" />
+        </ButtonWrapper>
+      </Wrapper>
+    </>
   );
 }
 
 const Wrapper = styled.div`
   position: relative;
-  display: flex;
-  width: 1181px;
-  margin-top: 0;
+  width: 100%;
+  max-width: 1315px;
   margin: 0 auto;
 `;
 
-const ButtonWrapper = styled.div`
+const BookInfoContainer = styled.div`
+  position: relative;
   display: flex;
-  position: absolute;
+`;
+
+const ButtonWrapper = styled.div`
+  width: 95%;
+  margin-top: 2rem;
+  gap: 1rem;
+  display: flex;
+  justify-content: end;
+  position: relative;
 `;
 
 export default BookInfo;
