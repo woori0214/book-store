@@ -4,28 +4,21 @@ import OrderLookUpTemplate from './OrderLookUpTemplate';
 import Api from 'utils/api';
 
 function UserOrderLookUp() {
-  const [orderCompleteData, setOrderCompleteData] = useState('');
+  const [orderData, setOrderData] = useState('');
   const [isLoading, setIsLoading] = useState(true);
-  const location = useLocation();
-  const orderCompleteUserId = location.state?.orderCompleteUserId;
-  console.log('orderCompleteUserId', orderCompleteUserId);
 
   useEffect(() => {
     const getUserOrderData = async () => {
-      const response = await Api.get(`/users/orders`, {
-        params: {
-          userID: orderCompleteUserId
-        }
-      });
-      setOrderCompleteData(response.data);
+      const response = await Api.get('/users/mydetail/orders');
+      console.log('response', response);
+      setOrderData(response.data);
       setIsLoading(false);
-      console.log(response);
     };
     getUserOrderData();
   }, []);
 
   if (!isLoading) {
-    const orderInfo = orderCompleteData.map((obj) => {
+    const orderInfo = orderData.map((obj) => {
       const orderItemCount = obj.orderItemList.length - 1;
       return {
         orderDate: obj.order.createdAt,
