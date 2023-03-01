@@ -33,7 +33,7 @@ export default function CategoryPage() {
           }
         })
         .then((res) => {
-          console.log(res.data);
+          console.log(res);
           setTitle(res.data.category);
           setDescription(res.data.description);
         })

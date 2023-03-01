@@ -6,10 +6,13 @@ import styled from 'styled-components';
 function BookInfoContext() {
   const [foundBook, setFoundBook] = useState();
   const { id } = useParams();
-
   useEffect(() => {
     const fetchBooks = async () => {
-      const response = await Api.get(`http://elice.iptime.org:8080/books/${id}`).then((response) => response.data);
+      const response = await Api.get(`http://elice.iptime.org:8080/books`, {
+        params: {
+          bookID: id
+        }
+      }).then((response) => response.data);
       setFoundBook([response]);
     };
     fetchBooks();

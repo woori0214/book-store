@@ -1,27 +1,40 @@
-import React, { Suspense } from 'react';
+import React, { Suspense, useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 import Button from 'components/commons/button/Button';
+import Api from 'utils/api';
+import { useParams } from 'react-router-dom';
+
 import BookInfoContext from './BookInfoContext';
 
 function BookInfo() {
   const navigate = useNavigate();
-  console.log(foundBook);
+  const [foundBook, setFoundBook] = useState();
+  const { id } = useParams();
+
+  useEffect(() => {
+    const fetchBooks = async () => {
+      const response = await Api.get(`http://elice.iptime.org:8080/books`, {
+        params: {
+          bookID: id
+        }
+      }).then((response) => response.data);
+      setFoundBook(response);
+    };
+    fetchBooks();
+  }, []);
 
   const handleAddCart = () => {
     let booksList = JSON.parse(localStorage.getItem('books'));
     if (booksList) {
-      if (
-        booksList.some((book) => {
-          if (book.id === foundBook[0].id) return true;
-        })
-      ) {
+      const includeBook = booksList.filter((book) => book._id === id);
+      if (includeBook.length !== 0) {
         alert('동일한 제품이 장바구니에 있습니다.');
         return;
       }
-      booksList.push(foundBook[0]);
+      booksList.push(foundBook);
     } else {
-      booksList = [foundBook[0]];
+      booksList = [foundBook];
     }
     localStorage.setItem('books', JSON.stringify(booksList));
     alert('장바구니에 추가 되었습니다.');

@@ -4,14 +4,14 @@ import styled from 'styled-components';
 import BookData from './BookData';
 
 export default function BookList(props) {
-  const [bookList, setBookList] = useState('');
+  const [bookList, setBookList] = useState([]);
   const [loading, setLoading] = useState(false);
   const { categoryId, page, sortedPage } = props;
   const perPage = 4;
 
   useEffect(() => {
     async function getData() {
-      const res = await axios.get('http://elice.iptime.org:8080/books/readBookByCategory', {
+      const res = await axios.get('http://elice.iptime.org:8080/books/bookCategory', {
         params: {
           category: categoryId,
           page,
@@ -19,7 +19,6 @@ export default function BookList(props) {
           sortedBy: sortedPage
         }
       });
-      console.log(res.data);
       setBookList(res.data);
       setLoading(true);
     }

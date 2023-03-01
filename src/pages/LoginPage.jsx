@@ -91,6 +91,7 @@ function LoginPage() {
             inputValue="비밀번호"
             id="password"
             type="password"
+            autoComplete="on"
             value={user.password}
             onChange={handlePasswordChange}
           />
