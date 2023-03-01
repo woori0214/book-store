@@ -61,6 +61,7 @@ function LoginPage() {
       .then((response) => {
         const accessToken = response.data;
         localStorage.setItem('Auth', accessToken);
+        console.log(response);
 
         navigate('/');
       })

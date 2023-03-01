@@ -45,6 +45,8 @@ function SignUpPage() {
     message: ''
   });
 
+  const [role, setRole] = useState('user');
+
   // 취소 버튼 클릭시
   const handleCancel = () => {
     navigate('/login');
@@ -171,8 +173,13 @@ function SignUpPage() {
     setWarningAddress(newWarning);
   };
 
+  const handleSelect = (e) => {
+    console.log(e.target.value);
+    setRole(e.target.value);
+  };
+
   const handleSignUp = async () => {
-    const baseURL = 'http://elice.iptime.org:5500';
+    const baseURL = 'http://elice.iptime.org:8080';
     if (
       warningEmail.visible ||
       warningName.visible ||
@@ -190,8 +197,11 @@ function SignUpPage() {
       email,
       password,
       phone,
-      address
+      address,
+      role
     };
+
+    console.log(body);
 
     await axios
       .post(`${baseURL}/users`, body)
@@ -280,9 +290,16 @@ function SignUpPage() {
             />
             {warningAddress.visible && <WarningMessage>{warningAddress.message}</WarningMessage>}
           </SignUpList>
+          <SignUpList>
+            <SignUpLabel htmlFor="address">관리자여부</SignUpLabel>
+            <SignUpSelect onChange={handleSelect}>
+              <option value="user">user</option>
+              <option value="admin">admin</option>
+            </SignUpSelect>
+          </SignUpList>
         </SignUpListContainer>
-        <Button type="submit" buttonTitle="취소" margin="0 60px" onClick={handleCancel} />
-        <Button type="button" buttonTitle="가입하기" margin="0 60px" onClick={handleSignUp} />
+        <Button type="submit" buttonTitle="취소" margin="0 60px" onClick={handleCancel} fontSize="22px" />
+        <Button type="button" buttonTitle="가입하기" margin="0 60px" onClick={handleSignUp} fontSize="22px" />
       </SignUpContainer>
       <Footer />
     </>
@@ -324,6 +341,14 @@ const SignUpLabel = styled.label`
 `;
 
 const SignUpInput = styled.input`
+  display: block;
+  flex-basis: 40%;
+  padding-left: 10px;
+  height: 40px;
+  border: 1px solid rgba(0, 0, 0, 0.31);
+`;
+
+const SignUpSelect = styled.select`
   display: block;
   flex-basis: 40%;
   padding-left: 10px;
