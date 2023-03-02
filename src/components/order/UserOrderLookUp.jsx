@@ -1,11 +1,12 @@
 import React, { useEffect, useState } from 'react';
-import { useLocation } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import OrderLookUpTemplate from './OrderLookUpTemplate';
 import Api from 'utils/api';
 
 function UserOrderLookUp() {
   const [orderData, setOrderData] = useState('');
   const [isLoading, setIsLoading] = useState(true);
+  const navigate = useNavigate();
 
   useEffect(() => {
     const getUserOrderData = async () => {
@@ -16,6 +17,18 @@ function UserOrderLookUp() {
     };
     getUserOrderData();
   }, []);
+
+  const handleModify = async (obj) => {
+    const objOrderNumber = obj.orderNumber;
+    const response = await Api.get(`/orders/${objOrderNumber}`);
+    const initialOrdererInfo = response.data.result[0];
+    console.log(response.data.result[0]);
+    navigate('/orderModify', {
+      state: {
+        initialOrdererInfo: initialOrdererInfo
+      }
+    });
+  };
 
   if (!isLoading) {
     const orderInfo = orderData.map((obj) => {
@@ -28,7 +41,7 @@ function UserOrderLookUp() {
         orderStatus: obj.order.status
       };
     });
-    return <OrderLookUpTemplate title="주문 / 배송 조회" orderInfo={orderInfo} />;
+    return <OrderLookUpTemplate title="주문 / 배송 조회" orderInfo={orderInfo} handleModify={handleModify} />;
   }
 }
 

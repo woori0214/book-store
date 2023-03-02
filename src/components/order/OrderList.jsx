@@ -6,22 +6,47 @@ import CommonButton from 'components/commons/button/Button';
 import Api from 'utils/api';
 import calculatePrice from 'utils/calculatePrice';
 
-function OrderList({ ordererInfo }) {
+function OrderList({ ordererInfo, setOrdererInfo }) {
   const navigate = useNavigate();
 
   const orderItems = localStorage.getItem('books');
   const orderItemList = JSON.parse(orderItems);
   const totalPrice = calculatePrice(orderItemList);
 
+  // if (!user.email) {
+  //   alert('아이디를 입력 해주세요.');
+  //   return;
+  // }
+
+  // if (
+  //   !user.email.match(new RegExp(/^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i))
+  // ) {
+  //   alert('이메일 형식에 맞게 입력해주세요.');
+  //   setUser({
+  //     email: '',
+  //     password: ''
+  //   });
+  //   return;
+  // }
+
   const handleOrder = async () => {
+    console.log(!ordererInfo.ordererPhone.match(new RegExp(/^01([0|1|6|7|8|9])-?([0-9]{3,4})-?([0-9]{4})$/)) === null);
     if (!ordererInfo.ordererName) {
-      alert('주문자명을 입력해주세요');
+      alert('주문자명을 입력해주세요.');
     } else if (!ordererInfo.ordererEmail) {
-      alert('이메일을 입력해주세요');
+      alert('이메일을 입력해주세요.');
     } else if (!ordererInfo.ordererPhone) {
-      alert('연락처를 입력해주세요');
-    } else if (!ordererInfo.ordererPhone) {
-      alert('배송지를 입력해주세요');
+      alert('연락처를 입력해주세요.');
+    } else if (!ordererInfo.ordererAddress) {
+      alert('배송지를 입력해주세요.');
+    } else if (
+      !ordererInfo.ordererEmail.match(
+        new RegExp(/^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i)
+      )
+    ) {
+      alert('이메일 형식에 맞게 입력해주세요.');
+    } else if (!ordererInfo.ordererPhone.match(new RegExp(/^01([0|1|6|7|8|9])*-([0-9]{3,4})*-([0-9]{4})$/))) {
+      alert('전화번호를 010-0000-0000 이나 010-000-0000 형식으로 입력해주세요.');
     } else {
       try {
         const isUser = localStorage.getItem('Auth');

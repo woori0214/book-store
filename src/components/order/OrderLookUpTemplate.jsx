@@ -7,25 +7,13 @@ import { useNavigate } from 'react-router-dom';
 import Api from 'utils/api';
 import Pagination from './Pagination';
 
-function OrderLookUpTemplate({ title, orderInfo }) {
+function OrderLookUpTemplate({ title, orderInfo, handleModify }) {
   const navigate = useNavigate();
   const [page, setPage] = useState(1);
   const limit = 5;
   const offset = (page - 1) * limit;
 
   console.log('orderInfo', orderInfo);
-
-  const handleModify = async (obj) => {
-    const objOrderNumber = obj.orderNumber;
-    const response = await Api.get(`/orders/${objOrderNumber}`);
-    const initialOrdererInfo = response.data.result[0];
-    console.log(response.data.result[0]);
-    navigate('/orderModify', {
-      state: {
-        initialOrdererInfo: initialOrdererInfo
-      }
-    });
-  };
 
   const handleCancel = async (obj) => {
     if (window.confirm('주문을 취소하시겠습니까?')) {

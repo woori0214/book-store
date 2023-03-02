@@ -21,11 +21,20 @@ function UserInfoChangeModal({ initialUserData, setModal }) {
   const handleSubmitEdit = async (e) => {
     e.preventDefault();
     console.log('edited', edited);
-    const response = await Api.put('/users/mydetail', edited);
-    console.log(response);
-    if (response.data.acknowledged) {
-      alert('정보 수정이 완료되었습니다!');
-      window.location.reload();
+    if (
+      !edited.email.match(
+        new RegExp(/^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i)
+      )
+    ) {
+      alert('이메일 형식에 맞게 입력해주세요.');
+    } else if (!edited.phone.match(new RegExp(/^01([0|1|6|7|8|9])*-([0-9]{3,4})*-([0-9]{4})$/))) {
+      alert('전화번호를 010-0000-0000 이나 010-000-0000 형식으로 입력해주세요.');
+    } else {
+      const response = await Api.put('/users/mydetail', edited);
+      console.log(response);
+      if (response.data.acknowledged) {
+        window.location.reload();
+      }
     }
   };
 

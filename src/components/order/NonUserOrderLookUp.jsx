@@ -1,11 +1,12 @@
 import React, { useState, useEffect } from 'react';
-import { useLocation } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import OrderLookUpTemplate from './OrderLookUpTemplate';
 import Api from 'utils/api';
 
 function NonUserOrderLookUp() {
   const [nonUserOrderData, setNonUserOrderData] = useState('');
   const [isLoading, setIsLoading] = useState(true);
+  const navigate = useNavigate();
   const location = useLocation();
   const nonUserOrderId = location.state?.nonUserOrderId;
   console.log('nonUserOrderId', nonUserOrderId);
@@ -21,6 +22,17 @@ function NonUserOrderLookUp() {
     getNonUserOrderData();
   }, []);
 
+  const handleModify = async () => {
+    const response = await Api.get(`/orders/noMemberOrder/${nonUserOrderId}`);
+    const initialOrdererInfo = response.data[0];
+    console.log(response.data[0]);
+    navigate('/orderModify', {
+      state: {
+        initialOrdererInfo: initialOrdererInfo
+      }
+    });
+  };
+
   if (!isLoading) {
     const orderInfo = nonUserOrderData.map((obj) => {
       const orderItemCount = obj.orderItemList.length - 1;
@@ -32,7 +44,7 @@ function NonUserOrderLookUp() {
         orderStatus: obj.order.status
       };
     });
-    return <OrderLookUpTemplate title="주문 / 배송 조회" orderInfo={orderInfo} />;
+    return <OrderLookUpTemplate title="주문 / 배송 조회" orderInfo={orderInfo} handleModify={handleModify} />;
   }
 }
 

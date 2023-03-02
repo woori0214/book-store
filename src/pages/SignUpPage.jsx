@@ -145,7 +145,7 @@ function SignUpPage() {
       return setWarningPhone(newWarning);
     }
 
-    if (phone.match(new RegExp(/^01([0|1|6|7|8|9])-?([0-9]{3,4})-?([0-9]{4})$/)) === null) {
+    if (phone.match(new RegExp(/^01([0|1|6|7|8|9])*-([0-9]{3,4})*-([0-9]{4})$/)) === null) {
       newWarning.visible = true;
       newWarning.message = '010-0000-0000 이나 010-000-0000 형식으로 입력해주세요.';
 
