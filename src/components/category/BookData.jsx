@@ -33,7 +33,7 @@ export default function BookData(props) {
       </BookPriceDiv>
       <BookStock>
         재고
-        {book.quantity}
+        {book.stock}
       </BookStock>
     </BookSpan>
   );
