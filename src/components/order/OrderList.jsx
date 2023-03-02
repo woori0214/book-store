@@ -128,9 +128,10 @@ function OrderList({ ordererInfo, setOrdererInfo }) {
 
 const Wrapper = styled.div`
   // position: absolute;
+
   width: 100%;
   max-width: 900px;
-  margin: 2.5rem auto 1.8rem;
+  margin-top: 2.5rem;
 `;
 
 const OrderListWrapper = styled.div`
@@ -186,9 +187,9 @@ const OrderItemInfo = styled.p`
 `;
 
 const OrderBottomWrapper = styled.div`
-  // position: absolute;
   width: 100%;
   display: flex;
+  margin-bottom: 2.5rem;
 `;
 
 const TotalPrice = styled.p`

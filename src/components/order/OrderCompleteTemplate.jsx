@@ -47,7 +47,7 @@ const Wrapper = styled.div`
   width: 90%;
   min-width: 453px;
   max-width: 1219px;
-  margin: 0 auto;
+  margin: 3rem auto 2.2rem;
 `;
 
 const CompleteTitleBox = styled.div`

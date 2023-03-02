@@ -79,7 +79,8 @@ function MyPage({
 }
 
 const Wrapper = styled.div`
-  margin-top: 8.5rem;
+  margin-top: 10rem;
+  margin-bottom: 14.7rem;
 `;
 
 const MyPageBox = styled.div`

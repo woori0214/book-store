@@ -109,9 +109,9 @@ function OrderModifyForm() {
   };
 
   return (
-    <>
+    <Wrapper>
       <PageTitle title="주문 정보 수정" />
-      <Wrapper>
+      <ModifyWrapper>
         <OrderTemplate templateTitle="주문정보" />
         <OrderFormTemplate handleChange={handleChange} ordererInfo={ordererInfo} />
         <CommonButton
@@ -125,12 +125,17 @@ function OrderModifyForm() {
           margin="2.5rem auto 0"
           onClick={handleModifyComplete}
         />
-      </Wrapper>
-    </>
+      </ModifyWrapper>
+    </Wrapper>
   );
 }
 
 const Wrapper = styled.div`
+  margin-top: 10rem;
+  margin-bottom: 22rem;
+`;
+
+const ModifyWrapper = styled.div`
   position: relative;
   width: 90%;
   min-width: 453px;

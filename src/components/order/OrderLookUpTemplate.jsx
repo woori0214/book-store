@@ -106,6 +106,7 @@ function OrderLookUpTemplate({ title, orderInfo, handleModify }) {
 
 const Wrapper = styled.div`
   margin-top: 10rem;
+  margin-bottom: 26rem;
 `;
 
 const EmptyOrder = styled.div`
@@ -118,8 +119,8 @@ const EmptyOrder = styled.div`
 
 const OrderInfoTable = styled.table`
   width: 80%;
-  max-width: 800px;
-  margin: 40px auto 50px;
+  max-width: 900px;
+  margin: 75px auto 50px;
   border: 1px solid #d0c5fe;
   overflow: hidden;
 `;

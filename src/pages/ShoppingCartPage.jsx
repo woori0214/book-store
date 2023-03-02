@@ -67,7 +67,7 @@ function ShoppingCartPage() {
   console.log(books);
 
   return (
-    <>
+    <Wrapper>
       <PageTitle title="장바구니" />
       {books.length === 0 ? (
         <EmptyCart>장바구니에 물건을 추가해주세요.</EmptyCart>
@@ -88,11 +88,16 @@ function ShoppingCartPage() {
           <CartAcount totalAmount={totalAmount} />
         </CartWrapper>
       )}
-    </>
+    </Wrapper>
   );
 }
 
 export default ShoppingCartPage;
+
+const Wrapper = styled.div`
+  margin-top: 60px;
+  margin-bottom: 181px;
+`;
 
 const CartTitle = styled.h2`
   height: 200px;
@@ -110,7 +115,7 @@ const CartTitle = styled.h2`
 const CartWrapper = styled.div`
   display: flex;
   width: 60%;
-  margin: auto;
+  margin: 50px auto 0;
   height: 100%;
 `;
 
