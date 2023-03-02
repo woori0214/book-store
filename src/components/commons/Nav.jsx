@@ -12,7 +12,7 @@ export default function Nav() {
   useEffect(() => {
     async function getData() {
       const res = await axios
-        .get('http://elice.iptime.org:8080/categories')
+        .get('http://elice.iptime.org:8080/api/categories')
         .then((res) => {
           console.log(res);
           setCategory(res.data);
@@ -71,7 +71,7 @@ export default function Nav() {
           )}
         </EndDiv>
         <EndDiv>
-          <MyElice to="/">
+          <MyElice to="/mypage">
             <MyEliceSize src={process.env.PUBLIC_URL + '/images/navBarMyElice.png'} alt="mypage" id="mypage" />
           </MyElice>
         </EndDiv>

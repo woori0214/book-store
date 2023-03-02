@@ -11,7 +11,7 @@ export default function BookList(props) {
 
   useEffect(() => {
     async function getData() {
-      const res = await axios.get('http://elice.iptime.org:8080/books/bookCategory', {
+      const res = await axios.get('http://elice.iptime.org:8080/api/books/bookCategory', {
         params: {
           category: categoryId,
           page,

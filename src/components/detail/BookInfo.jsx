@@ -14,7 +14,7 @@ function BookInfo() {
 
   useEffect(() => {
     const fetchBooks = async () => {
-      const response = await Api.get(`http://elice.iptime.org:8080/books`, {
+      const response = await Api.get(`/books`, {
         params: {
           bookID: id
         }

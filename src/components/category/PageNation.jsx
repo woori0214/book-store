@@ -11,7 +11,7 @@ export default function PageList(props) {
   useEffect(() => {
     console.log('category', category);
     async function getData() {
-      const res = await axios.get('http://elice.iptime.org:8080/books/countBookByCategory', {
+      const res = await axios.get('http://elice.iptime.org:8080/api/books/countBookByCategory', {
         params: {
           category
         }
