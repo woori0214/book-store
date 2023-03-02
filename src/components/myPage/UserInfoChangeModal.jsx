@@ -23,6 +23,10 @@ function UserInfoChangeModal({ initialUserData, setModal }) {
     console.log('edited', edited);
     const response = await Api.put('/users/mydetail', edited);
     console.log(response);
+    if (response.data.acknowledged) {
+      alert('정보 수정이 완료되었습니다!');
+      window.location.reload();
+    }
   };
 
   return (
