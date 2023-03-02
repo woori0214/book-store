@@ -9,6 +9,7 @@ function MyPage({
   handleChangePassword,
   handleOrderList,
   handleUserInfoModify,
+  handleDeleteUser,
   setModal,
   modal,
   initialUserData
@@ -57,6 +58,15 @@ function MyPage({
           borderColor="#bbb2e9"
           borderRadius="15px"
           onClick={handleUserInfoModify}
+        />
+        <Button
+          buttonTitle="회원 탈퇴"
+          width="120px"
+          height="50px"
+          fontSize="1rem"
+          borderColor="#bbb2e9"
+          borderRadius="15px"
+          onClick={handleDeleteUser}
         />
       </ButtonContainer>
       {modal && (
