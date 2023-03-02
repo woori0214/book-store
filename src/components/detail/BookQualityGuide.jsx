@@ -64,9 +64,7 @@ const Wrapper = styled.div`
   width: 90%;
   max-width: 1315px;
   min-height: 600px;
-  margin-top: 171px;
-  margin-left: auto;
-  margin-right: auto;
+  margin: 7rem auto 2rem;
 `;
 
 const GuideTitle = styled.h2`

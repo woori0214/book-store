@@ -15,7 +15,7 @@ function MyPage({
   initialUserData
 }) {
   return (
-    <>
+    <Wrapper>
       <PageTitle title="마이페이지" />
 
       <MyPageBox>
@@ -74,9 +74,13 @@ function MyPage({
           <UserInfoChangeModal initialUserData={initialUserData} setModal={setModal} />
         </ModalGrey>
       )}
-    </>
+    </Wrapper>
   );
 }
+
+const Wrapper = styled.div`
+  margin-top: 8.5rem;
+`;
 
 const MyPageBox = styled.div`
   display: flex;

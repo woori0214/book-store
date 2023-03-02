@@ -34,7 +34,7 @@ function OrderLookUpTemplate({ title, orderInfo, handleModify }) {
     }
   };
   return (
-    <>
+    <Wrapper>
       <PageTitle title={title} />
       {orderInfo.length === 0 ? (
         <EmptyOrder>주문 내역이 없습니다.</EmptyOrder>
@@ -100,9 +100,13 @@ function OrderLookUpTemplate({ title, orderInfo, handleModify }) {
           <Pagination totalItemCount={orderInfo.length} limit={limit} page={page} setPage={setPage} />
         </>
       )}
-    </>
+    </Wrapper>
   );
 }
+
+const Wrapper = styled.div`
+  margin-top: 10rem;
+`;
 
 const EmptyOrder = styled.div`
   height: 300px;

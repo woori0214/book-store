@@ -130,7 +130,7 @@ const Wrapper = styled.div`
   // position: absolute;
   width: 100%;
   max-width: 900px;
-  margin: 2.5rem auto 0;
+  margin: 2.5rem auto 1.8rem;
 `;
 
 const OrderListWrapper = styled.div`

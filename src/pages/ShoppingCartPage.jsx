@@ -112,7 +112,6 @@ const CartWrapper = styled.div`
   width: 60%;
   margin: auto;
   height: 100%;
-  min-height: 100vh;
 `;
 
 const CartContent = styled.div`
