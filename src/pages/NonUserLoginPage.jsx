@@ -41,7 +41,7 @@ export default NonUserLoginPage;
 
 const LoginContainer = styled.div`
   width: 60%;
-  margin: 12rem auto 0;
+  margin: 12rem auto 2rem;
 `;
 
 const LoginForm = styled.form`
