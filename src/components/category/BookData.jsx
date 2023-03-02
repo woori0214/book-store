@@ -40,8 +40,8 @@ export default function BookData(props) {
 }
 
 const BookImg = styled.img`
-  width: 60%;
-  height: 27vh;
+  width: 180px;
+  height: 250px;
 `;
 const BookState = styled.p`
   font-size: 1.1vw;
