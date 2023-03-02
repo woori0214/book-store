@@ -2,7 +2,7 @@ import Button from 'components/commons/button/Button';
 import PageTitle from 'components/commons/pageTitle/PageTitle';
 import React, { useState } from 'react';
 import styled from 'styled-components';
-import { useLocation } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import Api from 'utils/api';
 
 function ChangePassword() {
@@ -12,6 +12,7 @@ function ChangePassword() {
     newPasswordConfirm: ''
   });
 
+  const navigate = useNavigate();
   const location = useLocation();
   const userData = location.state.userData;
   console.log('userData', userData);
@@ -58,7 +59,7 @@ function ChangePassword() {
   };
 
   return (
-    <>
+    <Wrapper>
       <PageTitle title="비밀번호 변경" />
       <ChangePasswordBox>
         <FormContainer>
@@ -96,6 +97,15 @@ function ChangePassword() {
       </ChangePasswordBox>
       <ButtonContainer>
         <Button
+          buttonTitle="취소"
+          width="100px"
+          height="40px"
+          fontSize="1rem"
+          borderColor="#bbb2e9"
+          borderRadius="15px"
+          onClick={() => navigate(-1)}
+        />
+        <Button
           buttonTitle="변경"
           width="100px"
           height="40px"
@@ -105,9 +115,14 @@ function ChangePassword() {
           onClick={handleChangeSubmit}
         />
       </ButtonContainer>
-    </>
+    </Wrapper>
   );
 }
+
+const Wrapper = styled.div`
+  margin-top: 10rem;
+  margin-bottom: 17rem;
+`;
 
 const ChangePasswordBox = styled.div`
   display: flex;
@@ -118,7 +133,7 @@ const ChangePasswordBox = styled.div`
   max-width: 700px;
   height: 270px;
   background-color: #edeafc;
-  margin: 3rem auto 0;
+  margin: 5rem auto 0;
   border-radius: 15px;
 `;
 
@@ -155,7 +170,7 @@ const ButtonContainer = styled.div`
   display: flex;
   position: relative;
   margin: 2rem auto 0;
-  gap: 3rem;
+  gap: 2rem;
   width: 70%;
   min-width: 420px;
   justify-content: center;

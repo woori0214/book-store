@@ -112,7 +112,7 @@ export default LoginPage;
 
 const LoginContainer = styled.div`
   width: 60%;
-  margin: 0 auto 80px auto;
+  margin: 10rem auto 258px;
 `;
 
 const LoginForm = styled.form`

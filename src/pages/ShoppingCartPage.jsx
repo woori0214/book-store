@@ -95,8 +95,8 @@ function ShoppingCartPage() {
 export default ShoppingCartPage;
 
 const Wrapper = styled.div`
-  margin-top: 60px;
-  margin-bottom: 181px;
+  margin-top: 10rem;
+  margin-bottom: 261px;
 `;
 
 const CartTitle = styled.h2`
@@ -142,6 +142,8 @@ const EmptyCart = styled.div`
   font-size: 38px;
   line-height: 200px;
   text-align: center;
+
+  margin-bottom: 380px;
 
   text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
 `;

@@ -189,7 +189,7 @@ const OrderItemInfo = styled.p`
 const OrderBottomWrapper = styled.div`
   width: 100%;
   display: flex;
-  margin-bottom: 2.5rem;
+  margin-bottom: 8.9rem;
 `;
 
 const TotalPrice = styled.p`
