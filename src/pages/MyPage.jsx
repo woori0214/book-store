@@ -48,6 +48,16 @@ function MyPage() {
     setModal((prev) => !prev);
   };
 
+  const handleDeleteUser = async () => {
+    if (confirm('정말 탈퇴하시겠습니까?')) {
+      const response = await Api.delete('/users/mydetail');
+      if (response.data.acknowledged) {
+        alert('탈퇴되었습니다!');
+        location.href = '/login';
+      }
+    }
+  };
+
   return (
     <MyPageTemplate
       userInfoData={userInfoData}
@@ -55,6 +65,7 @@ function MyPage() {
       handleChangePassword={handleChangePassword}
       handleOrderList={handleOrderList}
       handleUserInfoModify={handleUserInfoModify}
+      handleDeleteUser={handleDeleteUser}
       modal={modal}
       setModal={setModal}
     />
