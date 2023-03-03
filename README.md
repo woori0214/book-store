@@ -2,7 +2,7 @@
 
 ## 유저
 
-id: user@elice.com
+id: xpeed96@naver.com
 password: 123123123
 
 ## 관리자

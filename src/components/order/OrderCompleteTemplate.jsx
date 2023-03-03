@@ -6,6 +6,8 @@ import { useNavigate } from 'react-router-dom';
 function OrderCompleteTemplate({ completeMessage, orderInfo, handleLookUp, order }) {
   const navigate = useNavigate();
 
+  localStorage.removeItem('books');
+
   const handleMain = () => {
     navigate('/');
   };
