@@ -12,7 +12,7 @@ export default function BookData(props) {
     if (parseInt(book.score) >= 90) {
       setBookState('BEST');
       setStateColor('#6E54E2');
-    } else if (parseInt(book.score) <= 10) {
+    } else if (parseInt(book.score) <= 20) {
       setBookState('SAIL');
       setStateColor('#df645d');
     }

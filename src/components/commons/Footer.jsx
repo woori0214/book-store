@@ -38,4 +38,6 @@ const Logo = styled.p`
 
 const Box = styled.p`
   color: #ffffff;
+  letter-spacing: 3px;
+  margin: 5px;
 `;
