@@ -50,6 +50,9 @@ function ChangePassword() {
           }
           if (response.data.acknowledged) {
             alert('비밀번호가 변경되었습니다!');
+            localStorage.removeItem('Auth');
+            localStorage.removeItem('Role');
+            navigate('/login');
           }
         }
       } catch (err) {

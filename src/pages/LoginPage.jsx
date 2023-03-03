@@ -67,7 +67,12 @@ function LoginPage() {
         navigate('/');
       })
       .catch((error) => {
-        // console.log(error);
+        // console.log(error)
+        alert('회원이 아니거나 비밀번호가 틀렸습니다.');
+        setUser({
+          email: '',
+          password: ''
+        });
       });
   };
 
