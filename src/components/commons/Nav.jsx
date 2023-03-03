@@ -83,7 +83,8 @@ export default function Nav() {
 const NavBarClass = styled.div`
   display: flex;
   justify-content: space-around;
-  margin-top: 1.5%;
+  margin-top: 15px;
+  padding-bottom: 10px;
   background-color: #ffffff;
   border-radius: 4px;
   border-bottom: 2px solid #b5b5b5;
@@ -94,11 +95,11 @@ const LogoStyle = styled(NavLink)`
 `;
 
 const Category = styled(NavLink)`
-  font-size: 1.5em;
+  font-size: 18px;
   padding-left: 30px;
   padding-right: 30px;
   border-radius: 18px;
-  padding: 5%;
+  padding: 10px;
   color: black;
   &.active {
     background-color: #9e8cec;
@@ -117,13 +118,14 @@ const Category = styled(NavLink)`
 
 const MiddleNavBar = styled.div`
   display: flex;
+  align-items: center;
   margin-left: 10%;
   width: 70%;
 `;
 
 const MiddleSpan = styled.div`
   width: 100%;
-  padding: 2%;
+  padding: 0 5px 5px 5px;
   text-align: center;
 `;
 

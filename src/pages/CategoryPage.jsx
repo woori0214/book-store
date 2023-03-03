@@ -56,7 +56,7 @@ export default function CategoryPage() {
   // 추천순, 재고순 클릭시 페이지초기화를 같이 해줘야한다.
 
   return (
-    <div>
+    <Container>
       <TitleDescription>
         <MainTitle>{title}</MainTitle>
         <pre
@@ -72,12 +72,17 @@ export default function CategoryPage() {
         <BookList categoryId={id} page={page} sortedPage={sortedPage} />
       </TitleDescription>
       <PagenationList changePage={changePage} page={page} category={id} />
-    </div>
+    </Container>
   );
 }
+
+const Container = styled.div`
+  width: 90%;
+  margin: auto;
+`;
 const TitleDescription = styled.div`
   left: 50%;
-  margin-top: 5%;
+  margin-top: 8%;
   margin-bottom: 10%;
   margin-left: 8%;
   font-family: 'Cormorant Garamond';
