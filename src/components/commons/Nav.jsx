@@ -161,6 +161,10 @@ const MyElice = styled(NavLink)`
 const IconSize = styled.img`
   width: 2vw;
   height: 3.5vh;
+  transition: transform 0.4s ease;
+  &:hover {
+    transform: scale(1.1);
+  }
 `;
 
 const MyEliceSize = styled.img`

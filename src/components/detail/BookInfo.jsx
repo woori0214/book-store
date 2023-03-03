@@ -37,6 +37,7 @@ function BookInfo() {
       booksList = [foundBook];
     }
     localStorage.setItem('books', JSON.stringify(booksList));
+    setCartItem((prev) => prev + 1);
     alert('장바구니에 추가 되었습니다.');
   };
 
