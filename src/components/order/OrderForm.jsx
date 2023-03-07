@@ -28,7 +28,7 @@ function OrderForm() {
         <OrderTemplate templateTitle="주문정보" />
         <OrderFormTemplate handleChange={handleChange} ordererInfo={ordererInfo} />
 
-        <OrderList ordererInfo={ordererInfo} />
+        <OrderList ordererInfo={ordererInfo} setOrdererInfo={setOrdererInfo} />
       </Wrapper>
     </>
   );

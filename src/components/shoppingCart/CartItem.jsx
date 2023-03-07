@@ -3,24 +3,24 @@ import styled from 'styled-components';
 
 function CartItem({ book, onDelete, onMinus, onPlus }) {
   const onClickDelete = () => {
-    onDelete(book.id);
+    onDelete(book._id);
   };
 
   const onClickMinus = () => {
-    if (book.quantity === 0) {
+    if (book.quantity <= 1) {
       return;
     }
-    onMinus(book.id);
+    onMinus(book._id);
   };
 
   const onClickPlus = () => {
-    onPlus(book.id);
+    onPlus(book._id);
   };
 
   return (
     <BookItem>
       <ListBox>
-        <BookImage src={book.imageURL} alt="책 이미지입니다." />
+        <BookImage src={book.imageUrl} alt="책 이미지입니다." />
         <BookInfo>
           <Span>{book.title}</Span>
         </BookInfo>
@@ -28,19 +28,11 @@ function CartItem({ book, onDelete, onMinus, onPlus }) {
       <CartInfo>
         <Quantity>
           <MinusBtn>
-            <MinusImg
-              src="images/minusBtn.png"
-              alt="감소 버튼"
-              onClick={onClickMinus}
-            />
+            <MinusImg src="images/minusBtn.png" alt="감소 버튼" onClick={onClickMinus} />
           </MinusBtn>
           <NumberInput type="number" value={book.quantity} />
           <PlusBtn>
-            <PlusImg
-              src="images/plusBtn.png"
-              alt="증가 버튼"
-              onClick={onClickPlus}
-            />
+            <PlusImg src="images/plusBtn.png" alt="증가 버튼" onClick={onClickPlus} />
           </PlusBtn>
         </Quantity>
         <Price>{`${book.price}원`}</Price>

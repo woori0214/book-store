@@ -1,39 +1,8 @@
-import React, { useEffect, useMemo, useState } from 'react';
+import React, { useMemo, useState } from 'react';
 import styled from 'styled-components';
 import CartItem from '../components/shoppingCart/CartItem';
 import CartAcount from '../components/shoppingCart/CartAccount';
 import PageTitle from '../components/commons/pageTitle/PageTitle';
-
-const data = [
-  {
-    id: 1,
-    title: '탈무드',
-    author: '이동민(옮긴이)',
-    publisher: '인디북(인디아이)',
-    publicationDate: '2001년 5월',
-    quantity: 1,
-    imageURL: 'images/탈무드.png',
-    rating: '상',
-    stock: '1부',
-    price: 5400,
-    salePrice: 5400
-  },
-  {
-    id: 2,
-    title: '탈무드2',
-    author: '이동민(옮긴이)2',
-    publisher: '인디북(인디아이)2',
-    publicationDate: '2001년 5월2',
-    quantity: 1,
-    imageURL: 'images/book2.jpg',
-    rating: '중',
-    stock: '1부',
-    price: 6000,
-    salePrice: 6000
-  }
-];
-
-localStorage.setItem('books', JSON.stringify(data));
 
 const getInitailValue = () => {
   const basketItems = localStorage.getItem('books');
@@ -49,7 +18,7 @@ function ShoppingCartPage() {
   // 삭제 버튼 클릭시 로직
   const handleDelete = (id) => {
     const newBooks = JSON.parse(JSON.stringify(books));
-    const filterBook = newBooks.filter((book) => book.id !== id);
+    const filterBook = newBooks.filter((book) => book._id !== id);
 
     localStorage.removeItem('books');
 
@@ -68,7 +37,7 @@ function ShoppingCartPage() {
 
   // 마이너스 버튼 클릭시 로직
   const handleMinus = (id) => {
-    const findBookIndex = books.findIndex((book) => book.id === id);
+    const findBookIndex = books.findIndex((book) => book._id === id);
     const newBooks = JSON.parse(JSON.stringify(books));
     newBooks[findBookIndex].quantity -= 1;
 
@@ -84,7 +53,7 @@ function ShoppingCartPage() {
 
   // 플러스 버튼 클릭시 로직
   const handlePlus = (id) => {
-    const findBookIndex = books.findIndex((book) => book.id === id);
+    const findBookIndex = books.findIndex((book) => book._id === id);
     const newBooks = JSON.parse(JSON.stringify(books));
     newBooks[findBookIndex].quantity += 1;
 
@@ -98,7 +67,7 @@ function ShoppingCartPage() {
   console.log(books);
 
   return (
-    <>
+    <Wrapper>
       <PageTitle title="장바구니" />
       {books.length === 0 ? (
         <EmptyCart>장바구니에 물건을 추가해주세요.</EmptyCart>
@@ -119,11 +88,16 @@ function ShoppingCartPage() {
           <CartAcount totalAmount={totalAmount} />
         </CartWrapper>
       )}
-    </>
+    </Wrapper>
   );
 }
 
 export default ShoppingCartPage;
+
+const Wrapper = styled.div`
+  margin-top: 10rem;
+  margin-bottom: 261px;
+`;
 
 const CartTitle = styled.h2`
   height: 200px;
@@ -141,7 +115,8 @@ const CartTitle = styled.h2`
 const CartWrapper = styled.div`
   display: flex;
   width: 60%;
-  margin: auto;
+  margin: 50px auto 0;
+  height: 100%;
 `;
 
 const CartContent = styled.div`
@@ -167,6 +142,8 @@ const EmptyCart = styled.div`
   font-size: 38px;
   line-height: 200px;
   text-align: center;
+
+  margin-bottom: 380px;
 
   text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
 `;

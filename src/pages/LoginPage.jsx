@@ -33,7 +33,7 @@ function LoginPage() {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    const baseURL = 'http://elice.iptime.org:8080';
+    const baseURL = 'http://elice.iptime.org:8080/api';
 
     if (!user.email) {
       alert('아이디를 입력 해주세요.');
@@ -59,13 +59,20 @@ function LoginPage() {
     await axios
       .post(`${baseURL}/auth`, user)
       .then((response) => {
-        const accessToken = response.data;
+        const accessToken = response.data.token;
+        const role = response.data.userRole;
         localStorage.setItem('Auth', accessToken);
+        localStorage.setItem('Role', role);
 
         navigate('/');
       })
       .catch((error) => {
-        // console.log(error);
+        // console.log(error)
+        alert('회원이 아니거나 비밀번호가 틀렸습니다.');
+        setUser({
+          email: '',
+          password: ''
+        });
       });
   };
 
@@ -89,6 +96,7 @@ function LoginPage() {
             inputValue="비밀번호"
             id="password"
             type="password"
+            autoComplete="on"
             value={user.password}
             onChange={handlePasswordChange}
           />
@@ -109,7 +117,7 @@ export default LoginPage;
 
 const LoginContainer = styled.div`
   width: 60%;
-  margin: auto;
+  margin: 10rem auto 258px;
 `;
 
 const LoginForm = styled.form`

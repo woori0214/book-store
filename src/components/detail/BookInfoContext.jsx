@@ -4,19 +4,16 @@ import { useParams } from 'react-router-dom';
 import styled from 'styled-components';
 
 function BookInfoContext() {
-  const [foundBook, setFoundBook] = useState([]);
+  const [foundBook, setFoundBook] = useState();
   const { id } = useParams();
-
   useEffect(() => {
     const fetchBooks = async () => {
-      const response = await Api.get('http://elice.iptime.org:5500/books', {
+      const response = await Api.get(`/books`, {
         params: {
-          bookID: '63f6c9925b3f904343f3350c'
+          bookID: id
         }
-      });
-      console.log(response);
-      const filteredBook = response.data.filter((book) => id === book._id);
-      setFoundBook(filteredBook);
+      }).then((response) => response.data);
+      setFoundBook([response]);
     };
     fetchBooks();
   }, []);
@@ -37,7 +34,7 @@ function BookInfoContext() {
           </tr>
           <tr>
             <DescriptionTd>재고</DescriptionTd>
-            <DescriptionTd>{`${foundBook?.[0]?.quantity} 부`}</DescriptionTd>
+            <DescriptionTd>{`${foundBook?.[0]?.stock} 부`}</DescriptionTd>
           </tr>
           <tr>
             <DescriptionTd>판매가</DescriptionTd>
@@ -51,21 +48,23 @@ function BookInfoContext() {
 
 const BookInfoWrapper = styled.div`
   display: flex;
+  width: 90%;
+  margin: 0 auto;
   position: relative;
 `;
 
 const FoundBookImg = styled.img`
-  width: 326px;
-  height: 462px;
-  margin-top: 85px;
+  width: 30%;
+  height: 435px;
+  margin-top: 5.6rem;
 `;
 
 const DescriptionTable = styled.table`
   box-sizing: border-box;
-  width: 761px;
+  width: 70%;
   height: 414px;
   border-top: 4px solid #353535;
-  margin: 100px 0 0 94px;
+  margin: 5.9rem 0 0 4rem;
   border-collapse: collapse;
 `;
 
@@ -79,10 +78,10 @@ const DescriptionTbody = styled.tbody`
 const DescriptionTd = styled.td`
   vertical-align: middle;
   &:first-child {
-    width: 178px;
+    width: 40%;
     text-align: center;
     font-family: ${(props) => (props.bold ? 'NotoSansKR-Bold' : 'NotoSansKR-Regular')};
-    font-size: 30px;
+    font-size: 25px;
     line-height: ${(props) => (props.bold ? '41px' : '43px')};
   }
   margin-left: 28px;

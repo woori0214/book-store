@@ -6,6 +6,9 @@ import Button from '../commons/button/Button';
 function CartAcount({ totalAmount }) {
   const navigate = useNavigate();
   let deliveryFee = 3000;
+  if (totalAmount >= 10000) {
+    deliveryFee = 0;
+  }
 
   if (!totalAmount) {
     deliveryFee = 0;
@@ -40,6 +43,7 @@ function CartAcount({ totalAmount }) {
         margin="40px auto"
         onClick={handleOrderButton}
         type="button"
+        fontSize="18px"
       />
     </PaymentArea>
   );

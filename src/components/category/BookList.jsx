@@ -4,28 +4,31 @@ import styled from 'styled-components';
 import BookData from './BookData';
 
 export default function BookList(props) {
-  const [bookList, setBookList] = useState('');
+  const [bookList, setBookList] = useState([]);
   const [loading, setLoading] = useState(false);
-  const { categoryId, page } = props;
+  const { categoryId, page, sortedPage } = props;
+  const perPage = 4;
 
   useEffect(() => {
     async function getData() {
-      const res = await axios.get('http://localhost:8080/book/', {
+      const res = await axios.get('http://elice.iptime.org:8080/api/books/bookCategory', {
         params: {
           category: categoryId,
-          page
+          page,
+          perPage,
+          sortedBy: sortedPage
         }
       });
       setBookList(res.data);
       setLoading(true);
     }
     getData();
-  }, [categoryId, page]);
+  }, [categoryId, page, sortedPage]);
 
   return (
     <BookDataList>
       {loading ? (
-        bookList.map((book, index) => <BookDataStyle key={index} book={bookList[index]} />)
+        bookList.map((book, index) => <BookDataStyle book={bookList[index]} key={book._id} />)
       ) : (
         <h1>Book Loading...!</h1>
       )}

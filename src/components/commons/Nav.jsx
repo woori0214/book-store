@@ -1,47 +1,78 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
-import { NavLink } from 'react-router-dom';
-import cart from './img/shopping-cart.png';
-import myElice from './img/myElice.png';
-import logo from './img/logo.png';
+import { NavLink, useNavigate } from 'react-router-dom';
+import axios from 'axios';
 // 중복 스타일적용
 
 export default function Nav() {
+  const navigate = useNavigate();
+  const [category, setCategory] = useState();
+  const [loading, setLoading] = useState(false);
+
+  useEffect(() => {
+    async function getData() {
+      const res = await axios
+        .get('http://elice.iptime.org:8080/api/categories')
+        .then((res) => {
+          console.log(res);
+          setCategory(res.data);
+          setLoading(true);
+        })
+        .catch((error) => {
+          console.log('실패');
+        });
+    }
+    getData();
+  }, []);
+
   return (
     <NavBarClass>
       <div>
         <LogoStyle to="/">
-          <img src={logo} alt="" />
+          <img src={process.env.PUBLIC_URL + '/images/logo.png'} alt="" />
         </LogoStyle>
       </div>
 
       <MiddleNavBar>
-        <MiddleSpan>
-          <Category to="/category/1">자기개발서적</Category>
-        </MiddleSpan>
-        <MiddleSpan>
-          <Category to="/category/2">소설책</Category>
-        </MiddleSpan>
-        <MiddleSpan>
-          <Category to="/category/3">만화책</Category>
-        </MiddleSpan>
-        <MiddleSpan>
-          <Category to="/category/4">아동책</Category>
-        </MiddleSpan>
+        {loading
+          ? category.map((categoryTitle, index) => (
+              // const categoryId = "/category/"+categoryTitle._id
+              <MiddleSpan key={'category' + index}>
+                <Category to={'/category/' + categoryTitle._id} key={categoryTitle._id}>
+                  {categoryTitle.category}
+                </Category>
+              </MiddleSpan>
+            ))
+          : ''}
       </MiddleNavBar>
 
       <EndClass>
-        <EndDiv>
+        <EndDiv onClick={() => navigate('/shoppingCart')}>
           <CartNavBar to="/">
-            <IconSize src={cart} alt="cart" />
+            <IconSize src={process.env.PUBLIC_URL + '/images/navBarShoppingCart.png'} alt="cart" />
           </CartNavBar>
         </EndDiv>
         <EndDiv>
-          <LoginButton type="button">로그인</LoginButton>
+          {!localStorage.getItem('Auth') ? (
+            <LoginButton type="button" onClick={() => navigate('/login')}>
+              로그인
+            </LoginButton>
+          ) : (
+            <LoginButton
+              type="button"
+              onClick={() => {
+                localStorage.removeItem('Auth');
+                localStorage.removeItem('Role');
+                navigate('/');
+              }}
+            >
+              로그아웃
+            </LoginButton>
+          )}
         </EndDiv>
         <EndDiv>
-          <MyElice to="/">
-            <MyEliceSize src={myElice} alt="mypage" id="mypage" />
+          <MyElice to="/mypage">
+            <MyEliceSize src={process.env.PUBLIC_URL + '/images/navBarMyElice.png'} alt="mypage" id="mypage" />
           </MyElice>
         </EndDiv>
       </EndClass>
@@ -52,24 +83,24 @@ export default function Nav() {
 const NavBarClass = styled.div`
   display: flex;
   justify-content: space-around;
-  margin-top: 1.5%;
+  margin-top: 15px;
+  padding-bottom: 10px;
   background-color: #ffffff;
   border-radius: 4px;
-  // width: 100%;
-  // height: 10%;
   border-bottom: 2px solid #b5b5b5;
 `;
 
 const LogoStyle = styled(NavLink)`
   padding-left: 20%;
 `;
+
 const Category = styled(NavLink)`
-  color: black;
+  font-size: 18px;
+  padding-left: 30px;
+  padding-right: 30px;
   border-radius: 18px;
-  padding: 10%;
-  // width: 100%;
-  // padding-left: 30px;
-  // padding-right: 30px;
+  padding: 10px;
+  color: black;
   &.active {
     background-color: #9e8cec;
     color: white;
@@ -87,13 +118,15 @@ const Category = styled(NavLink)`
 
 const MiddleNavBar = styled.div`
   display: flex;
+  align-items: center;
   margin-left: 10%;
   width: 70%;
 `;
 
 const MiddleSpan = styled.div`
   width: 100%;
-  padding: 2%;
+  padding: 0 5px 5px 5px;
+  text-align: center;
 `;
 
 const EndClass = styled.div`
@@ -102,6 +135,7 @@ const EndClass = styled.div`
   width: 15%;
   height: 100%;
 `;
+
 const EndDiv = styled.div`
   display: iline-block;
   justify-content: center;
@@ -113,6 +147,7 @@ const CartNavBar = styled(NavLink)`
   width: 100%;
   height: 100%;
 `;
+
 const LoginButton = styled.button`
   background-color: #edeafc;
   border-radius: 18px;
@@ -122,9 +157,14 @@ const MyElice = styled(NavLink)`
   width: 100%;
   height: 100%;
 `;
+
 const IconSize = styled.img`
   width: 2vw;
   height: 3.5vh;
+  transition: transform 0.4s ease;
+  &:hover {
+    transform: scale(1.1);
+  }
 `;
 
 const MyEliceSize = styled.img`

@@ -7,25 +7,13 @@ import { useNavigate } from 'react-router-dom';
 import Api from 'utils/api';
 import Pagination from './Pagination';
 
-function OrderLookUpTemplate({ title, orderInfo }) {
+function OrderLookUpTemplate({ title, orderInfo, handleModify }) {
   const navigate = useNavigate();
   const [page, setPage] = useState(1);
   const limit = 5;
   const offset = (page - 1) * limit;
 
   console.log('orderInfo', orderInfo);
-
-  const handleModify = async (obj) => {
-    const objOrderNumber = obj.orderNumber;
-    const response = await Api.get(`/orders/${objOrderNumber}`);
-    const initialOrdererInfo = response.data.result[0];
-    console.log(response.data.result[0]);
-    navigate('/orderModify', {
-      state: {
-        initialOrdererInfo: initialOrdererInfo
-      }
-    });
-  };
 
   const handleCancel = async (obj) => {
     if (window.confirm('주문을 취소하시겠습니까?')) {
@@ -46,7 +34,7 @@ function OrderLookUpTemplate({ title, orderInfo }) {
     }
   };
   return (
-    <>
+    <Wrapper>
       <PageTitle title={title} />
       {orderInfo.length === 0 ? (
         <EmptyOrder>주문 내역이 없습니다.</EmptyOrder>
@@ -112,9 +100,14 @@ function OrderLookUpTemplate({ title, orderInfo }) {
           <Pagination totalItemCount={orderInfo.length} limit={limit} page={page} setPage={setPage} />
         </>
       )}
-    </>
+    </Wrapper>
   );
 }
+
+const Wrapper = styled.div`
+  margin-top: 10rem;
+  margin-bottom: 26rem;
+`;
 
 const EmptyOrder = styled.div`
   height: 300px;
@@ -126,8 +119,8 @@ const EmptyOrder = styled.div`
 
 const OrderInfoTable = styled.table`
   width: 80%;
-  max-width: 800px;
-  margin: 40px auto 50px;
+  max-width: 900px;
+  margin: 75px auto 50px;
   border: 1px solid #d0c5fe;
   overflow: hidden;
 `;
