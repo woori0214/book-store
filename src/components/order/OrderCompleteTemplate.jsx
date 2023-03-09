@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import CommonButton from 'components/commons/button/Button';
 import { useNavigate } from 'react-router-dom';
 
-function OrderCompleteTemplate({ completeMessage, orderInfo, handleLookUp, order }) {
+function OrderCompleteTemplate({ completeMessage, orderInfo }) {
   const navigate = useNavigate();
 
   localStorage.removeItem('books');
