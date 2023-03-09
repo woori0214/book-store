@@ -6,28 +6,12 @@ import CommonButton from 'components/commons/button/Button';
 import Api from 'utils/api';
 import calculatePrice from 'utils/calculatePrice';
 
-function OrderList({ ordererInfo, setOrdererInfo }) {
+function OrderList({ ordererInfo }) {
   const navigate = useNavigate();
 
   const orderItems = localStorage.getItem('books');
   const orderItemList = JSON.parse(orderItems);
   const totalPrice = calculatePrice(orderItemList);
-
-  // if (!user.email) {
-  //   alert('아이디를 입력 해주세요.');
-  //   return;
-  // }
-
-  // if (
-  //   !user.email.match(new RegExp(/^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i))
-  // ) {
-  //   alert('이메일 형식에 맞게 입력해주세요.');
-  //   setUser({
-  //     email: '',
-  //     password: ''
-  //   });
-  //   return;
-  // }
 
   const handleOrder = async () => {
     console.log(!ordererInfo.ordererPhone.match(new RegExp(/^01([0|1|6|7|8|9])-?([0-9]{3,4})-?([0-9]{4})$/)) === null);
@@ -70,6 +54,7 @@ function OrderList({ ordererInfo, setOrdererInfo }) {
             }
           });
         } else {
+          console.log('nomemberOrderInfo', ordererInfo);
           const response = await Api.post('/orders/nomemberorder', {
             userName: `${ordererInfo.ordererName}`,
             email: `${ordererInfo.ordererEmail}`,
@@ -98,7 +83,7 @@ function OrderList({ ordererInfo, setOrdererInfo }) {
       <OrderTemplate templateTitle="주문상품" />
       <OrderListWrapper>
         {orderItemList.map((item) => (
-          <OrderItem key={item.id}>
+          <OrderItem key={item._id}>
             <OrderItemImage src={`${item.imageUrl}`} alt="도서 이미지" width="100px" height=" 100px" />
             <OrderItemInfoBox>
               <OrderItemInfo>{item.title}</OrderItemInfo>
