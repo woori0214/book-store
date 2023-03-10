@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import OrderLookUpTemplate from 'components/order/OrderLookUpTemplate';
 import Api from 'utils/api';
+import axios from 'axios';
 
 function NonUserOrderLookUpPage() {
   const [nonUserOrderData, setNonUserOrderData] = useState('');
@@ -13,7 +14,7 @@ function NonUserOrderLookUpPage() {
 
   useEffect(() => {
     const getNonUserOrderData = async () => {
-      const response = await Api.get(`/orders/noMemberOrder/${nonUserOrderId}`);
+      const response = await axios.get(`http://elice.iptime.org:8080/api/orders/noMemberOrder/${nonUserOrderId}`);
       console.log(response.data);
       setNonUserOrderData(response.data);
       setIsLoading(false);
@@ -23,7 +24,7 @@ function NonUserOrderLookUpPage() {
   }, []);
 
   const handleModify = async () => {
-    const response = await Api.get(`/orders/noMemberOrder/${nonUserOrderId}`);
+    const response = await axios.get(`http://elice.iptime.org:8080/api/orders/noMemberOrder/${nonUserOrderId}`);
     const initialOrdererInfo = response.data[0];
     console.log(response.data[0]);
     navigate('/orderModify', {

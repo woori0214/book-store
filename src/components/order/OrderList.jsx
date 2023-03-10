@@ -4,6 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import OrderTemplate from './OrderTemplate';
 import CommonButton from 'components/commons/button/Button';
 import Api from 'utils/api';
+import axios from 'axios';
 import calculatePrice from 'utils/calculatePrice';
 
 function OrderList({ ordererInfo }) {
@@ -55,7 +56,7 @@ function OrderList({ ordererInfo }) {
           });
         } else {
           console.log('nomemberOrderInfo', ordererInfo);
-          const response = await Api.post('/orders/nomemberorder', {
+          const response = await axios.post('http://elice.iptime.org:8080/api/orders/noMemberOrder', {
             userName: `${ordererInfo.ordererName}`,
             email: `${ordererInfo.ordererEmail}`,
             phone: `${ordererInfo.ordererPhone}`,
