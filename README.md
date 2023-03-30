@@ -13,8 +13,8 @@
 ## 💕 핵심기능
 
 - 정확도 최신순 가격순으로 책 데이터를 보여줍니다.
-- 회원 및 비회원 모두 주문이 가능합니다.
-- 로그인 로그아웃 기능을 제공합니다.
+- 비회원상태와 회원상태에서 주문이 가능합니다.
+- 로그인, 로그아웃, 회원가입 기능을 제공합니다.
 - 장바구니를 통해서 제품을 관리할 수 있습니다.
 - 회원의 경우 마이페이지에서 회원정보 및 주문내역을 조회, 수정할 수 있으며 회원 삭제와 비밀번호 수정이 가능합니다.
 - 비회원의 경우 주문번호를 통해 주문내역을 조회할 수 있습니다.
@@ -25,23 +25,11 @@
 
 #### 🧷 프론트엔드
 
-  <img src="https://img.shields.io/badge/Git-F05032?style=flat-square&logo=git&logoColor=white"/>
-  <img src="https://img.shields.io/badge/ESlint-4B32C3?style=flat-square&logo=ESlint&logoColor=white" />
-  <img src="https://img.shields.io/badge/Prettier-F7B93E?style=flat-square&logo=Prettier&logoColor=white">
-  <img src="https://img.shields.io/badge/styled components-DB7093?style=flat-square&logo=styled-components&logoColor=white"/>
+<img src="https://img.shields.io/badge/Git-F05032?style=flat-square&logo=git&logoColor=white"/> <img src="https://img.shields.io/badge/ESlint-4B32C3?style=flat-square&logo=ESlint&logoColor=white" /> <img src="https://img.shields.io/badge/Prettier-F7B93E?style=flat-square&logo=Prettier&logoColor=white"> <img src="https://img.shields.io/badge/styled components-DB7093?style=flat-square&logo=styled-components&logoColor=white"/> <img src="https://img.shields.io/badge/JavaScript-F7DF1E?style=flat-square&logo=JavaScript&logoColor=white"> <img src="https://img.shields.io/badge/React-61DAFB?style=flat-square&logo=React&logoColor=white"> <img src="https://img.shields.io/badge/Axios-5A29E4?style=flat-square&logo=Axios&logoColor=white"> <img src="https://img.shields.io/badge/React Router-CA4245?style=flat-square&logo=ReactRouter&logoColor=white">
 
-  <img src="https://img.shields.io/badge/JavaScript-F7DF1E?style=flat-square&logo=JavaScript&logoColor=white">
-
-  <img src="https://img.shields.io/badge/React-61DAFB?style=flat-square&logo=React&logoColor=white">
-
-  <img src="https://img.shields.io/badge/Axios-5A29E4?style=flat-square&logo=Axios&logoColor=white">
-  <img src="https://img.shields.io/badge/React Router-CA4245?style=flat-square&logo=ReactRouter&logoColor=white">
-  
 #### 🧷 백엔드
 
-  <img src="https://img.shields.io/badge/Node.js-339933?style=flat-square&logo=Node.js&logoColor=white">
-  <img src="https://img.shields.io/badge/Express-000000?style=flat-square&logo=Express&logoColor=white">
-  <img src="https://img.shields.io/badge/MongoDB-47A248?style=flat-square&logo=MongoDB&logoColor=white">
+<img src="https://img.shields.io/badge/Node.js-339933?style=flat-square&logo=Node.js&logoColor=white"> <img src="https://img.shields.io/badge/Express-000000?style=flat-square&logo=Express&logoColor=white"> <img src="https://img.shields.io/badge/MongoDB-47A248?style=flat-square&logo=MongoDB&logoColor=white">
 
 <br />
 
@@ -70,8 +58,8 @@ https://spotless-weather-112.notion.site/Book-Store-903a00b585a24ec1b8cb2fe8f883
 [김민혁(프론트엔드)](https://github.com/Miintoo)
 
 초기 프로젝트 세팅부터 코드 컨벤션을 정하고 git관리부터 모든게 처음이라서 고민이 많았습니다. 그래서 팀원들과 자주 회의를 하고 팀 프로젝트할 때 중요한 부분을 검색하면서 개발에 필요한 세팅을 하는 부분이 재밌었습니다.
-그리고 어떤 기능을 개발하기 위해서 왜 그런 기능이 필요한지부터 해당 구현을 위해서는 어떤 기술을 사용하고 왜 그 기술을 사용하는지에 대한 회의를 매일마다 하면서 문제해결력에 대한 능력을 키울 수 있는 시간이여서
-개발자로서 많은 성장을 했다고 느꼈습니다.
+
+그리고 어떤 기능을 개발하기 위해서 왜 그런 기능이 필요한지부터 해당 구현을 위해서는 어떤 기술을 사용하고 왜 그 기술을 사용하는지에 대한 회의를 매일마다 하면서 문제해결력에 대한 능력을 키울 수 있는 시간이여서 개발자로서 많은 성장을 했다고 느꼈습니다.
 
 [곽유진(프론트엔드)](https://github.com/yujin-kwak)
 
