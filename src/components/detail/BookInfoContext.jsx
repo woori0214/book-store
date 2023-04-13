@@ -82,14 +82,15 @@ function BookInfoContext({ resource }) {
 }
 
 const BookInfoWrapper = styled.div`
-  /* display: flex; */
+  position: relative;
+
   width: 90%;
   margin: 0 auto;
-  position: relative;
 `;
 
 const BookInfoContainer = styled.div`
   position: relative;
+
   display: flex;
 `;
 
@@ -104,39 +105,44 @@ const DescriptionTable = styled.table`
   width: 70%;
   height: 414px;
   border-top: 4px solid #353535;
-  margin: 5.9rem 0 0 4rem;
   border-collapse: collapse;
+  margin: 5.9rem 0 0 4rem;
 `;
 
 const DescriptionTbody = styled.tbody`
   height: 99px;
+
   &:first-child {
     height: 117px;
   }
 `;
 
 const DescriptionTd = styled.td`
+  border-bottom: 1px solid #b5b5b5;
+  margin-left: 28px;
+
+  font-size: 20px;
+  line-height: 29px;
   vertical-align: middle;
+
   &:first-child {
     width: 40%;
-    text-align: center;
+
     font-family: ${(props) => (props.bold ? 'NotoSansKR-Bold' : 'NotoSansKR-Regular')};
     font-size: 25px;
     line-height: ${(props) => (props.bold ? '41px' : '43px')};
+    text-align: center;
   }
-  margin-left: 28px;
-  border-bottom: 1px solid #b5b5b5;
-  font-size: 20px;
-  line-height: 29px;
 `;
 
 const ButtonWrapper = styled.div`
+  position: relative;
+
+  display: flex;
+  justify-content: end;
   width: 95%;
   margin-top: 2rem;
   gap: 1rem;
-  display: flex;
-  justify-content: end;
-  position: relative;
 `;
 
 export default BookInfoContext;

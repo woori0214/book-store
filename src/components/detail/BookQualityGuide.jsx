@@ -61,6 +61,7 @@ function BookQualityGuide() {
 
 const Wrapper = styled.div`
   position: relative;
+
   width: 90%;
   max-width: 1315px;
   min-height: 600px;
@@ -68,51 +69,58 @@ const Wrapper = styled.div`
 `;
 
 const GuideTitle = styled.h2`
+  margin-left: 49px;
+
   font-family: 'NotoSansKR-Regular';
   font-size: 30px;
   line-height: 43px;
-  margin-left: 49px;
 `;
 
 const GuideTable = styled.table`
+  box-sizing: border-box;
   width: 100%;
   height: 480px;
-  margin-top: 27px;
-  border-collapse: collapse;
-  box-sizing: border-box;
   border: 1px solid #d0c5fe;
+  border-collapse: collapse;
+  margin-top: 27px;
 `;
 
 const GuideTh = styled.th`
-  font-family: 'NotoSansKR-Regular';
   height: 77px;
+  border: 1px solid #d0c5fe;
+
   background-color: #edeafc;
+
+  font-family: 'NotoSansKR-Regular';
   font-size: 23px;
   line-height: 33px;
   text-align: center;
-  border: 1px solid #d0c5fe;
   vertical-align: middle;
 `;
 
 const GuideTd = styled.td`
-  border: 1px solid #d0c5fe;
   width: 24%;
+  padding-left: 15px;
+  border: 1px solid #d0c5fe;
+
+  font-family: 'NotoSansKR-Regular';
   font-size: 18px;
   line-height: 29px;
-  font-family: 'NotoSansKR-Regular';
-  padding-left: 15px;
   vertical-align: middle;
 
   &:first-child {
-    padding: 0;
     width: 5%;
+    padding: 0;
+
     font-size: 23px;
     line-height: 33px;
     text-align: center;
   }
+
   &:nth-child(2) {
-    padding: 0;
     width: 23%;
+    padding: 0;
+
     text-align: center;
   }
 `;
