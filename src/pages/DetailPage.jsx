@@ -31,6 +31,7 @@ const Wrapper = styled.div`
 `;
 const BookInfoWrapper = styled.div`
   position: relative;
+
   width: 100%;
   max-width: 1315px;
   margin: 0 auto;
