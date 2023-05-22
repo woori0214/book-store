@@ -17,33 +17,33 @@ import NonUserOrderLookUpPage from 'pages/order/NonUserOrderLookUpPage';
 import ChangePasswordPage from 'pages/ChangePasswordPage';
 import Nav from 'components/commons/Nav';
 import Footer from 'components/commons/Footer';
-import Layout from 'Layout';
+// import Layout from 'Layout';
 
 function Router() {
   return (
     <div className="routes">
       <BrowserRouter>
-        {/* <Nav /> */}
+        <Nav />
         <Routes>
-          <Route element={<Layout />}>
-            <Route path="/" element={<MainPage />} />
-            <Route path="/category/:id" element={<CategoryPage />} />
-            <Route path="/shoppingCart" element={<ShoppingCartPage />} />
-            <Route path="/detail/:id" element={<DetailPage />} />
-            <Route path="/login" element={<LoginPage />} />
-            <Route path="/nonUserLogin" element={<NonUserLoginPage />} />
-            <Route path="/myPage" element={<MyPage />} />
-            <Route path="/signUp" element={<SignUpPage />} />
-            <Route path="/order" element={<OrderPage />} />
-            <Route path="/orderComplete" element={<OrderCompletePage />} />
-            <Route path="/orderLookUp" element={<OrderLookUpPage />} />
-            <Route path="/nonUserOrderLookUp" element={<NonUserOrderLookUpPage />} />
-            <Route path="/orderModify" element={<OrderModifyPage />} />
-            <Route path="/orderModifyComplete" element={<OrderModifyCompletePage />} />
-            <Route path="/changePassword" element={<ChangePasswordPage />} />
-          </Route>
+          {/* <Route element={<Layout />}> */}
+          <Route path="/" element={<MainPage />} />
+          <Route path="/category/:id" element={<CategoryPage />} />
+          <Route path="/shoppingCart" element={<ShoppingCartPage />} />
+          <Route path="/detail/:id" element={<DetailPage />} />
+          <Route path="/login" element={<LoginPage />} />
+          <Route path="/nonUserLogin" element={<NonUserLoginPage />} />
+          <Route path="/myPage" element={<MyPage />} />
+          <Route path="/signUp" element={<SignUpPage />} />
+          <Route path="/order" element={<OrderPage />} />
+          <Route path="/orderComplete" element={<OrderCompletePage />} />
+          <Route path="/orderLookUp" element={<OrderLookUpPage />} />
+          <Route path="/nonUserOrderLookUp" element={<NonUserOrderLookUpPage />} />
+          <Route path="/orderModify" element={<OrderModifyPage />} />
+          <Route path="/orderModifyComplete" element={<OrderModifyCompletePage />} />
+          <Route path="/changePassword" element={<ChangePasswordPage />} />
+          {/* </Route> */}
         </Routes>
-        {/* <Footer /> */}
+        <Footer />
       </BrowserRouter>
     </div>
   );

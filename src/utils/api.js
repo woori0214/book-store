@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 const instance = axios.create({
-  baseURL: 'http://elice.iptime.org:8080/api'
+  baseURL: 'http://elice.iptime.org:5052/api'
 });
 
 const excludeTokenUrl = ['/login', '/signUp', '/nonUserLogin', '/nonUserOrderLookUp'];

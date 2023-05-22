@@ -14,7 +14,6 @@ export default function Nav() {
       const res = await axios
         .get('http://elice.iptime.org:8080/api/categories')
         .then((res) => {
-          console.log(res);
           setCategory(res.data);
           setLoading(true);
         })

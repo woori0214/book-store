@@ -5,6 +5,7 @@ import Button from '../components/commons/button/Button';
 import InputBox from '../components/commons/inputBox/InputBox';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
+import secureLocalStorage from 'react-secure-storage';
 
 function LoginPage() {
   const navigate = useNavigate();
@@ -33,7 +34,7 @@ function LoginPage() {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    const baseURL = 'http://elice.iptime.org:8080/api';
+    const baseURL = 'http://elice.iptime.org:5052/api';
 
     if (!user.email) {
       alert('아이디를 입력 해주세요.');
@@ -60,9 +61,11 @@ function LoginPage() {
       .post(`${baseURL}/auth`, user)
       .then((response) => {
         const accessToken = response.data.token;
+        const refreshToken = response.data.refreshToken;
         const role = response.data.userRole;
-        localStorage.setItem('Auth', accessToken);
-        localStorage.setItem('Role', role);
+        secureLocalStorage.setItem('Auth', accessToken);
+        secureLocalStorage.setItem('RefreshAuth', refreshToken);
+        secureLocalStorage.setItem('Role', role);
 
         navigate('/');
       })
